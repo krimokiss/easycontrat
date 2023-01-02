@@ -1,0 +1,145 @@
+<div class="container">
+  <h1>Gestion de mes Contrats</h1>
+  <mat-form-field class="example-full-width" appearance="outline">
+    <mat-label>Rechercher un contrat</mat-label>
+    <input matInput [formControl]="searchBar" maxlength="10" placeholder="Fonction ou Statut">
+  </mat-form-field>
+  <div class="cartes" *ngFor="let contrat of allContratFiltered">
+
+    <mat-card *ngIf="contrat.fki_entreprise == profilEntreprise.entreprise_id">
+      <mat-card-header>
+        <div *ngFor="let salarie of allSalarie">
+          <mat-card-title *ngIf="contrat.fki_salarie == salarie.salarie_id"> Prénom :
+            <strong>{{salarie.prenom}}</strong>
+            <br> Nom : <strong>{{salarie.nom}}</strong> </mat-card-title>
+        </div>
+        <mat-card-subtitle>Fonction : {{contrat.fonction}} <br> Statut : {{contrat.satut}}</mat-card-subtitle>
+        <mat-card-subtitle>Contrat ID : {{contrat.contrat_id}}</mat-card-subtitle>
+
+        <mat-card-subtitle>Type Contrat : {{contrat.type_contrat}} <br> Prise d'effet du contrat :
+          {{contrat.date_debut | date: 'dd MMM yyyy'}} <br> Fin du contrat : {{contrat.date_fin | date: 'dd MMM
+          yyyy'}}</mat-card-subtitle>
+
+      </mat-card-header>
+
+      <mat-card-actions>
+        <button color="primary" mat-button data-toggle="modal" data-target="#exampleModalLong">Détails</button>
+        <button color="primary" data-toggle="modal" data-target="#exampleModal" mat-button>Supprimer</button>
+      </mat-card-actions>
+    </mat-card>
+    <br>
+
+    <!-- Modal Court pour le bouton supprimer-->
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            Vous êtes sur le point de supprimer le salarié de votre base de donnée, cet action est irrémédiable.
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+            <button type="button" class="btn btn-primary" (click)="onSubmit(contrat.contrat_id)">Confirmer</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal LONG pour le bouton Details-->
+
+    <div *ngFor="let salarie of contratBySalarie" class="modal fade" id="exampleModalLong"
+      tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+      <div  class="modal-dialog" role="document">
+        <div *ngIf="salarie.contrat_id==contrat.contrat_id" class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Aperçu du contrat de travail</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <h2 mat-dialog-title>Contrat de Travail</h2>
+            <mat-dialog-content class="mat-typography">
+              <h3>Fait à Annemasse le <strong> {{salarie.date_debut | date : 'dd MMMM YYYY'}} </strong> </h3>
+              <div >
+                <p>
+                  Ce contrat a été établi entre la société :
+                  <strong>{{contrat.raison_sociale}}</strong> représenté par
+                  <strong>{{contrat.civilite }} {{contrat.nom }} {{contrat.prenom }}</strong>,
+                  d'une part, et
+                  <strong>{{salarie.civilite }} {{salarie.nom }} {{salarie.prenom}}</strong>
+                  , d'autre part.
+                </p>
+              </div>
+
+              <h3>Type de contrat de travail</h3>
+              <p>
+                Le type de contrat de travail sera un <strong>{{contrat.type_contrat}}</strong>
+              </p>
+
+              <h3>Durée hebdomadaire</h3>
+              <p *ngIf="contratByEnt.isFulltime">
+                Il est convenu que la durée de travail mensuel sera à <strong>Temp Plein</strong>
+              </p>
+              <p *ngIf="!contratByEnt.isFulltime">
+                Il est convenu que la durée de travail mensuel sera à <strong>Temp Partiel</strong>
+              </p>
+
+              <h3>Date de début du contrat</h3>
+              <p>Le contrat débutera le : <strong>{{contrat.date_debut | date: 'dd MM YYYY'}}</strong>
+
+              </p>
+
+              <h3 *ngIf="contratByEnt.date_fin">Date de fin du contrat</h3>
+
+              <p *ngIf="contratByEnt.date_fin">
+                Etant convenu qu'il s'agit d'un contrat en CDD, Ce dernier prendra fin le <strong>{{contrat.date_fin |
+                  date: 'dd MM YYYY'}}</strong>
+              </p>
+
+              <h3>Periode d'essai</h3>
+
+              <p>La période d'essai pour ce travail est de : <strong>{{contrat.periode_essai}}</strong> </p>
+
+              <p>
+                Au cours de cette période, le contrat pourra être rompu par l'une
+                ou l'autre partie, à tout moment, sous réserve du respect du délai
+                de prévenance prévu.</p>
+
+              <h3>Motif</h3>
+
+              <p>
+                Le présent contrat a été crée suite a un(e) : <strong> {{contrat.motif}} </strong>
+              </p>
+
+              <h3>Fonction occupée</h3>
+
+              <p>La fonction occupée pour ce travail sera : <strong> {{contrat.fonction}} </strong> </p>
+
+              <h3>Statut</h3>
+
+              <p>
+                Vous aurez le statut de : <strong> {{contrat.satut}} </strong>, sous réserve d'évolution de votre
+                carrière.
+              </p>
+
+
+
+            </mat-dialog-content>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+            <button type="button" class="btn btn-primary">Imprimer</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

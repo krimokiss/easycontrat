@@ -1,0 +1,49 @@
+<div class="container">
+  <h1>Gestion de mes Contrats</h1>
+
+<div class="cartes" *ngFor="let contrat of contratByEnt">
+
+  <mat-card *ngIf="contrat.fki_salarie == profilSalarie.salarie_id">
+    <mat-card-header>
+      <div *ngFor="let salarie of allSalarie">
+        <mat-card-title *ngIf="contrat.fki_salarie == salarie.salarie_id"><strong>Societe : {{contrat.raison_sociale}} </strong>
+            <br> Contact : {{contrat.prenom}}  {{contrat.nom}} </mat-card-title>
+      </div>
+       <mat-card-subtitle>Fonction : {{contrat.fonction}} <br> Statut : {{contrat.satut}}</mat-card-subtitle>
+      <mat-card-subtitle>Contrat ID : {{contrat.contrat_id}}</mat-card-subtitle>
+    
+        <mat-card-subtitle>Type Contrat : {{contrat.type_contrat}} <br> Prise d'effet du contrat :
+          {{contrat.date_debut | date: 'dd MMM yyyy'}} <br></mat-card-subtitle>
+          <mat-card-subtitle *ngIf="contrat.date_fin != null" > Fin du contrat : {{contrat.date_fin | date: 'dd MMM yyyy'}}</mat-card-subtitle>
+         
+    </mat-card-header>
+
+    <mat-card-actions>
+      <button color="primary" mat-button>Détails</button>
+      <button color="primary"  mat-button data-toggle="modal" data-target="#exampleModal" >Supprimer</button>
+    </mat-card-actions>
+  </mat-card>
+  <br>
+  
+
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Vous êtes sur le point de supprimer le salarié de votre base de donnée, cet action est irrémédiable.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+          <button type="button" class="btn btn-primary" (click)="onSubmit(contrat.contrat_id)" >Confirmer</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

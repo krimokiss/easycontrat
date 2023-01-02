@@ -1,0 +1,35 @@
+.container{
+    height: 100vh;
+    gap: 20px;
+}
+#tasks{
+    transition: all .2s linear;
+}
+
+#tasks:hover {
+    transform: scale(1.03);
+}
+.btn-outline-danger{
+    max-width: 40px;
+    max-height: 40px;
+}
+.btn-outline-primary{
+    max-width: 40px;
+    max-height: 40px;
+}
+.test{
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: nowrap;
+}
+.card{
+    align-self: center;
+}
+.super{
+    margin-bottom: 50px;
+    padding-bottom: 40px;
+}
+body::-webkit-scrollbar {
+    display: none;
+  }
+

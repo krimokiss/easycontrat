@@ -1,0 +1,44 @@
+.toolbar{
+    span{
+        text-align: center;
+    }
+}
+.main.footer {
+    position: fixed;
+    border-top: 1px solid #ccc;
+    bottom: 0;
+    width: 100%;
+    background-color: #1976d2;
+   
+    div{
+        color: #fff;
+        font-size: small;
+        text-align: center;
+    width: 100%;
+    }
+  }
+.contrainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 90%;
+    span{
+        font-size: larger;
+        font-weight: 700;
+    }
+}
+@media  screen and (max-width: 450px)  {
+   .content img{
+    margin-top: 30px;
+    width: 200px;
+    height: 150px;
+   }
+      }
+@media  screen and (min-width: 1450px)  {
+        .content img{
+         margin-top: 80px;
+       
+        }
+        
+         
+           }

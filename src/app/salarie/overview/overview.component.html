@@ -1,0 +1,45 @@
+<mat-drawer-container [class.drawer-opened]="drawer.opened" class="example-container">
+  <mat-drawer #drawer class="drawer" mode="side" opened="true">
+
+    <mat-toolbar class="header">
+      <div>Administration</div>
+      <mat-icon class="close" (click)="drawer.close()">close</mat-icon>
+    </mat-toolbar>
+    <div class="contents">
+      Drawer
+    </div>
+    <div></div>
+    <div>
+      <div class="boutons">
+        <a mat-raised-button (click)="drawer.toggle()" routerLink="/salarie/overview/gerer-profil">
+          Gérer mon profil<mat-icon matSuffix>account_circle </mat-icon></a>
+        <a mat-raised-button (click)="drawer.toggle()" routerLink="/salarie/overview/gerer-contrat">
+          Gérer mes contrats<mat-icon matSuffix>folder_shared</mat-icon></a>
+        <a class="pasla" mat-raised-button (click)="drawer.toggle()" routerLink="/salarie/overview/gerer-contrat">
+          fausse ligne <mat-icon matSuffix>folder</mat-icon></a>
+      </div>
+    </div>
+  </mat-drawer>
+
+  <mat-toolbar class="main header">
+    <mat-icon *ngIf="!drawer.opened" (click)="drawer.toggle()">
+      menu
+    </mat-icon>
+    <div>Espace salarié : <em>{{profil.prenom}} {{profil.nom}}</em> </div>
+    <div class="exit"><mat-icon matTooltip="Se déconnecter" matTooltipClass="example-tooltip-uppercase"
+        (click)=" logOutClick()" class="example-button">exit_to_app</mat-icon></div>
+  </mat-toolbar>
+
+  <div class="main contents">
+    <router-outlet></router-outlet>
+    <!-- drawer opened: {{drawer.opened}}
+  <div>Contents xxxxxx xxxxxx xxxxxx xxxxxx xxxxxx xxxxxx xxxxxx xxxxxx xxxxxx xxxxxxx xxxxxx xxxxxx</div> -->
+    <!-- <div style="height: 1000px">&nbsp;</div> -->
+
+  </div>
+
+
+  <!-- <mat-toolbar class="main footer">
+  Footer
+</mat-toolbar> -->
+</mat-drawer-container>

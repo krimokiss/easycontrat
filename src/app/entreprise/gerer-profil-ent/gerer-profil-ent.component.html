@@ -1,0 +1,155 @@
+<div *ngIf="profil" class="row mt-4 super" style="height: 500px;">
+    <div class="col"></div>
+    <div class="col-md-6 bg-white shadow super">
+
+        
+
+        <h4 class="text-primary mt-4 text-center" style="font-size: 1.5rem">Vos Informations : </h4>
+
+        <div style=" height: 60px;">
+            <div class="m-3">
+                <div class="p-2 shadow border" id="tasks">
+                    <div class="input-group ps-3 test" ><mat-icon>account_circle</mat-icon>
+                        <div class="card col-md-10 border-0"><strong> Nom de famille : </strong> 
+                            <input type="text" [value]="profil.nom" [(ngModel)]="profil.nom"></div>
+                        <button class="btn btn-outline-primary col me-2"  type="button"  (click)="updateProfil()" ><mat-icon>edit</mat-icon></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style=" height: 60px;">
+            <div class="m-3">
+                <div class="p-2 shadow border" id="tasks">
+                    <div class="input-group ps-3 test" ><mat-icon>account_circle</mat-icon>
+                        <div class="card col-md-10 border-0"><strong> Prénom : </strong>
+                            <input type="text" [value]="profil.prenom" [(ngModel)]="profil.prenom"></div>
+                            <button class="btn btn-outline-primary col me-2"  type="button" (click)="updateProfil()" ><mat-icon>edit</mat-icon></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style=" height: 60px;">
+            <div class="m-3">
+                <div class="p-2 shadow border" id="tasks">
+                    <div class="input-group ps-3 test" > <mat-icon>phone</mat-icon>
+                        <div class="card col-md-10 border-0"> <strong> Téléphone : </strong>
+                            <input type="text" [value]="profil.telephone" [(ngModel)]="profil.telephone"></div>
+                        <button class="btn btn-outline-primary col me-2"  type="button"(click)="updateProfil()" ><mat-icon>edit</mat-icon></button>
+                      
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style=" height: 60px;">
+            <div class="m-3">
+                <div class="p-2 shadow border" id="tasks">
+                    <div class="input-group column ps-3 test" ><mat-icon>location_city</mat-icon>
+                        <div class="card col-md-10 border-0"><strong> Adresse : </strong>
+                            <input type="text" [value]="profil.rue" [(ngModel)]="profil.rue"> </div>
+                        <button class="btn btn-outline-primary col me-2"  type="button"(click)="updateProfil()" ><mat-icon>edit</mat-icon></button>
+                      
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style=" height: 60px;">
+            <div class="m-3">
+                <div class="p-2 shadow border" id="tasks">
+                    <div class="input-group column ps-3 test" ><mat-icon>location_city</mat-icon>
+                        <div class="card col-md-10 border-0"><strong> Code postale : </strong>
+                            <input type="text" [value]="profil.cp" [(ngModel)]="profil.cp"> </div>
+                        <button class="btn btn-outline-primary col me-2"  type="button"(click)="updateProfil()" ><mat-icon>edit</mat-icon></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style=" height: 60px;">
+            <div class="m-3">
+                <div class="p-2 shadow border" id="tasks">
+                    <div class="input-group column ps-3 test" ><mat-icon>location_city</mat-icon>
+                        <div class="card col-md-10 border-0"><strong> Ville : </strong>
+                            <input type="text" [value]="profil.ville" [(ngModel)]="profil.ville"></div>
+                        <button class="btn btn-outline-primary col me-2"  type="button"(click)="updateProfil()" ><mat-icon>edit</mat-icon></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style=" height: 60px;">
+            <div class="m-3">
+                <div class="p-2 shadow border" id="tasks">
+                    <div class="input-group  ps-3 test" ><mat-icon>mail_outline</mat-icon>
+                        <div class="card col-md-10 border-0"> <strong>Email : </strong>
+                            <input type="text" [value]="profil.email" [(ngModel)]="profil.email"></div>
+                        <button class="btn btn-outline-primary col me-2"  type="button"(click)="updateProfil()" ><mat-icon>edit</mat-icon></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style=" height: 60px;">
+            <div class="m-3">
+                <div class="p-2 shadow border" id="tasks">
+                    <div class="input-group ps-3 test" ><mat-icon>no_encryption</mat-icon>
+                        <div class="card col-md-10 border-0"><strong>Mot de passe : </strong> <input type="password" value="{{profil.mdp}}" disabled="disabled" > </div>
+                        <button class="btn btn-outline-primary col me-2"  type="button" ><mat-icon>edit</mat-icon></button>
+                      
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+        <div style=" height: 60px;">
+            <div class="m-3">
+                <div class="p-2 shadow border" id="tasks">
+                    <div class="input-group  ps-3 test" ><mat-icon>how_to_reg</mat-icon>
+                        <div class="card col-md-10 border-0"><strong>Siret : </strong>
+                            <input type="text" [value]="profil.siret" [(ngModel)]="profil.siret"></div>
+                        <button class="btn btn-outline-primary col me-2"  type="button"(click)="updateProfil()" ><mat-icon>edit</mat-icon></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style=" height: 60px;">
+            <div class="m-3">
+                <div class="p-2 shadow border" id="tasks">
+                    <div class="input-group  ps-3 test" > <mat-icon>calendar_today</mat-icon>
+                        <div class="card col-md-10 border-0"><strong>Raison sociale : </strong>
+                            <input type="text" [value]="profil.raison_sociale" [(ngModel)]=" profil.raison_sociale"></div>
+                        <button class="btn btn-outline-primary col me-2"  type="button" (click)="updateProfil()"><mat-icon>edit</mat-icon></button>
+                      
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style=" height: 60px;">
+            <div class="m-3">
+                <div class="p-2 shadow border" id="tasks">
+                    <div class="input-group  ps-3 test" > <mat-icon>map</mat-icon>
+                        <div class="card col-md-10 border-0"><strong>Code APE : </strong> {{profil.code_ape}}</div>
+                        <!-- <button class="btn btn-outline-primary col me-2"  type="button" ><mat-icon>edit</mat-icon></button> -->
+                      
+                    </div>
+                </div>
+            </div>
+        </div>
+               
+        <div class="modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" >
+            <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modifier vos informations</h5>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="input-group p-4">
+                        <input type="text" class="form-control" placeholder="Modifier valeur " name="salarie" [(ngModel)]="editValue" >
+                        <button class="btn btn-outline-success" type="button" data-dismiss="modal" (click)="updateProfil()">Mettre à jour</button>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="col"></div>
+
+</div>

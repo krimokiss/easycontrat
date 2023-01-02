@@ -1,0 +1,94 @@
+import { Contrat } from './../models/contrat.model';
+import { Entreprise } from 'src/app/models/entreprise.model';
+import { Salarie } from 'src/app/models/salarie.model';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { Injectable } from '@angular/core';
+import { Observable, Subject } from 'rxjs';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class DataService {
+
+  backend  = "http://localhost:5000/api"
+ 
+
+
+  constructor(private _http : HttpClient,
+              private router : Router) { }
+
+
+              // TOKEN SIDE //
+
+static getToken() {
+  return localStorage.getItem('token')
+}
+clearToken(): void {
+  localStorage.removeItem('token')
+  this.router.navigate((['/']))
+}
+
+              // SALARIE SERVICE SIDE //
+
+registerSalarie(salarieForm: any): Observable<any> {
+  return this._http.post(this.backend + "/salarie/register", salarieForm)
+}
+salarieLogin(salarie: Salarie) {
+  return this._http.post<Salarie>(this.backend + "/salarie/login", salarie)
+}
+getAllSalarie():Observable<any> {
+return this._http.get(this.backend + "/salarie/allUsers")
+}
+getProfil(): Observable<any> {
+return this._http.get(this.backend + "/salarie/profil")
+}
+updateSalarie(values:any, id: number): Observable<any> {
+  return this._http.put<any>(this.backend + "/salarie/update/" + id, {formulaire: values})
+}
+deleteSalarie(id:any): Observable<any> {
+  console.warn('From dataService ID : ', id);
+  
+  return this._http.delete(this.backend + "/salarie/delete/" +  id)
+}
+
+
+            // ENTREPRISE SERVICE SIDE //
+
+registerEntreprise(entrepriseForm: any): Observable<any> {
+  return this._http.post(this.backend + "/entreprise/register", entrepriseForm)
+}
+entrepriseLogin(entreprise: Entreprise) {
+  return this._http.post<Entreprise>(this.backend + "/entreprise/login", entreprise)
+}
+getAllEntreprise():Observable<any> {
+return this._http.get(this.backend + "/entreprise/allUsers")
+}
+getProfilEntreprise(): Observable<any> {
+return this._http.get(this.backend + "/entreprise/profil")
+}
+updateEntreprise(values:any, id: number): Observable<any> {
+  return this._http.put<any>(this.backend + "/entreprise/update/" + id, {formulaire: values})
+}
+
+            // CONTRAT SERVICE SIDE //
+
+createContrat(contratForm:any): Observable<any> {
+  return this._http.post(this.backend + '/contrat/contrat', contratForm)
+}
+getallContrat(): Observable<any> {
+  return this._http.get(this.backend + '/contrat/allcontrat')
+}
+getOneContrat(id:any): Observable<any>{
+  return this._http.get(this.backend + '/contrat/contrat/' + id)
+}
+deleteContrat(id: any): Observable<any> {  
+  return this._http.delete(this.backend + '/contrat/delete/' + id)
+}
+getallContratByEnt(): Observable<any> {
+  return this._http.get(this.backend + '/contrat/contratbyent')
+}
+getallContratBySalarie(): Observable<any> {
+  return this._http.get(this.backend + '/contrat/contratbysalarie')
+}
+}

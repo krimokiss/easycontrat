@@ -1,0 +1,21 @@
+.container{
+    background-color: #1976d2be;
+    width: fit-content;
+    border-radius: 20px;
+    padding: 30px;
+    margin-top: 50px;
+    box-shadow: #1976d2 0px 5px 15px;
+}
+mat-form-field{
+    background-color: aliceblue;
+    border-radius: 10px;
+}
+h1{
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    :hover{
+scale: 1.2;
+    }
+}
