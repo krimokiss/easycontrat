@@ -1,3 +1,5 @@
+import { ContratResolverResolver } from './resolver/contrat-resolver.resolver';
+import { DetailsModalComponent } from './modals/details-modal/details-modal.component';
 import { ContratModalComponent } from './modals/contrat-modal/contrat-modal.component';
 import { GenererContratComponent } from './entreprise/generer-contrat/generer-contrat.component';
 import { GererSalariesEntComponent } from './entreprise/gerer-salaries-ent/gerer-salaries-ent.component';
@@ -32,13 +34,15 @@ const routes: Routes = [
     path: 'entreprise/overview', component: OverviewentrepriseComponent,
     children: [
       { path: 'gerer-profil-ent', component: GererProfilEntComponent },
-      { path: 'gerer-contrat-ent', component: GererContratEntComponent },
+      { path: 'gerer-contrat-ent', component: GererContratEntComponent,
+    children: [{path : 'details-modal', component : DetailsModalComponent, resolve:{profile:ContratResolverResolver}}] },
       { path: 'gerer-salaries-ent', component: GererSalariesEntComponent },
       { path: 'generer-contrat', component: GenererContratComponent,
     children: [{path : 'contrat-modal', component: ContratModalComponent}] }
     ]
   }
 ];
+// resolve:{profile:UserResolverResolver}
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

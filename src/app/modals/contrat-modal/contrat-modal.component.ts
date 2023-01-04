@@ -33,7 +33,7 @@ export class ContratModalComponent implements OnInit {
     console.log('CONTRATFORM FROM REGISTER : ', this.contratForm);
     this.dataService.getProfilEntreprise().subscribe((result: any) => {
       console.log(result);
-      this.entreprise = result[0]
+      this.entreprise = result
     })
     this.dataService.getAllSalarie().subscribe((result: any) => {
       this.allSalarie = result
@@ -46,5 +46,7 @@ export class ContratModalComponent implements OnInit {
   closeDialog() {
     this.dialogRef.close({ event: 'close', data: this.ID })
   }
-
+printPage(){
+  window.print();
+}
 }

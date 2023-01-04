@@ -10,19 +10,19 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 })
 export class OverviewentrepriseComponent implements OnInit {
 
-  entreprise: Entreprise = new Entreprise();
-  profil!: any
+  // entreprise: Entreprise = new Entreprise();
+  profil= new Entreprise()
 
   constructor(private dataService : DataService) { }
 
   ngOnInit(): void {
     this.dataService.getProfilEntreprise().subscribe((response:any)=>{
-      if (response && response[0]) {
-        this.profil = response[0]
-      }
+   
+        this.profil = response
+      
      
     })
-    this.entreprise = new Entreprise();
+   
   }
   logOutClick(): void {
     this.dataService.clearToken()

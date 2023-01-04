@@ -41,7 +41,7 @@ currentItem!:any;
     })
     this.dataService.getProfilEntreprise().subscribe((result:any)=>{
       this.profil = result
-      console.log('profil', result[0]);
+      console.log('profil', result);
       
     })
     this.dataService.getallContratByEnt().subscribe((result:any)=>{
@@ -71,7 +71,7 @@ console.warn(result);
 
 onSubmit(){
   const form = this.registerForm.value
-  this.contrat.fki_entreprise = this.profil[0].entreprise_id
+  this.contrat.fki_entreprise = this.profil.entreprise_id
 
   this.contrat = Object.assign(this.contrat, form)
 

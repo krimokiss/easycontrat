@@ -3,18 +3,15 @@
     h1{
         text-decoration: underline;
         font-weight: 500;
+        .cartes{
+           margin-bottom: 10px;
+        }
       
     }
    mat-card{
     box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-    // display: flex;
-    // width: 250px;
-    mat-car-header {
-        // mat-card-title {}
-
-        // mat-card-subtitle {}
-
-    }
+    margin-bottom: 20px;
+  
     mat-card-actions {
         :hover{
             color: white;

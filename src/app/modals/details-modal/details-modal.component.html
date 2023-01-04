@@ -1,0 +1,165 @@
+  <div class="container" *ngIf="data == singleContrat.contrat_id">
+    <h2 mat-dialog-title>Contrat de Travail</h2>
+  <mat-dialog-content class="mat-typography">
+    <h3>Fait à Annemasse le <strong> {{singleContrat.date_debut | date:'dd, MMMM YYYY'}} </strong>  </h3>
+   <div *ngFor="let salarie of allSalarie" >
+    <p *ngIf="singleContrat.fki_salarie == salarie.salarie_id" >
+      Ce contrat a été établi entre la société : <br> <br>
+      <strong>{{entreprise.raison_sociale}}</strong> <br> représenté par : <br>
+      <strong>{{entreprise.civilite }} {{entreprise.nom }} {{entreprise.prenom }}</strong>, <br>
+      d'une part, <br> <br>
+       et <br> <br>
+      <strong>{{salarie.civilite }} {{salarie.nom }} {{salarie.prenom}}</strong> <br>
+      né le <strong>{{salarie.date_naissance | date:'dd MMMM YYYY'}}</strong> à <strong>{{salarie.lieu_naissance}}</strong>, <br>
+      demeurant au : <br> <strong>{{salarie.rue}}</strong> <br> <strong>{{salarie.cp}} {{salarie.ville}}</strong>, <br> d'autre part.
+    </p>
+   </div>
+  
+    <h3>Type de contrat de travail {{entreprise.raison_sociale}} </h3>
+    <p>
+      Le type de contrat de travail sera un  <strong>{{singleContrat.type_contrat}}</strong>
+    </p>
+  
+    <h3>Durée hebdomadaire</h3>
+    <p *ngIf="singleContrat.isFulltime" >
+      Il est convenu que la durée de travail mensuel sera à <strong>Temp Plein.</strong>
+    </p>
+    <p *ngIf="!singleContrat.isFulltime" >
+      Il est convenu que la durée de travail mensuel sera à <strong>Temp Partiel.</strong>
+    </p>
+  
+    <h3>Date de début du contrat</h3>
+    <p>Le contrat débutera le : <strong>{{singleContrat.date_debut | date: 'dd, MMMM YYYY'}}.</strong>
+  
+    </p>
+  
+    <h3 *ngIf="singleContrat.date_fin" >Date de fin du contrat</h3>
+  
+    <p *ngIf="singleContrat.date_fin">
+      Etant convenu qu'il s'agit d'un contrat en CDD, Ce dernier prendra fin le <strong>{{singleContrat.date_fin | date: 'dd, MMMM YYYY'}}.</strong> 
+    </p>
+  
+    <h3>Periode d'essai</h3>
+  
+    <p>La période d'essai pour ce travail est de : <strong>{{singleContrat.periode_essai}}.</strong> </p>
+  
+    <p>
+      Au cours de cette période, le contrat pourra être rompu par l'une
+      ou l'autre partie, à tout moment, sous réserve du respect du délai
+      de prévenance prévu.</p>
+  
+    <h3>Motif</h3>
+  
+    <p>
+      Le présent contrat a été crée suite a un(e) : <strong> {{singleContrat.motif}} </strong>
+    </p>
+  
+    <h3>Fonction occupée</h3>
+  
+    <p>La fonction occupée pour ce travail sera : <strong> {{singleContrat.fonction}} </strong> </p>
+  
+    <h3>Statut</h3>
+  
+    <p>
+      Vous aurez le statut de : <strong> {{singleContrat.satut}} </strong>, sous réserve d'évolution de votre carrière.
+    </p>
+  
+  
+    
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+
+    <button mat-button (click)="closeDialog()">Fermer</button>
+    <button mat-button (click)="printPage()" >Imprimer</button>
+    <button mat-button>Télécharger</button>
+  </mat-dialog-actions>
+  </div>
+  
+
+
+
+
+  <!-- <div class="containerr" *ngIf="data == singleEntreprise.entreprise_id">
+    <h2 mat-dialog-title>Contrat de Travail</h2>
+  <mat-dialog-content class="mat-typography">
+    <h3>Fait à Annemasse le <strong> DATE </strong>  </h3>
+   <div *ngFor="let contrat of contratBySal" >
+    <p *ngIf="contrat.fki_entreprise == singleEntreprise.entreprise_id && profilSalarie.salarie_id == contrat.fki_salarie" >
+      Ce contrat a été établi entre la société : <br> <br>
+      <strong>{{singleEntreprise.raison_sociale}}</strong> <br> représenté par : <br>
+      <strong>{{singleEntreprise.civilite }} {{singleEntreprise.nom }} {{singleEntreprise.prenom }}</strong>, <br>
+      d'une part, <br> <br>
+       et <br> <br>
+      <strong>{{profilSalarie.civilite }} {{profilSalarie.nom }} {{profilSalarie.prenom}}</strong> <br>
+      né le <strong>{{profilSalarie.date_naissance | date:'dd MMMM YYYY'}}</strong> à <strong>{{profilSalarie.lieu_naissance}}</strong>, <br>
+      demeurant au : <br> <strong>{{profilSalarie.rue}}</strong> <br> <strong>{{profilSalarie.cp}} {{profilSalarie.ville}}</strong>, <br> d'autre part.
+    </p>
+  </div>
+  
+   <div  *ngFor="let contrat of contratBySal">
+
+    <div *ngIf="contrat.fki_entreprise == singleEntreprise.entreprise_id && profilSalarie.salarie_id == contrat.fki_salarie">
+
+      <h3>Type de contrat de travail</h3>
+    <p>
+      Le type de contrat de travail sera un  <strong>{{contrat.type_contrat}}</strong>
+    </p>
+  
+    <h3>Durée hebdomadaire</h3>
+    <p *ngIf="contrat.isFulltime" >
+      Il est convenu que la durée de travail mensuel sera à <strong>Temp Plein.</strong>
+    </p>
+    <p *ngIf="!contrat.isFulltime" >
+      Il est convenu que la durée de travail mensuel sera à <strong>Temp Partiel.</strong>
+    </p>
+  
+    <h3>Date de début du contrat</h3>
+    <p>Le contrat débutera le : <strong>{{contrat.date_debut | date: 'dd, MMMM YYYY'}}.</strong>
+  
+    </p>
+  
+    <h3 *ngIf="contrat.date_fin" >Date de fin du contrat</h3>
+  
+    <p *ngIf="contrat.date_fin">
+      Etant convenu qu'il s'agit d'un contrat en CDD, Ce dernier prendra fin le <strong>{{contrat.date_fin | date: 'dd, MMMM YYYY'}}.</strong> 
+    </p>
+  
+    <h3>Periode d'essai</h3>
+  
+    <p>La période d'essai pour ce travail est de : <strong>{{contrat.periode_essai}}.</strong> </p>
+  
+    <p>
+      Au cours de cette période, le contrat pourra être rompu par l'une
+      ou l'autre partie, à tout moment, sous réserve du respect du délai
+      de prévenance prévu.</p>
+  
+    <h3>Motif</h3>
+  
+    <p>
+      Le présent contrat a été crée suite a un(e) : <strong> {{contrat.motif}} </strong>
+    </p>
+  
+    <h3>Fonction occupée</h3>
+  
+    <p>La fonction occupée pour ce travail sera : <strong> {{contrat.fonction}} </strong> </p>
+  
+    <h3>Statut</h3>
+  
+    <p>
+      Vous aurez le statut de : <strong> {{contrat.satut}} </strong>, sous réserve d'évolution de votre carrière.
+    </p>
+
+    </div>
+   </div>
+  
+  
+    
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+
+    <button mat-button (click)="closeDialog()">Fermer</button>
+    <button mat-button (click)="printPage()" >Imprimer</button>
+    <button mat-button>Télécharger</button>
+  </mat-dialog-actions>
+  </div> -->
+

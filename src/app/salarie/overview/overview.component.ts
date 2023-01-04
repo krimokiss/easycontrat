@@ -17,7 +17,7 @@ export class OverviewComponent implements OnInit {
     this.dataService.getProfil().subscribe((response:any)=>{
       if (response && response[0]) {
         this.profil = response[0]
-        console.log('salarie profil', this.profil);
+        // console.log('salarie profil', this.profil);
         
       }
      

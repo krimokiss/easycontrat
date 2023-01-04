@@ -1,0 +1,37 @@
+<div class="container">
+    <h2 mat-dialog-title>Informations conçernant le salarié :</h2>
+    <mat-dialog-content class="mat-typography">
+
+        <div>
+            <p>
+                Civilité : <strong>{{salarie.civilite }} {{salarie.nom }} {{salarie.prenom }}</strong>, <br> </p>
+
+
+            <p> Né(e) le <strong>{{salarie.date_naissance | date:'dd MMMM YYYY'}}</strong> à
+                <strong>{{salarie.lieu_naissance}}</strong>, <span *ngIf="salarie.pays_naissance != 'France'" > ({{salarie.pays_naissance}}) </span> <br></p>
+
+
+            <p> Demeurant au : <strong>{{salarie.rue}}</strong> <br> <strong>{{salarie.cp}}
+                    {{salarie.ville}}</strong>, <br></p>
+
+            <p> Numéro de téléphone : <strong>{{salarie.telephone}}</strong> <br></p>
+
+            <p> Email : <strong>{{salarie.email}}</strong> <br></p>
+
+            <p *ngIf="salarie.nom_jeune_fille"> <strong>{{salarie.nom_jeune_fille}}</strong> </p> <br>
+
+            <p> Numérode sécurité sociale : <strong>{{salarie.num_ss}}</strong> <br></p>
+
+        </div>
+
+
+
+
+
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+
+        <button mat-button (click)="closeDialog()">Fermer</button>
+        <button mat-button (click)="printPage()">Imprimer</button>
+    </mat-dialog-actions>
+</div>

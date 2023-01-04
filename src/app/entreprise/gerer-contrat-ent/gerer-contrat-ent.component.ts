@@ -1,3 +1,7 @@
+import { DetailsModalComponent } from './../../modals/details-modal/details-modal.component';
+import { ContratModalComponent } from './../../modals/contrat-modal/contrat-modal.component';
+import { MatDialog } from '@angular/material/dialog';
+import { Contrat } from './../../models/contrat.model';
 import { Router } from '@angular/router';
 import { FormControl } from '@angular/forms';
 import { DataService } from 'src/app/services/data.service';
@@ -13,20 +17,21 @@ export class GererContratEntComponent implements OnInit {
   profilEntreprise!: any
   allContrat!: any
   allSalarie!: any
-  singlecontrat!: any
+  singlecontrat= new Contrat()
   contratByEnt!: any
   contratBySalarie!: any
   allContratFiltered!: any
   searchBar: FormControl = new FormControl()
 
   constructor(private dataService: DataService,
-    private router: Router) { }
+    private router: Router,
+    public dialog : MatDialog) { }
 
   ngOnInit(): void {
 
     this.dataService.getProfilEntreprise().subscribe((response: any) => {
-      if (response && response[0]) {
-        this.profilEntreprise = response[0]
+      if (response && response) {
+        this.profilEntreprise = response
         console.log('Profil entreprise', this.profilEntreprise);
 
       }
@@ -47,22 +52,25 @@ export class GererContratEntComponent implements OnInit {
     this.dataService.getallContratByEnt().subscribe((result: any) => {
       this.contratByEnt = result
       console.warn(result);
-      this.allContratFiltered = [...this.contratByEnt]
+  
 
     })
     this.dataService.getallContratBySalarie().subscribe((result: any) => {
       this.contratBySalarie = result
       console.warn('contratBysalarie', result);
-
+      this.allContratFiltered = [...this.contratBySalarie]
     })
     this.searchBar.valueChanges.subscribe((resultats: any) => {
 
-      this.allContratFiltered = this.contratByEnt.filter((user: any) => {
+      this.allContratFiltered = this.contratBySalarie.filter((user: any) => {
 
         return user.fonction.toLowerCase().includes(resultats.toLowerCase()) ||
-          user.satut.toLowerCase().includes(resultats.toLowerCase())
+          user.satut.toLowerCase().includes(resultats.toLowerCase()) ||
+          user.prenom.toLowerCase().includes(resultats.toLowerCase()) ||
+          user.nom.toLowerCase().includes(resultats.toLowerCase())
       })
     })
+    
 
   }
 
@@ -70,13 +78,33 @@ export class GererContratEntComponent implements OnInit {
 
     this.dataService.deleteContrat(id).subscribe((response: any) => {
 
-      console.log('response', response);
+      console.log('DELETE CONTRAT :', response);
       return window.location.reload()
 
     })
 
-
+  }
+  onDetails(id:any){
+    this.dataService.getOneContrat(id).subscribe((response:any)=>{
+      this.singlecontrat=response
+      console.log("Response single contrat", this.singlecontrat);
+      
+    })
+    const dialogRef = this.dialog.open(DetailsModalComponent,{
+      // data: { contratValue: this.singlecontrat}
+      data:id
+    })
+   console.log('ID contrat',id);
+   
+      
+      dialogRef.afterClosed()
+    
 
   }
 
+ 
+
+  printPage() {
+    window.print();
+  }
 }

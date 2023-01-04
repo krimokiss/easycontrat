@@ -22,8 +22,8 @@ export class GererProfilEntComponent implements OnInit {
 
   ngOnInit(): void {
     this.dataService.getProfilEntreprise().subscribe((response:any)=>{
-      if (response && response[0]) {
-        this.profil = response[0]
+      if (response && response) {
+        this.profil = response
       }
      
     })

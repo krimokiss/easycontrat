@@ -42,6 +42,9 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { registerLocaleData } from '@angular/common';
 import * as fr from '@angular/common/locales/fr';
+import { DetailsModalComponent } from './modals/details-modal/details-modal.component';
+import { SalarieModalComponent } from './modals/salarie-modal/salarie-modal.component';
+
 
 
 @NgModule({
@@ -60,7 +63,10 @@ import * as fr from '@angular/common/locales/fr';
     GererProfilEntComponent,
     GererSalariesEntComponent,
     GenererContratComponent,
-    ContratModalComponent
+    ContratModalComponent,
+    DetailsModalComponent,
+    SalarieModalComponent
+
   ],
   imports: [
     BrowserModule,

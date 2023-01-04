@@ -40,6 +40,10 @@ salarieLogin(salarie: Salarie) {
 getAllSalarie():Observable<any> {
 return this._http.get(this.backend + "/salarie/allUsers")
 }
+getSingleSalarie(id:any):Observable<any> {
+  // console.warn('GET SINGLE SALARIE', id);
+  return this._http.get(this.backend + "/salarie/user/"+ id)
+}
 getProfil(): Observable<any> {
 return this._http.get(this.backend + "/salarie/profil")
 }
@@ -48,7 +52,6 @@ updateSalarie(values:any, id: number): Observable<any> {
 }
 deleteSalarie(id:any): Observable<any> {
   console.warn('From dataService ID : ', id);
-  
   return this._http.delete(this.backend + "/salarie/delete/" +  id)
 }
 
@@ -63,6 +66,9 @@ entrepriseLogin(entreprise: Entreprise) {
 }
 getAllEntreprise():Observable<any> {
 return this._http.get(this.backend + "/entreprise/allUsers")
+}
+getOneEntreprise(id:any): Observable<any>{
+  return this._http.get(this.backend + "/entreprise/user/" + id)
 }
 getProfilEntreprise(): Observable<any> {
 return this._http.get(this.backend + "/entreprise/profil")
