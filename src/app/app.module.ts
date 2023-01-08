@@ -23,7 +23,7 @@ import { HttpClientModule } from '@angular/common/http';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatDividerModule} from '@angular/material/divider';
-import { MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar'
+import { MatSnackBarModule} from '@angular/material/snack-bar'
 import { TokenInterceptorPovider } from 'src/helpers/token.interceptor';
 import { GererProfilComponent } from './salarie/gerer-profil/gerer-profil.component';
 import { GererContratComponent } from './salarie/gerer-contrat/gerer-contrat.component';
@@ -44,6 +44,7 @@ import { registerLocaleData } from '@angular/common';
 import * as fr from '@angular/common/locales/fr';
 import { DetailsModalComponent } from './modals/details-modal/details-modal.component';
 import { SalarieModalComponent } from './modals/salarie-modal/salarie-modal.component';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 
 
@@ -93,7 +94,8 @@ import { SalarieModalComponent } from './modals/salarie-modal/salarie-modal.comp
     MatSelectModule,
     MatDatepickerModule,
     MatButtonToggleModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatSlideToggleModule,
   ],
   providers: [TokenInterceptorPovider,
     { provide: LOCALE_ID, useValue: 'fr-FR'}],

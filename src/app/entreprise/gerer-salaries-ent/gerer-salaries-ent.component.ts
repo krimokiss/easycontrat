@@ -3,7 +3,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DataService } from 'src/app/services/data.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-gerer-salaries-ent',
@@ -20,12 +21,15 @@ export class GererSalariesEntComponent implements OnInit {
   contratBySal!: any
   searchBar: FormControl = new FormControl()
 
+  @ViewChild(MatPaginator) paginator!: MatPaginator
 
   constructor(private dataService: DataService,
     private router: Router,
     public dialog: MatDialog) { }
 
   ngOnInit(): void {
+
+
 
     this.dataService.getAllSalarie().subscribe((response: any) => {
       this.allSalarie = response
@@ -52,17 +56,15 @@ export class GererSalariesEntComponent implements OnInit {
 
 
     this.searchBar.valueChanges.subscribe((resultats: any) => {
-
       this.allSalarieFiltered = this.contratBySal.filter((user: any) => {
-
-
-
         return user.nom.toLowerCase().includes(resultats.toLowerCase()) ||
           user.prenom.toLowerCase().includes(resultats.toLowerCase())
       })
     })
 
+    this.allSalarieFiltered.paginator = this.paginator
   }
+
   onDetails(id: any) {
     this.dataService.getSingleSalarie(id).subscribe((response: any) => {
       this.singleSalarie = response

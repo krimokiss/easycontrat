@@ -31,11 +31,11 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'entreprise/overview', component: OverviewentrepriseComponent,
+    path: 'entreprise/overview', component: OverviewentrepriseComponent, resolve:{contrats:ContratResolverResolver},
     children: [
       { path: 'gerer-profil-ent', component: GererProfilEntComponent },
-      { path: 'gerer-contrat-ent', component: GererContratEntComponent,
-    children: [{path : 'details-modal', component : DetailsModalComponent, resolve:{profile:ContratResolverResolver}}] },
+      { path: 'gerer-contrat-ent', component: GererContratEntComponent},
+      {path : 'details-modal', component : DetailsModalComponent, },
       { path: 'gerer-salaries-ent', component: GererSalariesEntComponent },
       { path: 'generer-contrat', component: GenererContratComponent,
     children: [{path : 'contrat-modal', component: ContratModalComponent}] }

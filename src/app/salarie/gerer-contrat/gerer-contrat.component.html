@@ -9,7 +9,7 @@
         <mat-card-title *ngIf="contrat.fki_salarie == salarie.salarie_id"><strong>Societe : {{contrat.raison_sociale}} </strong>
             <br> Contact : {{contrat.prenom}}  {{contrat.nom}} </mat-card-title>
       </div>
-       <mat-card-subtitle>Fonction : {{contrat.fonction}} <br> Statut : {{contrat.satut}}</mat-card-subtitle>
+       <mat-card-subtitle>Fonction : {{contrat.fonction}} <br> Statut : {{contrat.statut}}</mat-card-subtitle>
       <mat-card-subtitle>Contrat ID : {{contrat.contrat_id}}</mat-card-subtitle>
     
         <mat-card-subtitle>Type Contrat : {{contrat.type_contrat}} <br> Prise d'effet du contrat :
@@ -20,9 +20,9 @@
 
     <mat-card-actions>
       <button color="primary" (click)="onDetails(contrat.fki_entreprise)" mat-button>Détails</button>
-      <button color="primary"  mat-button >Supprimer</button>
+      <!-- <button color="primary" (click)="openSnackBar(contrat.contrat_id)" mat-button >Supprimer</button> -->
     </mat-card-actions>
   </mat-card>
-  <br>
+
 </div>
 </div>

@@ -1,6 +1,7 @@
 @media print{
 
-    .container{
+    .containerr{
+        width: 100%;
         position: absolute;
         left: 10px;
         top: 20px;
@@ -9,9 +10,13 @@
         mat-dialog-content{
             overflow: hidden;
             -webkit-scrollbar { display: none;}
+            scrollbar-width: none;
         }
         button{
             visibility: hidden;
         }
     }
 }
+// .containerr{
+//     display: none;
+// }

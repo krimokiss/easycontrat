@@ -62,7 +62,7 @@ export class RegisterentrepriseComponent implements OnInit {
       
       
       console.log(result);
-      // localStorage.setItem('token', result.token)
+      localStorage.setItem('token', result.token)
       this.router.navigate(['entreprise/overview'])
       
     })

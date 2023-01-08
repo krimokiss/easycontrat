@@ -52,9 +52,13 @@
     </mat-step> -->
       <mat-step [stepControl]="registerForm">
         <ng-template matStepLabel>Type de contrat</ng-template>
-        <mat-form-field>
+        <mat-button-toggle-group name="fontStyle" aria-label="Font Style" formControlName="type_contrat" required>
+          <mat-button-toggle value="CDI">CDI</mat-button-toggle>
+          <mat-button-toggle value="CDD">CDD</mat-button-toggle>
+        </mat-button-toggle-group>
+        <!-- <mat-form-field>
           <input matInput placeholder="CDD, CDI, Interim" formControlName="type_contrat" required>
-        </mat-form-field>
+        </mat-form-field> -->
         <div>
           <button mat-button matStepperPrevious>Retour</button>
           <button mat-button matStepperNext>Suivant</button>
@@ -84,8 +88,8 @@
         </div>
       </mat-step>
 
-      <mat-step [stepControl]="registerForm">
-        <ng-template matStepLabel>Date de fin si CDD</ng-template>
+      <mat-step [stepControl]="registerForm" *ngIf="registerForm.value.type_contrat == 'CDD'">
+        <ng-template matStepLabel>Date de fin</ng-template>
         <mat-form-field>
           <input matInput placeholder="" type="date" formControlName="date_fin">
         </mat-form-field>
@@ -96,7 +100,7 @@
       </mat-step>
 
       <mat-step [stepControl]="registerForm">
-        <ng-template matStepLabel>periode essai</ng-template>
+        <ng-template matStepLabel>Periode d'essai</ng-template>
         <mat-form-field>
           <input matInput placeholder="" formControlName="periode_essai">
         </mat-form-field>
@@ -107,9 +111,20 @@
       </mat-step>
 
       <mat-step [stepControl]="registerForm">
-        <ng-template matStepLabel>motif</ng-template>
+        <ng-template matStepLabel>Motif</ng-template>
         <mat-form-field>
           <input matInput placeholder="" formControlName="motif">
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Retour</button>
+          <button mat-button matStepperNext>Suivant</button>
+        </div>
+      </mat-step>
+
+      <mat-step [stepControl]="registerForm">
+        <ng-template matStepLabel>Rémunération</ng-template>
+        <mat-form-field>
+          <input matInput placeholder="" formControlName="remuneration">
         </mat-form-field>
         <div>
           <button mat-button matStepperPrevious>Retour</button>
@@ -131,7 +146,7 @@
       <mat-step [stepControl]="registerForm">
         <ng-template matStepLabel>statut</ng-template>
         <mat-form-field>
-          <input matInput placeholder="" formControlName="satut">
+          <input matInput placeholder="" formControlName="statut">
         </mat-form-field>
         <div>
           <button mat-button matStepperPrevious>Retour</button>

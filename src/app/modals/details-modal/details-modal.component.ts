@@ -28,21 +28,26 @@ export class DetailsModalComponent implements OnInit {
 
   ngOnInit(): void {
 
-    console.log(this.data)
-  
-    this.dataService.getOneContrat(this.data).subscribe((response: any) => {
-      this.singleContrat = response
-      console.log("Response single contrat", response);
+    this.activatedRoute.data.subscribe(({contrats})=>{
+      console.log('CONTRAT RESOLVER', contrats);
+      
     })
+
+    // console.log(this.data)
+  
+    // this.dataService.getOneContrat(this.data[0]).subscribe((response: any) => {
+    //   this.singleContrat = response
+    //   console.log("Response single contrat", response);
+    // })
 
     
     this.dataService.getProfilEntreprise().subscribe((result: any) => {
-      console.log('Profil entreprise from modal',result);
+      // console.log('Profil entreprise from modal',result);
       this.entreprise = result
     })
     this.dataService.getAllSalarie().subscribe((result: any) => {
       this.allSalarie = result
-      console.log('AllSalarie from modal',result);
+      // console.log('AllSalarie from modal',result);
     })
 
 
@@ -50,16 +55,17 @@ export class DetailsModalComponent implements OnInit {
    
     this.dataService.getallContrat().subscribe((response: any) => {
       this.contratBySal = response
-      console.log('CONTRAT BY SALARIE', response);
+      // console.log('CONTRAT BY SALARIE', response);
     })
-    this.dataService.getOneEntreprise(this.data).subscribe((response: any) => {
-      this.singleEntreprise = response[0]
-      console.log('SINGLE ENTREPRISE', this.singleEntreprise);
-    })
+    // this.dataService.getOneEntreprise(this.data[0]).subscribe((response: any) => {
+    //   this.singleEntreprise = response
+    //   console.log('SINGLE ENTREPRISE', this.singleEntreprise);
+    // })
     this.dataService.getProfil().subscribe((result: any) => {
-      this.profilSalarie = result[0]
-      console.log('PROFIL SALARIE', this.profilSalarie);
+      this.profilSalarie = result
+      // console.log('PROFIL SALARIE', result);
     })
+  
    
     // this.activatedRoute.data.subscribe(({profile})=>{
     //   this.allSalarie = profile

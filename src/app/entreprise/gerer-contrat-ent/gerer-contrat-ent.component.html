@@ -1,31 +1,63 @@
 <div class="container">
   <h1>Gestion de mes Contrats</h1>
+  
+  <div>
+    <mat-slide-toggle color="primary" [(ngModel)]="isChecked">{{isChecked ? 'Tout les contrats' : 'Contrats en cours'}}</mat-slide-toggle>
+  </div>
+
   <mat-form-field class="example-full-width" appearance="outline">
     <mat-label>Rechercher un contrat</mat-label>
     <input matInput [formControl]="searchBar" maxlength="10" placeholder="Fonction ou Statut">
   </mat-form-field>
-  <div class="cartes" *ngFor="let contrat of allContratFiltered">
 
-    <mat-card *ngIf="contrat.fki_entreprise == profilEntreprise.entreprise_id">
-      <mat-card-header>
-        <div *ngFor="let salarie of allSalarie">
-          <mat-card-title *ngIf="contrat.fki_salarie == salarie.salarie_id"> Prénom :
-            <strong>{{salarie.prenom}}</strong>
-            <br> Nom : <strong>{{salarie.nom}}</strong> </mat-card-title>
-        </div>
-        <mat-card-subtitle>Fonction : {{contrat.fonction}} <br> Statut : {{contrat.satut}}</mat-card-subtitle>
-        <mat-card-subtitle>Contrat ID : {{contrat.contrat_id}}</mat-card-subtitle>
+  <div class="allContrats" *ngIf="isChecked">
+    <div class="cartes" *ngFor="let contrat of allContratFiltered">
+      <mat-card *ngIf="contrat.fki_entreprise == profilEntreprise.entreprise_id">
+        <mat-card-header>
+          <div *ngFor="let salarie of allSalarie">
+            <mat-card-title *ngIf="contrat.fki_salarie == salarie.salarie_id"> Prénom :
+              <strong>{{salarie.prenom}}</strong>
+              <br> Nom : <strong>{{salarie.nom}}</strong> </mat-card-title>
+          </div>
+          <mat-card-subtitle>Fonction : {{contrat.fonction}} <br> Statut : {{contrat.statut}}</mat-card-subtitle>
+          <mat-card-subtitle>Contrat ID : {{contrat.contrat_id}}</mat-card-subtitle>
+          <mat-card-subtitle>Type Contrat : {{contrat.type_contrat}} <br> Prise d'effet du contrat :
+            {{contrat.date_debut | date: 'dd MMM yyyy'}}</mat-card-subtitle>
+          <mat-card-subtitle *ngIf="contrat.date_fin"><strong>Fin du contrat : {{contrat.date_fin | date: 'dd MMM yyyy'}}</strong></mat-card-subtitle>
+        </mat-card-header>
 
-        <mat-card-subtitle>Type Contrat : {{contrat.type_contrat}} <br> Prise d'effet du contrat :
-          {{contrat.date_debut | date: 'dd MMM yyyy'}} <br> Fin du contrat : {{contrat.date_fin | date: 'dd MMM
-          yyyy'}}</mat-card-subtitle>
+        <mat-card-actions>
+          <button color="primary" (click)="onDetails(contrat.contrat_id)" mat-button>Détails</button>
+          <button color="primary" (click)="openSnackBar(contrat.contrat_id)" mat-button>Supprimer</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
 
-      </mat-card-header>
-
-      <mat-card-actions>
-        <button color="primary" (click)="onDetails(contrat.contrat_id)" mat-button>Détails</button>
-        <button color="primary" (click)="onSubmit(contrat.contrat_id)" mat-button>Supprimer</button>
-      </mat-card-actions>
-    </mat-card>
   </div>
+
+
+  <div class="allContrats" *ngIf="!isChecked">
+    <div class="cartes" *ngFor="let contrat of mesContratsFiltered">
+      <mat-card *ngIf="contrat.fki_entreprise == profilEntreprise.entreprise_id">
+        <mat-card-header>
+          <div *ngFor="let salarie of allSalarie">
+            <mat-card-title *ngIf="contrat.fki_salarie == salarie.salarie_id"> Prénom :
+              <strong>{{salarie.prenom}}</strong>
+              <br> Nom : <strong>{{salarie.nom}}</strong> </mat-card-title>
+          </div>
+          <mat-card-subtitle>Fonction : {{contrat.fonction}} <br> Statut : {{contrat.statut}}</mat-card-subtitle>
+          <mat-card-subtitle>Contrat ID : {{contrat.contrat_id}}</mat-card-subtitle>
+          <mat-card-subtitle>Type Contrat : {{contrat.type_contrat}} <br> Prise d'effet du contrat :
+            {{contrat.date_debut | date: 'dd MMM yyyy'}} <br> Fin du contrat : {{contrat.date_fin | date: 'dd MMM yyyy'}}</mat-card-subtitle>
+        </mat-card-header>
+
+        <mat-card-actions>
+          <button color="primary" (click)="onDetails(contrat.contrat_id)" mat-button>Détails</button>
+          <button color="primary" (click)="openSnackBar(contrat.contrat_id)" mat-button>Supprimer</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+
+  </div>
+
 </div>

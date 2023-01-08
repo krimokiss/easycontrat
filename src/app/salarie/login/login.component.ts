@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
       if (result) {
         localStorage.setItem('token',(result.token))
         // localStorage.setItem('user', JSON.stringify(this.email))
-        this.router.navigate(['/salarie/overview/gerer-profil'])
+        this.router.navigate(['/salarie/overview'])
         console.log(result);
         
       }

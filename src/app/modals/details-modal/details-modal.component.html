@@ -1,9 +1,9 @@
-  <div class="container" *ngIf="data == singleContrat.contrat_id">
-    <h2 mat-dialog-title>Contrat de Travail</h2>
+  <div class="container" *ngIf="entreprise != null">
+    <h1 mat-dialog-title>Contrat de Travail</h1>
   <mat-dialog-content class="mat-typography">
-    <h3>Fait à Annemasse le <strong> {{singleContrat.date_debut | date:'dd, MMMM YYYY'}} </strong>  </h3>
+    <h3>Fait à Annemasse le <strong> {{data.date_debut | date:'dd MMMM YYYY'}} </strong>  </h3>
    <div *ngFor="let salarie of allSalarie" >
-    <p *ngIf="singleContrat.fki_salarie == salarie.salarie_id" >
+    <p *ngIf="data.fki_salarie == salarie.salarie_id" >
       Ce contrat a été établi entre la société : <br> <br>
       <strong>{{entreprise.raison_sociale}}</strong> <br> représenté par : <br>
       <strong>{{entreprise.civilite }} {{entreprise.nom }} {{entreprise.prenom }}</strong>, <br>
@@ -15,33 +15,33 @@
     </p>
    </div>
   
-    <h3>Type de contrat de travail {{entreprise.raison_sociale}} </h3>
+    <h3>Type de contrat de travail</h3>
     <p>
-      Le type de contrat de travail sera un  <strong>{{singleContrat.type_contrat}}</strong>
+      Le type de contrat de travail sera un  <strong>{{data.type_contrat}}</strong>
     </p>
   
     <h3>Durée hebdomadaire</h3>
-    <p *ngIf="singleContrat.isFulltime" >
+    <p *ngIf="data.is_fulltime" >
       Il est convenu que la durée de travail mensuel sera à <strong>Temp Plein.</strong>
     </p>
-    <p *ngIf="!singleContrat.isFulltime" >
+    <p *ngIf="!data.is_fulltime" >
       Il est convenu que la durée de travail mensuel sera à <strong>Temp Partiel.</strong>
     </p>
   
     <h3>Date de début du contrat</h3>
-    <p>Le contrat débutera le : <strong>{{singleContrat.date_debut | date: 'dd, MMMM YYYY'}}.</strong>
+    <p>Le contrat débutera le : <strong>{{data.date_debut | date: 'dd, MMMM YYYY'}}.</strong>
   
     </p>
   
-    <h3 *ngIf="singleContrat.date_fin" >Date de fin du contrat</h3>
+    <h3 *ngIf="data.date_fin" >Date de fin du contrat</h3>
   
-    <p *ngIf="singleContrat.date_fin">
-      Etant convenu qu'il s'agit d'un contrat en CDD, Ce dernier prendra fin le <strong>{{singleContrat.date_fin | date: 'dd, MMMM YYYY'}}.</strong> 
+    <p *ngIf="data.date_fin">
+      Etant convenu qu'il s'agit d'un contrat en CDD, Ce dernier prendra fin le <strong>{{data.date_fin | date: 'dd, MMMM YYYY'}}.</strong> 
     </p>
   
     <h3>Periode d'essai</h3>
   
-    <p>La période d'essai pour ce travail est de : <strong>{{singleContrat.periode_essai}}.</strong> </p>
+    <p>La période d'essai pour ce travail est de : <strong>{{data.periode_essai}}.</strong> </p>
   
     <p>
       Au cours de cette période, le contrat pourra être rompu par l'une
@@ -49,19 +49,23 @@
       de prévenance prévu.</p>
   
     <h3>Motif</h3>
-  
     <p>
-      Le présent contrat a été crée suite a un(e) : <strong> {{singleContrat.motif}} </strong>
+      Le présent contrat a été crée suite a un(e) : <strong> {{data.motif}} </strong>
+    </p>
+    
+    <h3>Rémunération</h3>
+    <p>
+      Le salaire mensuel Brut sera de : <strong> {{data.remuneration}} €.</strong>
     </p>
   
     <h3>Fonction occupée</h3>
   
-    <p>La fonction occupée pour ce travail sera : <strong> {{singleContrat.fonction}} </strong> </p>
+    <p>La fonction occupée pour ce travail sera : <strong> {{data.fonction}} </strong> </p>
   
     <h3>Statut</h3>
   
     <p>
-      Vous aurez le statut de : <strong> {{singleContrat.satut}} </strong>, sous réserve d'évolution de votre carrière.
+      Vous aurez le statut de : <strong> {{data.statut}} </strong>, sous réserve d'évolution de votre carrière.
     </p>
   
   
@@ -79,15 +83,17 @@
 
 
 
-  <!-- <div class="containerr" *ngIf="data == singleEntreprise.entreprise_id">
-    <h2 mat-dialog-title>Contrat de Travail</h2>
+  <div class="containerr" *ngIf="entreprise == null && data.entreprise_id">
+    <h1 mat-dialog-title>Contrat de Travail</h1>
   <mat-dialog-content class="mat-typography">
-    <h3>Fait à Annemasse le <strong> DATE </strong>  </h3>
+    <div >
+      <h3>Fait à Annemasse le,  <strong>{{data.date_debut | date:'dd MMMM YYYY'}}</strong>  </h3>
+    </div>
    <div *ngFor="let contrat of contratBySal" >
-    <p *ngIf="contrat.fki_entreprise == singleEntreprise.entreprise_id && profilSalarie.salarie_id == contrat.fki_salarie" >
+    <p *ngIf="contrat.fki_entreprise == data.entreprise_id && profilSalarie.salarie_id == contrat.fki_salarie" >
       Ce contrat a été établi entre la société : <br> <br>
-      <strong>{{singleEntreprise.raison_sociale}}</strong> <br> représenté par : <br>
-      <strong>{{singleEntreprise.civilite }} {{singleEntreprise.nom }} {{singleEntreprise.prenom }}</strong>, <br>
+      <strong>{{data.raison_sociale}}</strong> <br> représenté par : <br>
+      <strong>{{data.civilite }} {{data.nom }} {{data.prenom }}</strong>, <br>
       d'une part, <br> <br>
        et <br> <br>
       <strong>{{profilSalarie.civilite }} {{profilSalarie.nom }} {{profilSalarie.prenom}}</strong> <br>
@@ -98,7 +104,7 @@
   
    <div  *ngFor="let contrat of contratBySal">
 
-    <div *ngIf="contrat.fki_entreprise == singleEntreprise.entreprise_id && profilSalarie.salarie_id == contrat.fki_salarie">
+    <div *ngIf="contrat.fki_entreprise == data.entreprise_id && profilSalarie.salarie_id == contrat.fki_salarie">
 
       <h3>Type de contrat de travail</h3>
     <p>
@@ -136,17 +142,22 @@
     <h3>Motif</h3>
   
     <p>
-      Le présent contrat a été crée suite a un(e) : <strong> {{contrat.motif}} </strong>
+      Le présent contrat a été crée suite a un(e) : <strong> {{contrat.motif}} .</strong>
+    </p>
+
+    <h3>Rémunération</h3>
+    <p>
+      Le salaire mensuel Brut sera de : <strong> {{contrat.remuneration}} €.</strong>
     </p>
   
     <h3>Fonction occupée</h3>
   
-    <p>La fonction occupée pour ce travail sera : <strong> {{contrat.fonction}} </strong> </p>
+    <p>La fonction occupée pour ce travail sera : <strong> {{contrat.fonction}}. </strong> </p>
   
     <h3>Statut</h3>
   
     <p>
-      Vous aurez le statut de : <strong> {{contrat.satut}} </strong>, sous réserve d'évolution de votre carrière.
+      Vous aurez le statut de : <strong> {{contrat.statut}} </strong>, sous réserve d'évolution de votre carrière.
     </p>
 
     </div>
@@ -161,5 +172,5 @@
     <button mat-button (click)="printPage()" >Imprimer</button>
     <button mat-button>Télécharger</button>
   </mat-dialog-actions>
-  </div> -->
+  </div>
 

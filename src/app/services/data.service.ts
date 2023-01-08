@@ -85,6 +85,9 @@ createContrat(contratForm:any): Observable<any> {
 getallContrat(): Observable<any> {
   return this._http.get(this.backend + '/contrat/allcontrat')
 }
+getMesContrats(): Observable<any> {
+  return this._http.get(this.backend + '/contrat/mescontrats')
+}
 getOneContrat(id:any): Observable<any>{
   return this._http.get(this.backend + '/contrat/contrat/' + id)
 }

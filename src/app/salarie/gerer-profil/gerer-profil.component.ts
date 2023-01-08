@@ -24,8 +24,8 @@ profil!: any
 
   ngOnInit(): void {
   this.dataService.getProfil().subscribe((response:any)=>{
-    if (response && response[0]) {
-      this.profil = response[0]
+    if (response && response) {
+      this.profil = response
     }
    
   })
