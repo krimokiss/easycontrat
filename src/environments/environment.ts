@@ -4,7 +4,7 @@
 
 export const environment = {
   API_URL : 'https://easycontratserver.onrender.com/',
-  production: false
+  production: true
 };
 
 /*
