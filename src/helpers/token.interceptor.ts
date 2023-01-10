@@ -24,7 +24,7 @@ export class TokenInterceptor implements HttpInterceptor {
     let modifiedReq = req
     // console.log(req.url);
     
-    if (req.url.includes(environment.API_URL+'api')) {
+    if (req.url.includes(environment.API_URL)) {
       
       modifiedReq = req.clone({
         headers: req.headers.set('Authorization', `Bearer ${userToken}`)
