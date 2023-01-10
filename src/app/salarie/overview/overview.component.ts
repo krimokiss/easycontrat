@@ -8,21 +8,16 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
   encapsulation: ViewEncapsulation.None,
 })
 export class OverviewComponent implements OnInit {
-  showFiller = false;
+  
   profil!:any
 
   constructor(private dataService : DataService) { }
 
   ngOnInit(): void {
     this.dataService.getProfil().subscribe((response:any)=>{
-     
         this.profil = response
-        // console.log('salarie profil', this.profil);
-        
-      
-     
     })
-    
+  
   }
 
   logOutClick(): void {
