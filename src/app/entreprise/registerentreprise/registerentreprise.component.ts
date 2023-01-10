@@ -21,8 +21,8 @@ export class RegisterentrepriseComponent implements OnInit {
   entreprise = new Entreprise()
 
   constructor(private formbuilder: FormBuilder,
-              private router: Router,
-              private dataService: DataService) { }
+    private router: Router,
+    private dataService: DataService) { }
 
   ngOnInit(): void {
     this.emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}/
@@ -36,20 +36,21 @@ export class RegisterentrepriseComponent implements OnInit {
       civilite: [this.entreprise.civilite, [Validators.required]],
       nom: [this.entreprise.nom, [Validators.required, Validators.minLength(2)]],
       prenom: [this.entreprise.prenom, [Validators.required, Validators.minLength(2)]],
-      telephone: [this.entreprise.telephone, [Validators.required,Validators.minLength(2)]],
+      telephone: [this.entreprise.telephone, [Validators.required, Validators.minLength(2)]],
       rue: [this.entreprise.rue, [Validators.required, Validators.pattern(this.adresseRegex)]],
-      cp: [this.entreprise.cp, [,Validators.minLength(5),Validators.maxLength(5),Validators.pattern('[0-9]{5}')]],
+      cp: [this.entreprise.cp, [, Validators.minLength(5), Validators.maxLength(5), Validators.pattern('[0-9]{5}')]],
       ville: [this.entreprise.ville, [Validators.required, Validators.pattern(this.villeRegex), Validators.minLength(3)]],
       email: [this.entreprise.email, [Validators.required, Validators.pattern(this.emailRegex)]],
       mdp: [this.entreprise.mdp, [Validators.required, Validators.pattern(this.passwordRegex)]],
       siret: [this.entreprise.siret, [Validators.required, Validators.minLength(9)]],
       raison_sociale: [this.entreprise.raison_sociale, [Validators.required, Validators.minLength(2)]],
       code_ape: [this.entreprise.code_ape, [Validators.required, Validators.minLength(3)]],
-      
+
       // ConfirmPassword: ['', [Validators.required, Validators.pattern(this.passwordRegex)]],
 
     });
   }
+
   onSubmit() {
     const form = this.registerForm.value
     const Register = this.registerForm.value
@@ -58,13 +59,13 @@ export class RegisterentrepriseComponent implements OnInit {
 
     this.entreprise = Object.assign(this.entreprise, form)
 
-    this.dataService.registerEntreprise(this.entreprise).subscribe((result:Entreprise)=>{
-      
-      
+    this.dataService.registerEntreprise(this.entreprise).subscribe((result: Entreprise) => {
+
+
       console.log(result);
       localStorage.setItem('token', result.token)
       this.router.navigate(['entreprise/overview'])
-      
+
     })
 
   }
