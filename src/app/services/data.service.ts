@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment';
 import { Contrat } from './../models/contrat.model';
 import { Entreprise } from 'src/app/models/entreprise.model';
 import { Salarie } from 'src/app/models/salarie.model';
@@ -11,7 +12,7 @@ import { Observable, Subject } from 'rxjs';
 })
 export class DataService {
 
-  backend  = "http://localhost:5000/api"
+  backend  = `${environment.API_URL}`
  
 
 
