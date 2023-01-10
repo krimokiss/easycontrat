@@ -1,12 +1,12 @@
-  <div class="container" *ngIf="entreprise != null">
+  <div class="container" *ngIf="profilEntreprise != null">
     <h1 mat-dialog-title>Contrat de Travail</h1>
   <mat-dialog-content class="mat-typography">
     <h3>Fait à Annemasse le <strong> {{data.date_debut | date:'dd MMMM YYYY'}} </strong>  </h3>
-   <div *ngFor="let salarie of allSalarie" >
+   <div *ngFor="let salarie of contratBySal" >
     <p *ngIf="data.fki_salarie == salarie.salarie_id" >
       Ce contrat a été établi entre la société : <br> <br>
-      <strong>{{entreprise.raison_sociale}}</strong> <br> représenté par : <br>
-      <strong>{{entreprise.civilite }} {{entreprise.nom }} {{entreprise.prenom }}</strong>, <br>
+      <strong>{{profilEntreprise.raison_sociale}}</strong> <br> représenté par : <br>
+      <strong>{{profilEntreprise.civilite }} {{profilEntreprise.nom }} {{profilEntreprise.prenom }}</strong>, <br>
       d'une part, <br> <br>
        et <br> <br>
       <strong>{{salarie.civilite }} {{salarie.nom }} {{salarie.prenom}}</strong> <br>
@@ -83,14 +83,14 @@
 
 
 
-  <div class="containerr" *ngIf="entreprise == null && data.entreprise_id">
+  <div class="containerr" *ngIf="profilEntreprise == null && data.entreprise_id">
     <h1 mat-dialog-title>Contrat de Travail</h1>
   <mat-dialog-content class="mat-typography">
-    <div >
-      <h3>Fait à Annemasse le,  <strong>{{data.date_debut | date:'dd MMMM YYYY'}}</strong>  </h3>
-    </div>
-   <div *ngFor="let contrat of contratBySal" >
-    <p *ngIf="contrat.fki_entreprise == data.entreprise_id && profilSalarie.salarie_id == contrat.fki_salarie" >
+    <div *ngFor="let contrat of contratBySal">
+      
+      <div *ngIf="contrat.fki_entreprise == data.entreprise_id && profilSalarie.salarie_id == contrat.fki_salarie"  >
+     <h3>Fait à Annemasse le,  <strong>{{contrat.date_debut | date:'dd MMMM YYYY'}}</strong>  </h3>
+    <p >
       Ce contrat a été établi entre la société : <br> <br>
       <strong>{{data.raison_sociale}}</strong> <br> représenté par : <br>
       <strong>{{data.civilite }} {{data.nom }} {{data.prenom }}</strong>, <br>
@@ -100,11 +100,11 @@
       né le <strong>{{profilSalarie.date_naissance | date:'dd MMMM YYYY'}}</strong> à <strong>{{profilSalarie.lieu_naissance}}</strong>, <br>
       demeurant au : <br> <strong>{{profilSalarie.rue}}</strong> <br> <strong>{{profilSalarie.cp}} {{profilSalarie.ville}}</strong>, <br> d'autre part.
     </p>
-  </div>
+ 
   
-   <div  *ngFor="let contrat of contratBySal">
+  
 
-    <div *ngIf="contrat.fki_entreprise == data.entreprise_id && profilSalarie.salarie_id == contrat.fki_salarie">
+
 
       <h3>Type de contrat de travail</h3>
     <p>
@@ -112,10 +112,10 @@
     </p>
   
     <h3>Durée hebdomadaire</h3>
-    <p *ngIf="contrat.isFulltime" >
+    <p *ngIf="contrat.is_fulltime" >
       Il est convenu que la durée de travail mensuel sera à <strong>Temp Plein.</strong>
     </p>
-    <p *ngIf="!contrat.isFulltime" >
+    <p *ngIf="!contrat.is_fulltime" >
       Il est convenu que la durée de travail mensuel sera à <strong>Temp Partiel.</strong>
     </p>
   
@@ -160,9 +160,8 @@
       Vous aurez le statut de : <strong> {{contrat.statut}} </strong>, sous réserve d'évolution de votre carrière.
     </p>
 
-    </div>
    </div>
-  
+  </div>
   
     
   </mat-dialog-content>

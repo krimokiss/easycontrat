@@ -5,8 +5,8 @@
 
   <mat-card *ngIf="contrat.fki_salarie == profilSalarie.salarie_id">
     <mat-card-header>
-      <div *ngFor="let salarie of allSalarie">
-        <mat-card-title *ngIf="contrat.fki_salarie == salarie.salarie_id"><strong>Societe : {{contrat.raison_sociale}} </strong>
+      <div>
+        <mat-card-title><strong>Societe : {{contrat.raison_sociale}} </strong>
             <br> Contact : {{contrat.prenom}}  {{contrat.nom}} </mat-card-title>
       </div>
        <mat-card-subtitle>Fonction : {{contrat.fonction}} <br> Statut : {{contrat.statut}}</mat-card-subtitle>

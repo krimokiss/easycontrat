@@ -19,7 +19,7 @@ export class SalarieModalComponent implements OnInit {
 
   ngOnInit(): void {
     // console.log(this.data);
-    this.dataService.getSingleSalarie(this.data).subscribe((result: any) => {
+    this.dataService.getSingleSalarie(this.data.salarie_id).subscribe((result: any) => {
       this.salarie = result
       // console.log('AllSalarie from modal',result);
     })

@@ -43,6 +43,8 @@ export class TokenInterceptor implements HttpInterceptor {
         break
         case 403: message = 'Forbidden'
         break
+        case 409: message = 'Email déja utilisé'
+        break
 
         }
         this.snackBar.open(message, 'ok', {verticalPosition:'top'})

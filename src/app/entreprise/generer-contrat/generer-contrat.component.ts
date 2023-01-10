@@ -93,6 +93,8 @@ export class GenererContratComponent implements OnInit {
       console.log('The dialog was closed', result);
       this.dialog = result.data
     })
+    console.log(this.contrat);
+    
   }
 
 }

@@ -5,11 +5,19 @@
 
 
         <p >
-            <mat-form-field appearance="fill">
-              <mat-label>Civilité</mat-label>
-              <input formControlName="civilite" matInput placeholder="Civilité" type="text">
-              <mat-icon matSuffix>account_circle</mat-icon>
-            </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Civilité</mat-label>
+            <!-- <input matInput placeholder="Civilité" type="text"> -->
+            <mat-select formControlName="civilite" required>
+              <mat-option value="Mr">
+                Mr 
+              </mat-option>
+              <mat-option value="Mme">
+                Mme
+              </mat-option>
+            </mat-select>
+            <mat-icon matSuffix>account_circle</mat-icon>
+          </mat-form-field>
           </p>
         <p >
             <mat-form-field appearance="fill">

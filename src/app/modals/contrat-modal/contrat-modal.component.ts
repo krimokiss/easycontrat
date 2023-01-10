@@ -41,6 +41,10 @@ export class ContratModalComponent implements OnInit {
 
 
     })
+    console.log(this.contratForm);
+    console.log(this.data);
+    
+    
 
   }
   closeDialog() {

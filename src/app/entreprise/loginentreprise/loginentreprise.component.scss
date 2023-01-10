@@ -19,3 +19,11 @@ h1{
 scale: 1.2;
     }
 }
+
+@media  screen and (max-width: 480px)  {
+    .container{
+        width: 90%;
+        height: 90%;
+    }
+    
+      }

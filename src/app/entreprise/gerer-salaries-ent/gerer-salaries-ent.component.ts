@@ -4,7 +4,7 @@ import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DataService } from 'src/app/services/data.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
+
 
 @Component({
   selector: 'app-gerer-salaries-ent',
@@ -21,7 +21,7 @@ export class GererSalariesEntComponent implements OnInit {
   contratBySal!: any
   searchBar: FormControl = new FormControl()
 
-  @ViewChild(MatPaginator) paginator!: MatPaginator
+
 
   constructor(private dataService: DataService,
     private router: Router,
@@ -31,7 +31,7 @@ export class GererSalariesEntComponent implements OnInit {
 
 
 
-    this.dataService.getAllSalarie().subscribe((response: any) => {
+    this.dataService.getallContratBySalarie().subscribe((response: any) => {
       this.allSalarie = response
       console.log('allSalarie', response);
      
@@ -62,7 +62,7 @@ export class GererSalariesEntComponent implements OnInit {
       })
     })
 
-    this.allSalarieFiltered.paginator = this.paginator
+  
   }
 
   onDetails(id: any) {
@@ -70,17 +70,16 @@ export class GererSalariesEntComponent implements OnInit {
       this.singleSalarie = response
       // console.log('Single Salarrie is :', response);
 
+      const dialogRef = this.dialog.open(SalarieModalComponent, {
+        // data: { contratValue: this.singlecontrat}
+        data: this.singleSalarie
     })
 
-    const dialogRef = this.dialog.open(SalarieModalComponent, {
-      // data: { contratValue: this.singlecontrat}
-      data: id
-    })
+      
+    console.log(this.singleSalarie);
 
 
-    dialogRef.afterClosed().subscribe(result => {
-      // console.log('The dialog was closed', result);
-      this.dialog = result.data
+    dialogRef.afterClosed()
     })
   }
 

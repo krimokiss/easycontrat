@@ -25,37 +25,22 @@
         </div>
 
       </mat-step>
-      <!-- <mat-step [stepControl]="registerForm">
      
-        <ng-template matStepLabel>fki_entreprise</ng-template>
-        <mat-form-field>
-          <input matInput placeholder="ID Entreprise" formControlName="fki_entreprise" value="{{profil[0].entreprise_id}}" >
-
-        </mat-form-field>
-        <div>
-          <button mat-button matStepperPrevious>Retour</button>
-          <button mat-button matStepperNext>Suivant</button>
-        </div>
-     
-    </mat-step> -->
-      <!-- <mat-step [stepControl]="registerForm">
-     
-        <ng-template matStepLabel>fki_salarie</ng-template>
-        <mat-form-field>
-          <input matInput placeholder="CDD, CDI, Interim" formControlName="fki_salarie" required>
-        </mat-form-field>
-        <div>
-          <button mat-button matStepperPrevious>Retour</button>
-          <button mat-button matStepperNext>Suivant</button>
-        </div>
-     
-    </mat-step> -->
       <mat-step [stepControl]="registerForm">
         <ng-template matStepLabel>Type de contrat</ng-template>
-        <mat-button-toggle-group name="fontStyle" aria-label="Font Style" formControlName="type_contrat" required>
-          <mat-button-toggle value="CDI">CDI</mat-button-toggle>
-          <mat-button-toggle value="CDD">CDD</mat-button-toggle>
-        </mat-button-toggle-group>
+        <mat-form-field appearance="fill">
+          <mat-label>Type de contrat</mat-label>
+          <!-- <input matInput placeholder="Civilité" type="text"> -->
+          <mat-select formControlName="type_contrat" required>
+            <mat-option value="CDI">
+             CDI
+            </mat-option>
+            <mat-option value="CDD">
+              CDD
+            </mat-option>
+          </mat-select>
+          <!-- <mat-icon matSuffix>account_circle</mat-icon> -->
+        </mat-form-field>
         <!-- <mat-form-field>
           <input matInput placeholder="CDD, CDI, Interim" formControlName="type_contrat" required>
         </mat-form-field> -->
@@ -66,11 +51,26 @@
       </mat-step>
 
       <mat-step [stepControl]="registerForm">
-        <ng-template matStepLabel>Temps Plein ?</ng-template>
-        <mat-button-toggle-group name="fontStyle" aria-label="Font Style" formControlName="is_fulltime" required>
+        <ng-template matStepLabel>Durée de travail</ng-template>
+        <mat-form-field appearance="fill">
+          <mat-label>Durée travail</mat-label>
+          <!-- <input matInput placeholder="Civilité" type="text"> -->
+          <mat-select formControlName="is_fulltime" required>
+            <mat-option value="true">
+             Temps Plein
+            </mat-option>
+            <mat-option value="false">
+              Temps Partiel
+            </mat-option>
+          </mat-select>
+          <!-- <mat-icon matSuffix>account_circle</mat-icon> -->
+        </mat-form-field>
+
+
+        <!-- <mat-button-toggle-group name="fontStyle" aria-label="Font Style" formControlName="is_fulltime" required>
           <mat-button-toggle value="true">Oui</mat-button-toggle>
           <mat-button-toggle value="false">Non</mat-button-toggle>
-        </mat-button-toggle-group>
+        </mat-button-toggle-group> -->
         <div>
           <button mat-button matStepperPrevious>Retour</button>
           <button mat-button matStepperNext>Suivant</button>
@@ -133,7 +133,7 @@
       </mat-step>
 
       <mat-step [stepControl]="registerForm">
-        <ng-template matStepLabel>fonction</ng-template>
+        <ng-template matStepLabel>Fonction</ng-template>
         <mat-form-field>
           <input matInput placeholder="" formControlName="fonction">
         </mat-form-field>
@@ -144,7 +144,7 @@
       </mat-step>
 
       <mat-step [stepControl]="registerForm">
-        <ng-template matStepLabel>statut</ng-template>
+        <ng-template matStepLabel>Statut</ng-template>
         <mat-form-field>
           <input matInput placeholder="" formControlName="statut">
         </mat-form-field>
