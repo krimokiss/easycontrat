@@ -66,7 +66,6 @@ export class RegisterComponent implements OnInit {
       
       console.log(result);
       localStorage.setItem('token', result.token)
-
       this.router.navigate(['salarie/overview'])
       
     })

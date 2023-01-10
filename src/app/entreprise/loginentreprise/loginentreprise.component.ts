@@ -28,7 +28,6 @@ export class LoginentrepriseComponent implements OnInit {
       email: [this.email, [Validators.required]],
       mdp: [this.mdp, [Validators.required]]
     })
-  
   }
 
   onSubmit() {
