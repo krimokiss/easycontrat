@@ -25,6 +25,11 @@ export class DataService {
 static getToken() {
   return localStorage.getItem('token')
 }
+static getRole(): boolean{
+  const role:boolean = (localStorage.getItem('role') == 'true')
+  return role
+}
+
 clearToken(): void {
   localStorage.removeItem('token')
   this.router.navigate((['/']))

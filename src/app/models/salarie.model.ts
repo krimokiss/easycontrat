@@ -10,7 +10,7 @@ token!: string
     ville!: string
     email!: string
     mdp!: string
-    // role!: boolean
+    role!: boolean
     nom_jeune_fille!: string
     num_ss!:number
     date_naissance!: number

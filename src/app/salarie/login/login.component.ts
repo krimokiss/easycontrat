@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { DataService } from 'src/app/services/data.service';
 import { Salarie } from 'src/app/models/salarie.model';
 import { Entreprise } from 'src/app/models/entreprise.model';
@@ -21,9 +21,14 @@ export class LoginComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
     private router: Router,
-    private dataService: DataService) { }
+    private dataService: DataService,
+    private activatedRoute : ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.activatedRoute.data.subscribe(({profil})=>{
+  console.log('PROFIL RESOLVER', profil);
+  
+})
     this.loginForm = this.formBuilder.group({
       email: [this.email, [Validators.required]],
       mdp: [this.mdp, [Validators.required]]
@@ -36,12 +41,13 @@ export class LoginComponent implements OnInit {
 
     this.entreprise = Object.assign(this.entreprise, form)
 
-    this.dataService.salarieLogin(this.salarie).subscribe((result: Salarie) =>{
+    this.dataService.salarieLogin(this.salarie).subscribe((result: any) =>{
       if (result) {
         localStorage.setItem('token',(result.token))
+        localStorage.setItem('role',(result.datas.role))
         // localStorage.setItem('user', JSON.stringify(this.email))
-        this.router.navigate(['/salarie/overview'])
-        console.log(result);
+        this.router.navigate(['/salarie/overview/gerer-profil'])
+        // console.log(result.datas.role);
         
       }
     })

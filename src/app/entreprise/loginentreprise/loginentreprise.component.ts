@@ -36,12 +36,13 @@ export class LoginentrepriseComponent implements OnInit {
 
     this.entreprise = Object.assign(this.entreprise, form)
 
-    this.dataService.entrepriseLogin(this.entreprise).subscribe((result: Entreprise) =>{
+    this.dataService.entrepriseLogin(this.entreprise).subscribe((result: any) =>{
       if (result) {
         localStorage.setItem('token',(result.token))
+        localStorage.setItem('role',(result.datas.role))
         // localStorage.setItem('user', JSON.stringify(this.email))
         this.router.navigate(['/entreprise/overview/gerer-profil-ent'])
-        console.log(result);
+        // console.log(result.datas.role);
         
       }
     })

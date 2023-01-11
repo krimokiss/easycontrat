@@ -1,3 +1,5 @@
+import { ProfilResolverResolver } from './resolver/profil-resolver.resolver';
+import { GuardEntrepriseGuard } from './helpers/guard-entreprise.guard';
 import { ContratResolverResolver } from './resolver/contrat-resolver.resolver';
 import { DetailsModalComponent } from './modals/details-modal/details-modal.component';
 import { ContratModalComponent } from './modals/contrat-modal/contrat-modal.component';
@@ -16,6 +18,7 @@ import { AccueilComponent } from './accueil/accueil.component';
 import { LoginComponent } from './salarie/login/login.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { GuardGuard } from './helpers/guard.guard';
 
 const routes: Routes = [
   { path: '', component: AccueilComponent },
@@ -24,20 +27,21 @@ const routes: Routes = [
   { path: 'salarie/register', component: RegisterComponent },
   { path: 'entreprise/register', component: RegisterentrepriseComponent },
   {
-    path: 'salarie/overview', component: OverviewComponent,
+    path: 'salarie/overview', canActivate:[GuardGuard], component: OverviewComponent, resolve:{profil:ProfilResolverResolver},
     children: [
-      { path: 'gerer-profil', component: GererProfilComponent },
-      { path: 'gerer-contrat', component: GererContratComponent }
+      { path: 'gerer-profil', canActivate:[GuardGuard], component: GererProfilComponent },
+      { path: 'gerer-contrat', canActivate:[GuardGuard], component: GererContratComponent },
+      {path : 'details-modal', component : DetailsModalComponent, }
     ]
   },
   {
-    path: 'entreprise/overview', component: OverviewentrepriseComponent, resolve:{contrats:ContratResolverResolver},
+    path: 'entreprise/overview', canActivate :[GuardEntrepriseGuard], component: OverviewentrepriseComponent, resolve:{contrats:ContratResolverResolver},
     children: [
-      { path: 'gerer-profil-ent', component: GererProfilEntComponent },
-      { path: 'gerer-contrat-ent', component: GererContratEntComponent},
+      { path: 'gerer-profil-ent', canActivate :[GuardEntrepriseGuard], component: GererProfilEntComponent },
+      { path: 'gerer-contrat-ent', canActivate :[GuardEntrepriseGuard], component: GererContratEntComponent},
       {path : 'details-modal', component : DetailsModalComponent, },
-      { path: 'gerer-salaries-ent', component: GererSalariesEntComponent },
-      { path: 'generer-contrat', component: GenererContratComponent,
+      { path: 'gerer-salaries-ent', canActivate :[GuardEntrepriseGuard], component: GererSalariesEntComponent },
+      { path: 'generer-contrat', canActivate :[GuardEntrepriseGuard], component: GenererContratComponent,
     children: [{path : 'contrat-modal', component: ContratModalComponent}] }
     ]
   }

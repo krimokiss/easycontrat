@@ -16,13 +16,15 @@ export class GuardGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    // const token = DataService.getToken();
-    // if (token) {
+    const role = DataService.getRole();
+    // console.log(role);
+    
+    if (!role) {
       return true;
-    // } else {
-    //   this.snackBar.open('Vous devez être authentifier pour accéder à cette page!', 'ok', { verticalPosition: 'top' })
-    //   return this.router.navigate(['/'])
-    // }
+    } else {
+      this.snackBar.open('Vous devez être authentifier pour accéder à cette page!', 'ok', { verticalPosition: 'top' })
+      return this.router.navigate(['/'])
+    }
 
   }
 

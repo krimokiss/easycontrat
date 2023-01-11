@@ -48,7 +48,8 @@
           <mat-card-subtitle>Fonction : {{contrat.fonction}} <br> Statut : {{contrat.statut}}</mat-card-subtitle>
           <mat-card-subtitle>Contrat ID : {{contrat.contrat_id}}</mat-card-subtitle>
           <mat-card-subtitle>Type Contrat : {{contrat.type_contrat}} <br> Prise d'effet du contrat :
-            {{contrat.date_debut | date: 'dd MMM yyyy'}} <br> Fin du contrat : {{contrat.date_fin | date: 'dd MMM yyyy'}}</mat-card-subtitle>
+            {{contrat.date_debut | date: 'dd MMM yyyy'}}</mat-card-subtitle>
+          <mat-card-subtitle *ngIf="contrat.date_fin"><strong>Fin du contrat : {{contrat.date_fin | date: 'dd MMM yyyy'}}</strong></mat-card-subtitle>
         </mat-card-header>
 
         <mat-card-actions>

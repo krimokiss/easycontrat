@@ -10,10 +10,11 @@ import { Observable, of } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class ContratResolverResolver implements Resolve<any> {
+export class ProfilResolverResolver implements Resolve<boolean> {
+
 constructor(private dataService : DataService){}
-  
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> {
-     return this.dataService.getallContratBySalarie();
+
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
+    return this.dataService.getProfil()
   }
 }

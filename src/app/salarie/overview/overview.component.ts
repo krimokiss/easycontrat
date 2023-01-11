@@ -1,3 +1,4 @@
+import { ActivatedRoute } from '@angular/router';
 import { DataService } from 'src/app/services/data.service';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
@@ -11,9 +12,15 @@ export class OverviewComponent implements OnInit {
   
   profil!:any
 
-  constructor(private dataService : DataService) { }
+  constructor(private dataService : DataService,
+              private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
+this.activatedRoute.data.subscribe(({profil})=>{
+  console.log('PROFIL RESOLVER', profil);
+  
+})
+
     this.dataService.getProfil().subscribe((response:any)=>{
         this.profil = response
     })
