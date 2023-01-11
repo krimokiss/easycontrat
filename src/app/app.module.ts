@@ -45,7 +45,7 @@ import * as fr from '@angular/common/locales/fr';
 import { DetailsModalComponent } from './modals/details-modal/details-modal.component';
 import { SalarieModalComponent } from './modals/salarie-modal/salarie-modal.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 
 @NgModule({
@@ -96,6 +96,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     MatButtonToggleModule,
     MatPaginatorModule,
     MatSlideToggleModule,
+    MatProgressSpinnerModule
   ],
   providers: [TokenInterceptorPovider,
     { provide: LOCALE_ID, useValue: 'fr-FR'}],

@@ -13,6 +13,7 @@ export class DetailsModalComponent implements OnInit {
   profilEntreprise!: any
   profilSalarie!: any
   contratBySal!: any
+  isLoading=false
 
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
@@ -21,6 +22,8 @@ export class DetailsModalComponent implements OnInit {
     private activatedRoute: ActivatedRoute) {  }
 
   ngOnInit(): void {
+
+    this.isLoading=true
 
     this.activatedRoute.data.subscribe(({contrats})=>{
       console.log('CONTRAT RESOLVER', contrats);
