@@ -1,6 +1,5 @@
 .drawer {
   position: fixed;
-  top: 0;
   height: 100vh;
   min-width: 20%;
   max-width: 30%;
@@ -12,8 +11,9 @@
   right: 0;
   justify-content: space-between;
   color: #1976d2;
-  mat-icon{
-    color: #1925d2;
+
+  mat-icon {
+    color: #192cd2;
   }
 }
 
@@ -29,10 +29,10 @@
   position: fixed;
   top: 0;
   width: 100%;
-  z-index: 52;
-  border-bottom: 1px solid #ccc;
+  z-index: 12;
   background-color: #1976d2;
   color: white;
+  border-bottom: 1px solid #ccc;
 }
 
 .main.contents {
@@ -52,42 +52,50 @@
 
 mat-icon {
   cursor: pointer;
+  // margin-left: 10px;
 }
 
 .boutons {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
-  // .pasla{
-  //   visibility: hidden;
-  // }
+  justify-content: center;
+  transition: all 5s linear;
+  margin-top: 15%;
 
   a {
-    margin-top: 30%;
-    width: 80%;
+    margin-top: 10%;
+    width: 70%;
     padding: 5px;
-    text-decoration: none;
     background-color: #1976d2be;
     color: white;
     font-size: larger;
-    mat-icon{
-     float: right;
-     transform: translateY(5px);
+  
+    mat-icon {
+      float: right;
+      transform: translateY(5px);
     }
   }
-  :hover{
+
+  :hover {
     scale: 1.02;
-    background-color: #1925d2;
-   transition: all .3s ease-in-out ;
-  text-decoration: none;
+    background-color: #192cd2;
+    transition: all .3s ease-in-out;
+    text-decoration: none;
   }
+
+  mat-icon {
+    margin-left: 10px;
+  }
+
 }
-.exit{
- 
- position: fixed;
- right: 30px;
- cursor: pointer;
+
+.exit {
+
+  position: fixed;
+  right: 30px;
+  cursor: pointer;
 }
+
 .example-button {
   margin-top: 16px;
 }
@@ -95,16 +103,10 @@ mat-icon {
 .example-tooltip-uppercase {
   text-transform: uppercase;
 }
-body::-webkit-scrollbar {
-  display: none;
-}
 
-
-//RESPONSIVE //
-
-@media  screen and (max-width: 480px)  {
-  .drawer{
+@media screen and (max-width: 480px) {
+  .drawer {
     max-width: 100%;
   }
-  
-    }
+
+}
