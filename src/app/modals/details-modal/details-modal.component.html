@@ -4,7 +4,7 @@
   <mat-dialog-content class="mat-typography">
     <h3>Fait à Annemasse le <strong> {{data.date_debut | date:'dd MMMM YYYY'}} </strong>  </h3>
    <div *ngFor="let salarie of contratBySal" >
-    <p *ngIf="data.fki_salarie == salarie.salarie_id" >
+    <p *ngIf="data.fki_salarie == salarie.salarie_id && profilEntreprise.entreprise_id == salarie.fki_entreprise" >
       Ce contrat a été établi entre la société : <br> <br>
       <strong>{{profilEntreprise.raison_sociale}}</strong> <br> représenté par : <br>
       <strong>{{profilEntreprise.civilite }} {{profilEntreprise.nom }} {{profilEntreprise.prenom }}</strong>, <br>
