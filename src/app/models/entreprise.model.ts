@@ -13,5 +13,7 @@ export class Entreprise {
     siret!: number
     raison_sociale!:string
     code_ape!: string
+    role!:boolean
+    confirmMdp!:string
     
 }

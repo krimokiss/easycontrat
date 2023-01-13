@@ -16,5 +16,6 @@ token!: string
     date_naissance!: number
     lieu_naissance!: string
     pays_naissance!: string
+    confirmMdp!:string
 
 }

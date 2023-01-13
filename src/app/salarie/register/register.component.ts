@@ -1,3 +1,4 @@
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { DataService } from 'src/app/services/data.service';
 import { Router } from '@angular/router';
 import { Salarie } from './../../models/salarie.model';
@@ -19,10 +20,14 @@ export class RegisterComponent implements OnInit {
   adresseRegex!: RegExp;
   registerForm!: FormGroup;
   salarie = new Salarie()
+  isLoading=false
+  mdpErreur=true
+  hide=true
 
   constructor(private formbuilder: FormBuilder,
               private router: Router,
-              private dataService: DataService) { }
+              private dataService: DataService,
+              private snackBar : MatSnackBar) { }
 
   ngOnInit(): void {
     this.emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}/
@@ -42,33 +47,47 @@ export class RegisterComponent implements OnInit {
       ville: [this.salarie.ville, [Validators.required, Validators.pattern(this.villeRegex), Validators.minLength(3)]],
       email: [this.salarie.email, [Validators.required, Validators.pattern(this.emailRegex)]],
       mdp: [this.salarie.mdp, [Validators.required, Validators.pattern(this.passwordRegex)]],
-      // role: [this.salarie.role, [Validators.required, Validators.minLength(2)]],
       nomJeuneFille: [this.salarie.nom_jeune_fille],
       num_ss: [this.salarie.num_ss, [Validators.required, Validators.minLength(12)]],
       date_naissance: [this.salarie.date_naissance, Validators.required],
       lieu_naissance: [this.salarie.lieu_naissance, [Validators.required, Validators.minLength(4)]],
       pays_naissance: [this.salarie.pays_naissance, [Validators.required, Validators.minLength(4)]],
-
+      role: [this.salarie.role],
+      confirmMdp: [this.salarie.confirmMdp, [Validators.required]],
       // ConfirmPassword: ['', [Validators.required, Validators.pattern(this.passwordRegex)]],
 
     });
   }
   
   onSubmit() {
-    const form = this.registerForm.value
-    const Register = this.registerForm.value
-    const motDePAsse = Register.mdp
-    const confirmMotDePasse = Register.confirmMotDePasse
+  //Verification du mot de passe à l'identique
+
+  const form = this.registerForm.value
+  const Register = this.registerForm.value
+  const motDePAsse = Register.mdp
+  const confirmMotDePasse = Register.confirmMdp
+  
+  if (motDePAsse !== confirmMotDePasse) {
+    this.snackBar.open('Votre second mot de passe n\'est pas identique', 'ok', { verticalPosition: 'top' })
+    return;
+  }
 
     this.salarie = Object.assign(this.salarie, form)
 
-    this.dataService.registerSalarie(this.salarie).subscribe((result:Salarie)=>{
+    this.dataService.registerSalarie(this.salarie).subscribe((result:any)=>{
+      console.log(result.newUser.rows[0].role);
       
-      console.log(result);
-      localStorage.setItem('token', result.token)
-      this.router.navigate(['salarie/overview'])
-      
+      if (result) {
+        localStorage.setItem('token',(result.token))
+        localStorage.setItem('role',(result.newUser.rows[0].role))
+        // localStorage.setItem('user', JSON.stringify(this.email))
+        this.router.navigate(['/salarie/overview/gerer-profil'])
+        // console.log(result.datas.role);
+        
+      }
     })
+    this.isLoading = true
+    setTimeout(() => this.isLoading = false, 5000);
 
   }
 

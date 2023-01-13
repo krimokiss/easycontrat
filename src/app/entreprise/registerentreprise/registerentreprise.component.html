@@ -71,18 +71,27 @@
           <p>
             <mat-form-field appearance="fill">
               <mat-label>Mot de passe</mat-label>
-              <input formControlName="mdp" matInput placeholder="8 caractères min" type="text">
-              <mat-icon matSuffix>lock</mat-icon>
+              <input matInput [type]="hide ? 'password' : 'text'" formControlName="mdp" matInput placeholder="8 caractères min" type="text">
+              <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
               <!-- <mat-hint>Doit contenir au moins 8 caractères avec une MAJUSCULE, une minuscule, un chiffre et un caractère spécial (!@#$%^&*)</mat-hint> -->
             </mat-form-field>
           </p>
-          <!-- <p>
+          <p>
             <mat-form-field appearance="fill">
-              <mat-label>Role</mat-label>
-              <input formControlName="role" matInput placeholder="Salarié">
-              <mat-icon matSuffix>account_circle</mat-icon>
+              <mat-label>Confirmer le mot de passe</mat-label>
+              <input matInput [type]="hide ? 'password' : 'text'" formControlName="confirmMdp" matInput placeholder="8 caractères min" type="text">
+              <mat-error *ngIf="mdpErreur">
+                Vos mots de passe ne correspondent pas
+                </mat-error>
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
             </mat-form-field>
-          </p> -->
+          </p>
           <p>
             <mat-form-field appearance="fill">
               <mat-label>SIRET</mat-label>
@@ -106,16 +115,13 @@
             </mat-form-field>
           </p>
         
-          <!-- <p>
-            <mat-form-field appearance="fill">
-              <mat-label>Confirmez mot de passe</mat-label>
-              <input formControlName="ConfirmPassword" matInput placeholder="8 caractères min" type="text">
-              <mat-icon matSuffix>check_circle</mat-icon>
-              <mat-hint>Votre mot de passe doit être strictement identique au premier.</mat-hint>
-            </mat-form-field>
-          </p> -->
-          <button mat-raised-button type="submit" [disabled]="!registerForm.valid">Envoyer</button>
-         
+        
+          <!-- <button mat-raised-button type="submit" [disabled]="!registerForm.valid">Envoyer</button> -->
+          <button mat-raised-button  type="submit" [disabled]="!registerForm.valid">
+            Envoyer
+                <mat-icon ><mat-spinner color="primary" diameter="20" *ngIf="isLoading">
+            </mat-spinner></mat-icon>
+          </button>
       
       </form>
  

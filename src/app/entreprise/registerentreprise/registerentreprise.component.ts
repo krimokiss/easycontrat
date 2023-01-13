@@ -1,3 +1,4 @@
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { DataService } from 'src/app/services/data.service';
 import { Router } from '@angular/router';
 import { Entreprise } from 'src/app/models/entreprise.model';
@@ -19,10 +20,14 @@ export class RegisterentrepriseComponent implements OnInit {
   adresseRegex!: RegExp;
   registerForm!: FormGroup;
   entreprise = new Entreprise()
+  isLoading =false
+  mdpErreur=true
+  hide=true
 
   constructor(private formbuilder: FormBuilder,
     private router: Router,
-    private dataService: DataService) { }
+    private dataService: DataService,
+    private snackBar : MatSnackBar) { }
 
   ngOnInit(): void {
     this.emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}/
@@ -45,28 +50,43 @@ export class RegisterentrepriseComponent implements OnInit {
       siret: [this.entreprise.siret, [Validators.required, Validators.minLength(9)]],
       raison_sociale: [this.entreprise.raison_sociale, [Validators.required, Validators.minLength(2)]],
       code_ape: [this.entreprise.code_ape, [Validators.required, Validators.minLength(3)]],
-
+      role: [this.entreprise.role],
+      confirmMdp: [this.entreprise.confirmMdp, [Validators.required]],
       // ConfirmPassword: ['', [Validators.required, Validators.pattern(this.passwordRegex)]],
 
     });
   }
 
   onSubmit() {
+
+//Verification du mot de passe à l'identique
+
     const form = this.registerForm.value
     const Register = this.registerForm.value
     const motDePAsse = Register.mdp
-    const confirmMotDePasse = Register.confirmMotDePasse
+    const confirmMotDePasse = Register.confirmMdp
+    
+    if (motDePAsse !== confirmMotDePasse) {
+      this.snackBar.open('Votre second mot de passe n\'est pas identique', 'ok', { verticalPosition: 'top' })
+      return;
+    }
 
     this.entreprise = Object.assign(this.entreprise, form)
 
-    this.dataService.registerEntreprise(this.entreprise).subscribe((result: Entreprise) => {
-
-
+    this.dataService.registerEntreprise(this.entreprise).subscribe((result: any) => {
       console.log(result);
-      localStorage.setItem('token', result.token)
-      this.router.navigate(['entreprise/overview'])
-
+      
+      if (result) {
+        localStorage.setItem('token',(result.token))
+        localStorage.setItem('role',(result.newUser.rows[0].role))
+        // localStorage.setItem('user', JSON.stringify(this.email))
+        this.router.navigate(['/entreprise/overview/gerer-profil-ent'])
+        // console.log(result.datas.role);
+        
+      }
     })
+    this.isLoading = true
+    setTimeout(() => this.isLoading = false, 5000);
 
   }
 }

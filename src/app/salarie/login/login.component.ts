@@ -18,6 +18,16 @@ export class LoginComponent implements OnInit {
   mdp!: string
   salarie = new Salarie
   entreprise = new Entreprise
+  isLoading =false
+
+  spinnerButtonOptions: any = {
+    active: false,
+    text: 'Spinner Button',
+    spinnerSize: 18,
+    raised: true,
+    buttonColor: 'primary',
+    spinnerColor: 'accent'
+  }
 
   constructor(private formBuilder: FormBuilder,
     private router: Router,
@@ -51,6 +61,8 @@ export class LoginComponent implements OnInit {
         
       }
     })
+    this.isLoading = true;
+    setTimeout(() => this.isLoading = false, 5000);
   }
 
 }

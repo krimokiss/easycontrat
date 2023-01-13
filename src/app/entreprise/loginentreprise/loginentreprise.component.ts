@@ -18,6 +18,7 @@ export class LoginentrepriseComponent implements OnInit {
   mdp!: string
   salarie = new Salarie
   entreprise = new Entreprise
+  isLoading=false
 
   constructor(private formBuilder: FormBuilder,
               private router: Router,
@@ -46,6 +47,8 @@ export class LoginentrepriseComponent implements OnInit {
         
       }
     })
+    this.isLoading = true
+    setTimeout(() => this.isLoading = false, 5000);
   }
 
 }
