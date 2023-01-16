@@ -42,14 +42,14 @@ export class GererSalariesEntComponent implements OnInit {
       }
       this.dataService.getallContrat().subscribe((response: any) => {
         this.allcontrat = response
-        console.log('allContrat', response);
+        // console.log('allContrat', response);
 
       })
 
     })
     this.dataService.getallContratBySalarie().subscribe((results: any) => {
       this.contratBySal = results
-      console.log('ContratBySalarie :', this.contratBySal);
+      // console.log('ContratBySalarie :', this.contratBySal);
       this.allSalarieFiltered = [...this.contratBySal]
     })
 
@@ -61,6 +61,8 @@ export class GererSalariesEntComponent implements OnInit {
           user.prenom.toLowerCase().includes(resultats.toLowerCase())
       })
     })
+
+
 
   
   }

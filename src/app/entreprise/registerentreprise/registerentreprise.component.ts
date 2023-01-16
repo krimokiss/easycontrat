@@ -86,7 +86,7 @@ export class RegisterentrepriseComponent implements OnInit {
       }
     })
     this.isLoading = true
-    setTimeout(() => this.isLoading = false, 5000);
+    setTimeout(() => this.isLoading = false, 25000);
 
   }
 }

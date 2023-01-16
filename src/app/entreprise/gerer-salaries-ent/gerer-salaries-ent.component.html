@@ -10,6 +10,8 @@
         <mat-card-header>
           <mat-card-subtitle>{{salarie.civilite}}</mat-card-subtitle>
           <mat-card-title>{{salarie.nom}} {{salarie.prenom}}</mat-card-title>
+          <mat-card-subtitle>Né(e) le : {{salarie.date_naissance | date: 'dd MMMM YYYY'}}</mat-card-subtitle>
+          <mat-card-subtitle>Numéro de sécurité sociale : {{salarie.num_ss}}</mat-card-subtitle>
         </mat-card-header>
 
         <mat-card-actions>
