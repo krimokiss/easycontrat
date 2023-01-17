@@ -3,7 +3,8 @@ import { DataService } from 'src/app/services/data.service';
 import { Router } from '@angular/router';
 import { Entreprise } from 'src/app/models/entreprise.model';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import SignaturePad from 'signature_pad';
 
 @Component({
   selector: 'app-registerentreprise',
@@ -23,6 +24,11 @@ export class RegisterentrepriseComponent implements OnInit {
   isLoading =false
   mdpErreur=true
   hide=true
+
+  title = 'signatureJS';
+  signaturePad!: SignaturePad;
+  @ViewChild('canvas') canvasEl!: ElementRef;
+  signatureImg!: any;
 
   constructor(private formbuilder: FormBuilder,
     private router: Router,
@@ -52,6 +58,7 @@ export class RegisterentrepriseComponent implements OnInit {
       code_ape: [this.entreprise.code_ape, [Validators.required, Validators.minLength(3)]],
       role: [this.entreprise.role],
       confirmMdp: [this.entreprise.confirmMdp, [Validators.required]],
+      sign: [this.entreprise.sign,], 
       // ConfirmPassword: ['', [Validators.required, Validators.pattern(this.passwordRegex)]],
 
     });
@@ -72,7 +79,9 @@ export class RegisterentrepriseComponent implements OnInit {
     }
 
     this.entreprise = Object.assign(this.entreprise, form)
-
+    console.log('FORM', form);
+    
+    this.entreprise.sign = this.signaturePad.toDataURL();
     this.dataService.registerEntreprise(this.entreprise).subscribe((result: any) => {
       console.log(result);
       
@@ -88,5 +97,29 @@ export class RegisterentrepriseComponent implements OnInit {
     this.isLoading = true
     setTimeout(() => this.isLoading = false, 25000);
 
+  }
+  ngAfterViewInit() {
+    this.signaturePad = new SignaturePad(this.canvasEl.nativeElement);
+  }
+
+  startDrawing(event: Event) {
+    console.log(event);
+    // works in device not in browser
+
+  }
+
+  moved(event: Event) {
+    // works in device not in browser
+  }
+
+  clearPad() {
+    this.signaturePad.clear();
+  }
+
+  savePad() {
+    const base64Data = this.signaturePad.toDataURL();
+    this.signatureImg = base64Data;
+    this.entreprise.sign = this.signaturePad.toDataURL();
+    return this.signatureImg
   }
 }

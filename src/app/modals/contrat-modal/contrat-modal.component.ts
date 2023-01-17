@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DataService } from 'src/app/services/data.service';
 import { Component, OnInit, Inject } from '@angular/core';
@@ -20,6 +21,7 @@ export class ContratModalComponent implements OnInit {
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
     public dataService: DataService,
+    private router : Router,
     private _fb: FormBuilder,
     private dialogRef: MatDialogRef<ContratModalComponent>
   ) {
@@ -49,6 +51,7 @@ export class ContratModalComponent implements OnInit {
   }
   closeDialog() {
     this.dialogRef.close({ event: 'close', data: this.ID })
+    this.router.navigate(['/entreprise/overview/gerer-contrat-ent'])
   }
 printPage(){
   window.print();

@@ -1,547 +1,388 @@
-<!-- <mat-spinner class="spinner" *ngIf="isLoading && !contratBySal" ></mat-spinner>
-  <div class="container" *ngIf="profilEntreprise != null">
-    <h1 mat-dialog-title>Contrat de Travail</h1>
-  <mat-dialog-content class="mat-typography">
-    <h3>Fait à Annemasse le <strong> {{data.date_debut | date:'dd MMMM YYYY'}} </strong>  </h3>
-   <div *ngFor="let salarie of contratBySal" >
-    <p *ngIf="data.fki_salarie == salarie.salarie_id && profilEntreprise.entreprise_id == salarie.fki_entreprise" >
-      Ce contrat a été établi entre la société : <br> <br>
-      <strong>{{profilEntreprise.raison_sociale}}</strong> <br> représenté par : <br>
-      <strong>{{profilEntreprise.civilite }} {{profilEntreprise.nom }} {{profilEntreprise.prenom }}</strong>, <br>
-      d'une part, <br> <br>
-       et <br> <br>
-      <strong>{{salarie.civilite }} {{salarie.nom }} {{salarie.prenom}}</strong> <br>
-      né le <strong>{{salarie.date_naissance | date:'dd MMMM YYYY'}}</strong> à <strong>{{salarie.lieu_naissance}}</strong>, <br>
-      demeurant au : <br> <strong>{{salarie.rue}}</strong> <br> <strong>{{salarie.cp}} {{salarie.ville}}</strong>, <br> d'autre part.
-    </p>
-   </div>
-  
-    <h3>Type de contrat de travail</h3>
-    <p>
-      Le type de contrat de travail sera un  <strong>{{data.type_contrat}}</strong>
-    </p>
-  
-    <h3>Durée hebdomadaire</h3>
-    <p *ngIf="data.is_fulltime" >
-      Il est convenu que la durée de travail mensuel sera à <strong>Temp Plein.</strong>
-    </p>
-    <p *ngIf="!data.is_fulltime" >
-      Il est convenu que la durée de travail mensuel sera à <strong>Temp Partiel.</strong>
-    </p>
-  
-    <h3>Date de début du contrat</h3>
-    <p>Le contrat débutera le : <strong>{{data.date_debut | date: 'dd, MMMM YYYY'}}.</strong>
-  
-    </p>
-  
-    <h3 *ngIf="data.date_fin" >Date de fin du contrat</h3>
-  
-    <p *ngIf="data.date_fin">
-      Etant convenu qu'il s'agit d'un contrat en CDD, Ce dernier prendra fin le <strong>{{data.date_fin | date: 'dd, MMMM YYYY'}}.</strong> 
-    </p>
-  
-    <h3>Periode d'essai</h3>
-  
-    <p>La période d'essai pour ce travail est de : <strong>{{data.periode_essai}}.</strong> </p>
-  
-    <p>
-      Au cours de cette période, le contrat pourra être rompu par l'une
-      ou l'autre partie, à tout moment, sous réserve du respect du délai
-      de prévenance prévu.</p>
-  
-    <h3>Motif</h3>
-    <p>
-      Le présent contrat a été crée suite a un(e) : <strong> {{data.motif}} </strong>
-    </p>
-    
-    <h3>Rémunération</h3>
-    <p>
-      Le salaire mensuel Brut sera de : <strong> {{data.remuneration}} €.</strong>
-    </p>
-  
-    <h3>Fonction occupée</h3>
-  
-    <p>La fonction occupée pour ce travail sera : <strong> {{data.fonction}} </strong> </p>
-  
-    <h3>Statut</h3>
-  
-    <p>
-      Vous aurez le statut de : <strong> {{data.statut}} </strong>, sous réserve d'évolution de votre carrière.
-    </p>
-  
-  
-    
-  </mat-dialog-content>
-  <mat-dialog-actions align="end">
 
-    <button mat-button (click)="closeDialog()">Fermer</button>
-    <button mat-button (click)="printPage()" >Imprimer</button>
-    <button mat-button>Télécharger</button>
-  </mat-dialog-actions>
-  </div>
-  
+  <mat-spinner class="spinner" *ngIf="isLoading && !contratBySal" ></mat-spinner>
 
-
-
-
-  <div class="containerr" *ngIf="profilEntreprise == null && data.entreprise_id">
-    <h1 mat-dialog-title>Contrat de Travail</h1>
-  <mat-dialog-content class="mat-typography">
-    <div *ngFor="let contrat of contratBySal">
-      
-      <div *ngIf="contrat.fki_entreprise == data.entreprise_id && profilSalarie.salarie_id == contrat.fki_salarie"  >
-     <h3>Fait à Annemasse le,  <strong>{{contrat.date_debut | date:'dd MMMM YYYY'}}</strong>  </h3>
-    <p >
-      Ce contrat a été établi entre la société : <br> <br>
-      <strong>{{data.raison_sociale}}</strong> <br> représenté par : <br>
-      <strong>{{data.civilite }} {{data.nom }} {{data.prenom }}</strong>, <br>
-      d'une part, <br> <br>
-       et <br> <br>
-      <strong>{{profilSalarie.civilite }} {{profilSalarie.nom }} {{profilSalarie.prenom}}</strong> <br>
-      né le <strong>{{profilSalarie.date_naissance | date:'dd MMMM YYYY'}}</strong> à <strong>{{profilSalarie.lieu_naissance}}</strong>, <br>
-      demeurant au : <br> <strong>{{profilSalarie.rue}}</strong> <br> <strong>{{profilSalarie.cp}} {{profilSalarie.ville}}</strong>, <br> d'autre part.
-    </p>
- 
-  
-  
-
-
-
-      <h3>Type de contrat de travail</h3>
-    <p>
-      Le type de contrat de travail sera un  <strong>{{contrat.type_contrat}}</strong>
-    </p>
-  
-    <h3>Durée hebdomadaire</h3>
-    <p *ngIf="contrat.is_fulltime" >
-      Il est convenu que la durée de travail mensuel sera à <strong>Temp Plein.</strong>
-    </p>
-    <p *ngIf="!contrat.is_fulltime" >
-      Il est convenu que la durée de travail mensuel sera à <strong>Temp Partiel.</strong>
-    </p>
-  
-    <h3>Date de début du contrat</h3>
-    <p>Le contrat débutera le : <strong>{{contrat.date_debut | date: 'dd, MMMM YYYY'}}.</strong>
-  
-    </p>
-  
-    <h3 *ngIf="contrat.date_fin" >Date de fin du contrat</h3>
-  
-    <p *ngIf="contrat.date_fin">
-      Etant convenu qu'il s'agit d'un contrat en CDD, Ce dernier prendra fin le <strong>{{contrat.date_fin | date: 'dd, MMMM YYYY'}}.</strong> 
-    </p>
-  
-    <h3>Periode d'essai</h3>
-  
-    <p>La période d'essai pour ce travail est de : <strong>{{contrat.periode_essai}}.</strong> </p>
-  
-    <p>
-      Au cours de cette période, le contrat pourra être rompu par l'une
-      ou l'autre partie, à tout moment, sous réserve du respect du délai
-      de prévenance prévu.</p>
-  
-    <h3>Motif</h3>
-  
-    <p>
-      Le présent contrat a été crée suite a un(e) : <strong> {{contrat.motif}} .</strong>
-    </p>
-
-    <h3>Rémunération</h3>
-    <p>
-      Le salaire mensuel Brut sera de : <strong> {{contrat.remuneration}} €.</strong>
-    </p>
-  
-    <h3>Fonction occupée</h3>
-  
-    <p>La fonction occupée pour ce travail sera : <strong> {{contrat.fonction}}. </strong> </p>
-  
-    <h3>Statut</h3>
-  
-    <p>
-      Vous aurez le statut de : <strong> {{contrat.statut}} </strong>, sous réserve d'évolution de votre carrière.
-    </p>
-
-   </div>
-  </div>
-  
-    
-  </mat-dialog-content>
-  <mat-dialog-actions align="end">
-
-    <button mat-button (click)="closeDialog()">Fermer</button>
-    <button mat-button (click)="printPage()" >Imprimer</button>
-    <button mat-button>Télécharger</button>
-  </mat-dialog-actions>
-  </div> -->
-
-
-
-
-
+  <!-- MODAL PROVENANT DE LA SECTION ENTREPRISE -->
 
   <div container-fluid contrat *ngIf="profilEntreprise != null">
-    
-   <div *ngFor="let salarie of contratBySal">
-    <div *ngIf="data.fki_salarie == salarie.salarie_id && profilEntreprise.entreprise_id == salarie.fki_entreprise"  style="height: 416px;"><span class="stabilisation"></span><p style="text-align: center;"><span style="font-weight: bold; font-size: 14px;"><br></span><strong>CONTRAT DE TRAVAIL À DURÉE INDÉTERMINÉE </strong></p>
-      <p><br><br></p>
-      
-      <p><br><br><strong>ENTRE LES SOUSSIGNÉS</strong><br><br><br></p>
-      <p style="padding-left: 30px;"><span class="texte_apparu_avec_ajax" style="display: inline; background-color: rgb(255, 255, 255);"><strong><span id="span_id_identite_employeur"><span class="variable_vide"><strong>{{profilEntreprise.raison_sociale}}</strong> <br> représenté par : <br>
-        <strong>{{profilEntreprise.civilite }} {{profilEntreprise.nom }} {{profilEntreprise.prenom }}</strong></span></span></strong>,</span></p><p style="padding-left: 30px;"><span class="texte_apparu_avec_ajax" style="display: inline; background-color: rgb(255, 255, 255);">Immatriculé(e) à l'URSSAF sous le numéro <span id="span_id_no_urssaf"><span class="variable_vide"> <strong>{{profilEntreprise.siret}}</strong> </span></span>,</span></p><p style="padding-left: 30px;"><span class="texte_apparu_avec_ajax" style="display: inline; background-color: rgb(255, 255, 255);">À l'adresse suivante&nbsp;:</span></p><p style="padding-left: 30px;"><span class="texte_apparu_avec_ajax" style="display: inline; background-color: rgb(255, 255, 255);"><span id="span_id_adresse_employeur_particulier"><span class="variable_vide"> <strong>{{profilEntreprise.rue}}</strong> <br> <strong>{{profilEntreprise.cp}}  {{profilEntreprise.ville}}</strong> </span></span>, </span></p>
-      
-      <p style="padding-left: 30px;"><br>Ci-après " <strong>l'employeur</strong> ",</p>
-      <p><br><br><strong>ET</strong></p>
-      <p style="padding-left: 30px;"><br><br><strong><span id="span_id_identite_employe"><span class="variable_vide"> <strong>{{salarie.nom}} {{salarie.prenom}}</strong> </span></span></strong>,</p>
-      <p style="padding-left: 30px;">Résidant à l'adresse suivante&nbsp;:</p>
-      <p style="padding-left: 30px;"><span id="span_id_adresse_employe"><span class="variable_vide"> <strong>{{salarie.rue}}</strong> <br> <strong>{{salarie.cp}} {{salarie.ville}}</strong> </span></span></p>
-      <p style="padding-left: 30px;">N° de Sécurité sociale&nbsp;: <span id="span_id_no_secu_sociale_salarie"><span class="variable_vide"> <strong>{{salarie.num_ss}}</strong> </span></span>,</p>
-      
-      <p style="padding-left: 30px;"><br>Ci-après " <strong>le salarié</strong> ",</p>
-      <p><strong><br><br><br>IL A ÉTÉ CONVENU ET ARRÊTÉ CE QUI SUIT</strong></p>
-      
-      <p style="text-align: center;"><strong>PRÉAMBULE<br><br></strong></p>
-      <p>Est conclu le présent contrat, sous réserve de l'issue de la visite médicale d'embauche décidant de l'aptitude du salarié à exercer les fonctions proposées.</p>
-      <p>L'employeur a effectué une déclaration préalable à l'embauche auprès de l'URSSAF le&nbsp;: <span id="span_id_date_declaration_urssaf"><span class="variable_vide"> <strong>{{data.date_debut | date: 'dd MMMM YYYY'}}</strong> </span></span>.</p>
-      <p>Il est porté à la connaissance du salarié que l'employeur transmet par le biais de la Déclaration Sociale Nominative (DSN) les données utilisées pour le calcul du salaire, et tout autre événement qu'il est dans l'obligation de déclarer par ce biais, comme les arrêts de travail ou l'éventuelle fin du contrat.</p>
-      <p>Le salarié déclare être libre de tout engagement, n'être tenu par aucune clause de non-concurrence, n'être frappé d'aucune incapacité ni d'aucune inaptitude physique à l'exercice de son activité. <br><br></p>
-      <p style="text-align: center;"><strong>ARTICLE I&nbsp;: NATURE ET DURÉE DU CONTRAT<br><br></strong></p>
-      <p>Le présent contrat est conclu pour une durée indéterminée.</p>
-      <p>Il prend effet le <span id="span_id_date_debut_contrat"><span class="variable_vide">{{data.date_debut | date: 'dd, MMMM YYYY'}}</span></span>. </p>
-      <p style="text-align: center;"><strong><br>ARTICLE II&nbsp;: FONCTION<br><br></strong></p>
-      <p>Le salarié est employé au poste suivant&nbsp;: <span id="span_id_poste_salarie"><span class="variable_vide"><strong>{{data.fonction}}</strong></span></span>.</p>
-      <!-- <p>Tout au long de l'exécution des présentes, l'exercice des missions ci-après détaillées sera confié au salarié&nbsp;:</p>
-      <p style="padding-left: 30px;"><span id="span_id_missions_salarie"><span class="variable_vide">________</span></span></p> -->
-      <p>Le salarié pourra, pendant toute la durée du présent contrat, être affecté à d'autres postes correspondant aux missions qu'il exerce, selon les besoins de l'employeur.</p>
-      <p>La prise de fonction sera effective à compter du <span id="span_id_date_entree_fonction"><span class="variable_vide">{{data.date_debut | date: 'dd MMMM YYYY'}}</span></span>. </p>
-      <p>Dans le cadre de l'exécution des présentes, le salarié s'engage à se conformer  aux instructions et directives de l'ensemble des instances dirigeantes et supérieurs hiérarchiques auxquels il est rattaché et maintenir la confidentialité des informations, dont il aurait pris connaissance dans l'exercice des ses fonctions, qui seraient susceptibles de nuire aux intérêts de l'employeur.</p>
-      <p>Le salarié sera par ailleurs tenu de conserver en toutes circonstances une attitude loyale à l'égard de son employeur.</p>
-      <p style="text-align: center;"><strong><br>ARTICLE III&nbsp;: LIEU DE TRAVAIL </strong></p>
-      <p>Le lieu habituel de travail est fixé à l'adresse suivante&nbsp;:</p>
-      <p style="padding-left: 30px;"><span id="span_id_lieu_travail"><span class="variable_vide"><strong>{{profilEntreprise.raison_sociale}}</strong><br> <strong>{{profilEntreprise.rue}} <br><strong>{{profilEntreprise.cp}}{{profilEntreprise.ville}}</strong></strong> </span></span> </p>
-      <p>L'employeur ne pourra, sans l'accord exprès du salarié, modifier le lieu habituel de travail. si les parties s'accordent sur la modification du lieu de travail, cet accord fera, le cas échéant, l'objet d'un avenant aux présentes. </p>
-      <p style="text-align: center;"><strong><br>ARTICLE IV&nbsp;: TEMPS DE TRAVAIL<br><br></strong></p>
-      <p>Le salarié sera soumis à la durée légale de travail prévue à l'Article L.3121-27 du Code du travail, équivalente à 35 heures par semaine, dans le cadre d'un contrat de travail à temps complet. </p>
-      <p style="text-align: center;"><strong><br>ARTICLE V&nbsp;: CONTREPARTIE LIÉE AU TEMPS D'HABILLAGE ET DE DÉSHABILLAGE DU SALARIÉ<br><br></strong></p>
-      <p>En raison des missions confiées au salarié lui imposant le port d'une tenue et d'équipements particuliers, le temps consacré à l'habillage et au déshabillage <span id="span_id_regime_habillage">donne lieu à une contrepartie</span>. Le salarié devra s'habiller et se déshabiller en dehors de ses heures de travail.</p>
-      <p>La contrepartie accordée au salarié est sous forme financière. Cette contrepartie prendra la forme d'une prime, versée tous les <span id="span_id_periodicite_contrepartie_financiere">ans</span>. </p>
-      <p style="text-align: center;"><strong><br>ARTICLE VI&nbsp;: RÉMUNÉRATION<br><br> </strong></p>
-      <p>Le salarié percevra, en contrepartie de son travail, une rémunération mensuelle brute de <span id="span_id_montant_remuneration_mensuelle"><span class="variable_vide"><strong>{{data.remuneration}}</strong></span></span> euros, qui sera payée le <span id="span_id_jour_paiement_mensuel">premier</span> jour de chaque mois, par chèque ou virement bancaire. </p>
-      
-      <p>Les bulletins de paie seront remis par voie électronique, à moins que le salarié ne s'y oppose expressément. </p>
-      
-      <p style="text-align: center;"><strong><br>ARTICLE VII&nbsp;: CONGÉS </strong><strong>PAYÉS<br><br></strong></p>
-      <p style="text-align: center;"><em>§1. ATTRIBUTION DES CONGÉS</em></p>
-      <p>Le salarié se verra attribuer des jours de congés, indépendamment des modalités tenant à la durée hebdomadaire, mensuelle ou annuelle de travail, en respect des dispositions légales.<br>La période de référence du décompte des jours de congé est fixée du 1er juin de l'année précédente au 31 mai de l'année actuelle.</p>
-      <p>Les congés accumulés par le salarié dans le cadre de l'exécution des présentes, pendant l'année au cours de laquelle le contrat prendra éventuellement fin  et dont il n'aura pas bénéficié, feront l'objet d'une indemnisation dans les conditions ci-dessous développées.</p>
-      <p style="text-align: center;"><em><br>§2. PRISE DES CONGÉS <br></em></p>
-      <p>Les périodes et modalités de prise de congés seront fixées par l'employeur&nbsp;: les dates et l'ordre de départ seront communiqués à chaque salarié et affichés au moins un mois à l'avance, dans les locaux normalement accessibles aux salariés.</p>
-      <p><br>Pour son congé principal, le salarié ne pourra prendre plus de 24 jours ouvrables en une seule fois. Les congés ne dépassant pas 12 jours seront pris en continu et lorsque le congé principal sera compris entre 12 et 24 jours ouvrables, l'employeur pourra fractionner le congé avec l'accord du salarié. Dans ce cas, l'une des deux périodes de congés devra durer au minimum 12 jours ouvrables continus. Ces 12 jours seront pris au cours de la période allant du 1er mai au 31 octobre, sauf dérogation prévue par accord collectif ou accord individuel du salarié. <br>Les jours restant dus pourront être accordés en une ou plusieurs fois en dehors de cette période.</p>
-      <p style="text-align: center;"><span class="flou"><em><br></em></span><em>§3. REPORT DES CONGÉS</em></p>
-      
-      <p>Les congés payés dont le salarié n'aura pas disposé une année donnée ne pourront être reportés sur l'année suivante. </p>
-      <p style="text-align: center;"><strong><br>ARTICLE VIII&nbsp;: REMBOURSEMENT DE FRAIS</strong></p>
-      <p style="text-align: left;"><br>L'employeur s'engage à rembourser au salarié les frais engagés par celui-ci dans l'exercice de ses fonctions, sur présentation de justificatifs et sous réserve du contrôle de leur réalité, de leur exactitude et de leur engagement dans l'intérêt de l'exercice de la profession, conformément à la procédure de remboursement de frais telle qu'appliquée par l'employeur.</p>
-      <p style="text-align: center;"><strong><br>ARTICLE IX&nbsp;: RETRAITE ET </strong><strong>PRÉVOYANCE<br><br></strong></p>
-      <p>Le salarié cotisera aux différents régimes de retraite complémentaire et de prévoyance en vigueur. <br><br></p>
-      <p style="text-align: center;"><strong>ARTICLE X&nbsp;: PROTECTION DES DONNÉES À CARACTÈRE PERSONNEL DES SALARIÉS<br><br></strong></p>
-      <p>Conformément aux dispositions relatives à la protection des données, le salarié est informé que certaines données nominatives sont enregistrées sur support informatique et éventuellement communiquées à l'URSSAF, et à d'autres organismes via la DSN.</p>
-      <p>Afin d'être licites, et ce conformément aux exigences de l'article 6 du règlement européen 2016/679, la collecte et le traitement des données à caractère personnel ne pourront intervenir que s'ils respectent au moins l'une des conditions ci-après énumérées&nbsp;:</p>
-      <ul>
-      <li>Le salarié a expressément consenti au traitement&nbsp;;</li>
-      </ul>
-      <ul>
-      <li>Le traitement est nécessaire à la bonne exécution d'un contrat&nbsp;;</li>
-      </ul>
-      <ul>
-      <li>Le traitement répond à une obligation légale&nbsp;;</li>
-      </ul>
-      <ul>
-      <li>Le traitement s'explique par une nécessité liée à la sauvegarde des intérêts vitaux du salarié ou d'une autre personne physique&nbsp;;</li>
-      </ul>
-      <ul>
-      <li>Le traitement peut s'expliquer par une nécessité liée à l'exécution d'une mission d'intérêt public ou qui relève de l'exercice de l'autorité publique&nbsp;;</li>
-      </ul>
-      <ul>
-      <li>Le traitement et la collecte des données à caractère personnel sont nécessaires aux fins des intérêts légitimes et privés poursuivis par le responsable du traitement ou par un tiers.<br><br></li>
-      </ul>
-      <p style="text-align: center;"><em>§1. DONNÉES DU SALARIÉ COLLECTÉES ET TRAITÉES</em></p>
-      <p style="text-align: left;">Les données suivantes du salarié sont collectées et traitées&nbsp;:</p>
-      <p style="text-align: left; padding-left: 30px;"><span id="span_id_donnees_salarie_collectees"><span class="variable_vide"><strong>Nom, <br> Prénom, <br> Adresse , <br> Coordonnées téléphonique ainsi que l'email</strong></span></span></p>
-      <p style="text-align: left;">Cette collecte et ce traitement répondent aux finalités suivantes&nbsp;:</p>
-      <p style="text-align: left; padding-left: 30px;"><span id="span_id_finalite_traitement"><span class="variable_vide">________</span></span></p>
-      <p style="text-align: left;">Ces données sont conservées pour une durée maximum de&nbsp;: <span id="span_id_duree_maximum_conservation_donnees"><span class="variable_vide"></span></span>.</p>
-      
-      <p style="text-align: left;">La personne suivante est nommée responsable du traitement des données à caractère personnel des salariés&nbsp;: <span id="span_id_rtd_salarie"><span class="variable_vide">________</span></span>. Elle peut être jointe comme indiqué ci-après&nbsp;:</p>
-      <p style="text-align: left; padding-left: 30px;"><span id="span_id_coordonnees_rtd_salarie"><span class="variable_vide">________</span></span></p>
-      <p style="text-align: left;">Dans le cas où le salarié effectue une demande concernant ses données à caractère personnel, le responsable du traitement dispose de 30 (trente) jours maximum pour y répondre.</p>
-      <p style="text-align: center;"><br><em>§2. DROITS DU SALARIÉ EN MATIÈRE DE PROTECTION DES DONNÉES</em></p>
-      <p><em>a. Droit d'accès, de rectification et droit à l'effacement</em></p>
-      <p>Le salarié peut prendre connaissance, mettre à jour, modifier ou demander la suppression des données le concernant.</p>
-      <p><br><em>b. Droit à la limitation et à l'opposition du traitement des données</em></p>
-      <p>Le salarié a le droit de demander la limitation ou de s'opposer au traitement de ses données par l'employeur, sans que l'employeur puisse refuser, sauf à démontrer l'existence de motifs légitimes et impérieux, pouvant prévaloir sur les intérêts et les droits et libertés du salarié.</p>
-      <p><em>c. Droit à la portabilité des données </em></p>
-      <p>Le salarié a le droit de demander la portabilité de ses données personnelles, détenues par l'employeur.</p>
-      <p><em><br>d. Droit de ne pas faire l'objet d'une décision fondée exclusivement sur un procédé automatisé</em></p>
-      <p>Conformément aux disposition du règlement 2016/679, le salarié a le droit de ne pas faire l'objet d'une décision fondée exclusivement sur un procédé automatisé si la décision produit des effets juridiques le concernant, ou l'affecte de manière significative de façon similaire.</p>
-      <p><br><em>e. Droit de saisir l'autorité de contrôle compétente</em></p>
-      <p>Dans le cas où le responsable du traitement des données des salariés décide de ne pas répondre à la demande du salarié, et que le salarié souhaite contester cette décision, ou, s'il pense qu'il est porté atteinte à l'un des droits énumérés ci-dessus, il est en droit de saisir la CNIL (Commission Nationale de l'Informatique et des Libertés, https://www.cnil.fr) ou tout juge compétent. <br><br></p>
-      <p style="text-align: center;"><em>§3. LE DÉLÉGUÉ À LA PROTECTION DES DONNÉES</em></p>
-      <p>Le salarié est informé que la personne suivante a été nommée Délégué à la Protection des Données&nbsp;: <span id="span_id_nom_delegue_protection_donnees"><span class="variable_vide">________</span></span>.</p>
-      <p>Le rôle du Délégué à la Protection des Données et de s'assurer la bonne mise en oeuvre des dispositions nationales et supranationales relatives à la collecte et au traitement des données à caractère personnel. Il est parfois appelé DPO (pour Data Protection Officer).</p>
-      <p>Le délégué à la protection des données peut être joint de la manière suivante&nbsp;:</p>
-      <p style="padding-left: 30px;"><span id="span_id_coordonnees_dpo"><span class="variable_vide">________</span></span></p>
-      
-      <!-- <p style="text-align: center;"><strong><br>ARTICLE XI&nbsp;: <span class="flou">555555 </span></strong><span class="flou"><strong>MÉDICALE<br><br></strong></span></p>
-      <p><span class="flou">22 8585582 8'222522 5 82 825222252 5 8'22822882 528 2552228 288825228528 552528 55 8258882 2258858 52 8'222822255.</span></p>
-      <p><span class="flou">22 2528222 8222552 528822555 22522 8258 5282582 528 528582528 52 85 888822 22588582 52885522 52 8'52282552 55 8585582 2255 8'25258882 52 822 2558588.</span></p> -->
-      <p style="text-align: center;"><strong><br>ARTICLE XII&nbsp;: ENTRETIEN PROFESSIONNEL</strong><br><br></p>
-      <p>Conformément aux dispositions de l'article L.6315-1 du Code du travail, le salarié est informé qu'il bénéficie tous les deux ans d'un entretien professionnel avec son employeur, consacré à ses perspectives d'évolution professionnelle, notamment en termes de qualifications et d'emploi. Cet entretien comporte également des informations relatives à la validation des acquis.</p>
-      <p style="text-align: left;">Cependant, cet entretien ne porte pas sur l'évaluation du travail du salarié.</p>
-      <p style="text-align: left;">Cet entretien sera également proposé  systématiquement au salarié qui reprend son activité suite à&nbsp;:</p>
-      <ul>
-      <li>Un congé de maternité&nbsp;;</li>
-      </ul>
-      <ul>
-      <li>Un congé parental d'éducation&nbsp;;</li>
-      </ul>
-      <ul>
-      <li>Un congé de proche aidant&nbsp;;</li>
-      </ul>
-      <ul>
-      <li>Un congé d'adoption&nbsp;;</li>
-      </ul>
-      <ul>
-      <li>Un congé sabbatique&nbsp;;</li>
-      </ul>
-      <ul>
-      <li>Une période de mobilité volontaire sécurisée&nbsp;;</li>
-      </ul>
-      <ul>
-      <li>Une période d'activité à temps partiel&nbsp;;</li>
-      </ul>
-      <ul>
-      <li>Un arrêt de longue maladie&nbsp;;</li>
-      </ul>
-      <ul>
-      <li>Un mandat syndical.</li>
-      </ul>
-      
-      <p>Tous les six ans, cet entretien professionnel fait un état des lieux récapitulatif du parcours professionnel du salarié. Cet entretien permet de vérifier que le salarié a effectivement bénéficié des entretiens évoqués et a&nbsp;:</p>
-      <ul>
-      <li>Suivi au moins une action de formation&nbsp;;</li>
-      </ul>
-      <ul>
-      <li>Acquis des éléments de certification par la formation ou par une validation des acquis de son expérience&nbsp;;</li>
-      </ul>
-      <ul>
-      <li>Bénéficié d'une progression salariale ou professionnelle.</li>
-      </ul>
-      <p>
-      
-      </p><p style="text-align: center;"><strong><br>ARTICLE XIII&nbsp;: FIN DE CONTRAT<br><br></strong></p>
-      
-      <p>Les parties au présent contrat pourront d'un commun accord résilier par anticipation le présent contrat à tout moment, selon les dispositions légales et conventionnelles en vigueur conformément aux Articles L. 1237-11 à L. 1237-16 du Code du Travail, en respectant le délai de préavis suivant&nbsp;: <span id="span_id_preavis"><span class="variable_vide"><strong>{{data.is_fulltime? '2mois' : '2 jours'}}</strong></span></span>.</p>
-      <p>Le présent contrat sera également suspendu ou annulé de plein droit et sans indemnité d'aucune sorte dans tous les cas de force majeure, tels que reconnus par la jurisprudence.</p>
-      <p>L'employeur pourra également décider de procéder à la rupture du présent contrat en cas de faute grave du salarié. Les motifs du licenciement devront reposer sur une cause réelle et sérieuse.<br><br><br><br><br></p>
-      <p style="text-align: center;"><span style="font-weight: bold; font-size: 14px;"><br>Le présent contrat est établi en deux exemplaires, dont un remis à chaque partie.</span></p>
-      <p><br><br><br><br><br></p>
-      <p>Fait à ______________________, le ____________________.</p>
-      <p style="text-align: center;"><br><br><br><strong>SIGNATURES&nbsp;:</strong></p>
-      <p style="text-align: center;"><br><br>L'employeur&nbsp;:</p>
-      <p style="text-align: center;"><br><br><br><br><br>............................................................</p>
-      <p style="text-align: center;"><span class="texte_apparu_avec_ajax" style="display: inline; background-color: rgb(255, 255, 255);"><span id="span_id_identite_employeur"><span class="variable_vide">________</span></span></span></p>
-      <p style="text-align: center;"><br><br><br>Le salarié&nbsp;:</p>
-      <p style="text-align: center;"><br><br><br><br><br>............................................................</p>
-      <p style="text-align: center;"><span id="span_id_identite_employe"><span class="variable_vide">________</span></span></p>
-    </div>
+  <mat-dialog-content>
+    <div *ngFor="let salarie of contratBySal">
+      <div *ngIf="data.fki_salarie == salarie.salarie_id && profilEntreprise.entreprise_id == salarie.fki_entreprise"  style="height: 416px;"><span class="stabilisation"></span>
+        <p style="text-align: center;"><span style="font-weight: bold; font-size: 14px;"><br></span><strong>{{data.type_contrat==='CDD'? 'CONTRAT DE TRAVAIL À DURÉE DÉTERMINÉE' : 'CONTRAT DE TRAVAIL À DURÉE INDÉTERMINÉE'}}  </strong></p>
+        <p><br><br></p>
+        <p><br><br><strong>ENTRE LES SOUSSIGNÉS</strong><br><br><br></p>
+        <p style="padding-left: 30px;"><span class="texte_apparu_avec_ajax" style="display: inline; background-color: rgb(255, 255, 255);"><strong><span id="span_id_identite_employeur"><span class="variable_vide"><strong>{{profilEntreprise.raison_sociale}}</strong> <br> représenté par : <br>
+          <strong>{{profilEntreprise.civilite }} {{profilEntreprise.nom }} {{profilEntreprise.prenom }}</strong></span></span></strong>,</span></p><p style="padding-left: 30px;"><span class="texte_apparu_avec_ajax" style="display: inline; background-color: rgb(255, 255, 255);">Immatriculé(e) à l'URSSAF sous le numéro <span id="span_id_no_urssaf"><span class="variable_vide"> <strong>{{profilEntreprise.siret}}</strong> </span></span>,</span></p><p style="padding-left: 30px;"><span class="texte_apparu_avec_ajax" style="display: inline; background-color: rgb(255, 255, 255);">À l'adresse suivante&nbsp;:</span></p><p style="padding-left: 30px;"><span class="texte_apparu_avec_ajax" style="display: inline; background-color: rgb(255, 255, 255);"><span id="span_id_adresse_employeur_particulier"><span class="variable_vide"> <strong>{{profilEntreprise.rue}}</strong> <br> <strong>{{profilEntreprise.cp}}  {{profilEntreprise.ville}}</strong> </span></span>, </span></p>
+        <p style="padding-left: 30px;"><br>Ci-après " <strong>l'employeur</strong> ",</p>
+        <p><br><br><strong>ET</strong></p>
+        <p style="padding-left: 30px;"><br><br><strong><span id="span_id_identite_employe"><span class="variable_vide"> <strong>{{salarie.nom}} {{salarie.prenom}}</strong> </span></span></strong>,</p>
+        <p style="padding-left: 30px;">Résidant à l'adresse suivante&nbsp;:</p>
+        <p style="padding-left: 30px;"><span id="span_id_adresse_employe"><span class="variable_vide"> <strong>{{salarie.rue}}</strong> <br> <strong>{{salarie.cp}} {{salarie.ville}}</strong> </span></span></p>
+        <p style="padding-left: 30px;">N° de Sécurité sociale&nbsp;: <span id="span_id_no_secu_sociale_salarie"><span class="variable_vide"> <strong>{{salarie.num_ss}}</strong> </span></span>,</p>
+        <p style="padding-left: 30px;"><br>Ci-après " <strong>le salarié</strong> ",</p>
 
-   </div>
-   <mat-dialog-actions align="end">
+        <p><strong><br><br><br>IL A ÉTÉ CONVENU ET ARRÊTÉ CE QUI SUIT</strong></p>
 
-    <button mat-button (click)="closeDialog()">Fermer</button>
-    <button mat-button (click)="printPage()" >Imprimer</button>
-    <button mat-button>Télécharger</button>
-  </mat-dialog-actions>
+        <p style="text-align: center;"><strong>PRÉAMBULE<br><br></strong></p>
+
+        <p>Est conclu le présent contrat, sous réserve de l'issue de la visite médicale d'embauche décidant de l'aptitude du salarié à exercer les fonctions proposées.</p>
+        <p>L'employeur a effectué une déclaration préalable à l'embauche auprès de l'URSSAF le&nbsp;: <span id="span_id_date_declaration_urssaf"><span class="variable_vide"> <strong>{{data.date_debut | date: 'dd MMMM YYYY'}}</strong> </span></span>.</p>
+        <p>Il est porté à la connaissance du salarié que l'employeur transmet par le biais de la Déclaration Sociale Nominative (DSN) les données utilisées pour le calcul du salaire, et tout autre événement qu'il est dans l'obligation de déclarer par ce biais, comme les arrêts de travail ou l'éventuelle fin du contrat.</p>
+        <p>Le salarié déclare être libre de tout engagement, n'être tenu par aucune clause de non-concurrence, n'être frappé d'aucune incapacité ni d'aucune inaptitude physique à l'exercice de son activité. <br><br></p>
+        
+        <p style="text-align: center;"><strong>ARTICLE I&nbsp;: NATURE ET DURÉE DU CONTRAT<br><br></strong></p>
+
+        <p><strong>{{data.type_contrat=='CDD'? 'Le présent contrat est conclu pour une durée déterminée.' : 'Le présent contrat est conclu pour une durée indéterminée.'}}</strong> </p>
+        <p>Il prend effet le <span id="span_id_date_debut_contrat"><span class="variable_vide"><strong>{{data.date_debut | date: 'dd MMMM YYYY'}}</strong></span></span>. </p>
+        <p *ngIf="data.type_contrat==='CDD'">Il prendra fin en date du <strong>{{data.date_fin | date: 'dd MMMM YYYY'}}</strong> .</p>
+        
+        <p style="text-align: center;"><strong><br>ARTICLE II&nbsp;: FONCTION<br><br></strong></p>
+
+        <p>Le salarié est employé au poste suivant&nbsp;: <span id="span_id_poste_salarie"><span class="variable_vide"><strong>{{data.fonction}}</strong></span></span>.</p>
+        <p>Le salarié pourra, pendant toute la durée du présent contrat, être affecté à d'autres postes correspondant aux missions qu'il exerce, selon les besoins de l'employeur.</p>
+        <p>La prise de fonction sera effective à compter du <span id="span_id_date_entree_fonction"><span class="variable_vide"><strong>{{data.date_debut | date: 'dd MMMM YYYY'}}</strong></span></span>. </p>
+        <p>Dans le cadre de l'exécution des présentes, le salarié s'engage à se conformer  aux instructions et directives de l'ensemble des instances dirigeantes et supérieurs hiérarchiques auxquels il est rattaché et maintenir la confidentialité des informations, dont il aurait pris connaissance dans l'exercice des ses fonctions, qui seraient susceptibles de nuire aux intérêts de l'employeur.</p>
+        <p>Le salarié sera par ailleurs tenu de conserver en toutes circonstances une attitude loyale à l'égard de son employeur.</p>
+        
+        <p style="text-align: center;"><strong><br>ARTICLE III&nbsp;: LIEU DE TRAVAIL </strong></p>
+
+        <p>Le lieu habituel de travail est fixé à l'adresse suivante&nbsp;:</p>
+        <p style="padding-left: 30px;"><span id="span_id_lieu_travail"><span class="variable_vide"><strong>{{profilEntreprise.raison_sociale}}</strong><br> <strong>{{profilEntreprise.rue}} <br><strong>{{profilEntreprise.cp}}{{profilEntreprise.ville}}</strong></strong> </span></span> </p>
+        <p>L'employeur ne pourra, sans l'accord exprès du salarié, modifier le lieu habituel de travail. si les parties s'accordent sur la modification du lieu de travail, cet accord fera, le cas échéant, l'objet d'un avenant aux présentes. </p>
+        
+        <p style="text-align: center;"><strong><br>ARTICLE IV&nbsp;: TEMPS DE TRAVAIL<br><br></strong></p>
+
+        <p>Le salarié sera soumis à la durée légale de travail prévue à l'Article L.3121-27 du Code du travail, équivalente à 35 heures par semaine, dans le cadre d'un contrat de travail à temps complet. </p>
+        
+        <p style="text-align: center;"><strong><br>ARTICLE V&nbsp;: CONTREPARTIE LIÉE AU TEMPS D'HABILLAGE ET DE DÉSHABILLAGE DU SALARIÉ<br><br></strong></p>
+        
+        <p>En raison des missions confiées au salarié lui imposant le port d'une tenue et d'équipements particuliers, le temps consacré à l'habillage et au déshabillage <span id="span_id_regime_habillage">donne lieu à une contrepartie</span>. Le salarié devra s'habiller et se déshabiller en dehors de ses heures de travail.</p>
+        <p>La contrepartie accordée au salarié est sous forme financière. Cette contrepartie prendra la forme d'une prime, versée tous les <span id="span_id_periodicite_contrepartie_financiere">ans</span>. </p>
+        
+        <p style="text-align: center;"><strong><br>ARTICLE VI&nbsp;: RÉMUNÉRATION<br><br> </strong></p>
+        
+        <p>Le salarié percevra, en contrepartie de son travail, une rémunération mensuelle brute de <span id="span_id_montant_remuneration_mensuelle"><span class="variable_vide"><strong>{{data.remuneration}}</strong></span></span> euros, qui sera payée le <span id="span_id_jour_paiement_mensuel">premier</span> jour de chaque mois, par chèque ou virement bancaire. </p>
+        <p>Les bulletins de paie seront remis par voie électronique, à moins que le salarié ne s'y oppose expressément. </p>
+        
+        <p style="text-align: center;"><strong><br>ARTICLE VII&nbsp;: CONGÉS </strong><strong>PAYÉS<br><br></strong></p>
+        
+        <p style="text-align: center;"><em>§1. ATTRIBUTION DES CONGÉS</em></p>
+        <p>Le salarié se verra attribuer des jours de congés, indépendamment des modalités tenant à la durée hebdomadaire, mensuelle ou annuelle de travail, en respect des dispositions légales.<br>La période de référence du décompte des jours de congé est fixée du 1er juin de l'année précédente au 31 mai de l'année actuelle.</p>
+        <p>Les congés accumulés par le salarié dans le cadre de l'exécution des présentes, pendant l'année au cours de laquelle le contrat prendra éventuellement fin  et dont il n'aura pas bénéficié, feront l'objet d'une indemnisation dans les conditions ci-dessous développées.</p>
+        <p style="text-align: center;"><em><br>§2. PRISE DES CONGÉS <br></em></p>
+        <p>Les périodes et modalités de prise de congés seront fixées par l'employeur&nbsp;: les dates et l'ordre de départ seront communiqués à chaque salarié et affichés au moins un mois à l'avance, dans les locaux normalement accessibles aux salariés.</p>
+        <p><br>Pour son congé principal, le salarié ne pourra prendre plus de 24 jours ouvrables en une seule fois. Les congés ne dépassant pas 12 jours seront pris en continu et lorsque le congé principal sera compris entre 12 et 24 jours ouvrables, l'employeur pourra fractionner le congé avec l'accord du salarié. Dans ce cas, l'une des deux périodes de congés devra durer au minimum 12 jours ouvrables continus. Ces 12 jours seront pris au cours de la période allant du 1er mai au 31 octobre, sauf dérogation prévue par accord collectif ou accord individuel du salarié. <br>Les jours restant dus pourront être accordés en une ou plusieurs fois en dehors de cette période.</p>
+        <p style="text-align: center;"><span class="flou"><em><br></em></span><em>§3. REPORT DES CONGÉS</em></p>
+        <p>Les congés payés dont le salarié n'aura pas disposé une année donnée ne pourront être reportés sur l'année suivante. </p>
+        
+        <p style="text-align: center;"><strong><br>ARTICLE VIII&nbsp;: REMBOURSEMENT DE FRAIS</strong></p>
+        
+        <p style="text-align: left;"><br>L'employeur s'engage à rembourser au salarié les frais engagés par celui-ci dans l'exercice de ses fonctions, sur présentation de justificatifs et sous réserve du contrôle de leur réalité, de leur exactitude et de leur engagement dans l'intérêt de l'exercice de la profession, conformément à la procédure de remboursement de frais telle qu'appliquée par l'employeur.</p>
+        
+        <p style="text-align: center;"><strong><br>ARTICLE IX&nbsp;: RETRAITE ET </strong><strong>PRÉVOYANCE<br><br></strong></p>
+        
+        <p>Le salarié cotisera aux différents régimes de retraite complémentaire et de prévoyance en vigueur. <br><br></p>
+        
+        <p style="text-align: center;"><strong>ARTICLE X&nbsp;: PROTECTION DES DONNÉES À CARACTÈRE PERSONNEL DES SALARIÉS<br><br></strong></p>
+        
+        <p>Conformément aux dispositions relatives à la protection des données, le salarié est informé que certaines données nominatives sont enregistrées sur support informatique et éventuellement communiquées à l'URSSAF, et à d'autres organismes via la DSN.</p>
+        <p>Afin d'être licites, et ce conformément aux exigences de l'article 6 du règlement européen 2016/679, la collecte et le traitement des données à caractère personnel ne pourront intervenir que s'ils respectent au moins l'une des conditions ci-après énumérées&nbsp;:</p>
+        <ul>
+        <li>Le salarié a expressément consenti au traitement&nbsp;;</li>
+        </ul>
+        <ul>
+        <li>Le traitement est nécessaire à la bonne exécution d'un contrat&nbsp;;</li>
+        </ul>
+        <ul>
+        <li>Le traitement répond à une obligation légale&nbsp;;</li>
+        </ul>
+        <ul>
+        <li>Le traitement s'explique par une nécessité liée à la sauvegarde des intérêts vitaux du salarié ou d'une autre personne physique&nbsp;;</li>
+        </ul>
+        <ul>
+        <li>Le traitement peut s'expliquer par une nécessité liée à l'exécution d'une mission d'intérêt public ou qui relève de l'exercice de l'autorité publique&nbsp;;</li>
+        </ul>
+        <ul>
+        <li>Le traitement et la collecte des données à caractère personnel sont nécessaires aux fins des intérêts légitimes et privés poursuivis par le responsable du traitement ou par un tiers.<br><br></li>
+        </ul>
+        <p style="text-align: center;"><em>§1. DONNÉES DU SALARIÉ COLLECTÉES ET TRAITÉES</em></p>
+        <p style="text-align: left;">Les données suivantes du salarié sont collectées et traitées&nbsp;:</p>
+        <p style="text-align: left; padding-left: 30px;"><span id="span_id_donnees_salarie_collectees"><span class="variable_vide"><strong>Nom, <br> Prénom, <br> Adresse , <br> Coordonnées téléphonique ainsi que l'email</strong></span></span></p>
+        <p style="text-align: left;">Ces données sont conservées pour une durée maximum de 5 ans.&nbsp;: <span id="span_id_duree_maximum_conservation_donnees"><span class="variable_vide"></span></span>.</p>
+        <p style="text-align: left;">La personne suivante est en charge du traitement des données à caractère personnel des salariés&nbsp;: <span id="span_id_rtd_salarie"><span class="variable_vide"><strong>{{profilEntreprise.nom }} {{profilEntreprise.prenom }}</strong></span></span>. Elle peut être jointe comme indiqué ci-après&nbsp;:</p>
+        <p style="text-align: left; padding-left: 30px;"><span id="span_id_coordonnees_rtd_salarie"><span class="variable_vide">Téléphone : <strong>{{profilEntreprise.telephone }}</strong></span></span></p>
+        <p style="text-align: left;">Dans le cas où le salarié effectue une demande concernant ses données à caractère personnel, le responsable du traitement dispose de 30 (trente) jours maximum pour y répondre.</p>
+        <p style="text-align: center;"><br><em>§2. DROITS DU SALARIÉ EN MATIÈRE DE PROTECTION DES DONNÉES</em></p>
+        <p><em>a. Droit d'accès, de rectification et droit à l'effacement</em></p>
+        <p>Le salarié peut prendre connaissance, mettre à jour, modifier ou demander la suppression des données le concernant.</p>
+        <p><br><em>b. Droit à la limitation et à l'opposition du traitement des données</em></p>
+        <p>Le salarié a le droit de demander la limitation ou de s'opposer au traitement de ses données par l'employeur, sans que l'employeur puisse refuser, sauf à démontrer l'existence de motifs légitimes et impérieux, pouvant prévaloir sur les intérêts et les droits et libertés du salarié.</p>
+        <p><em>c. Droit à la portabilité des données </em></p>
+        <p>Le salarié a le droit de demander la portabilité de ses données personnelles, détenues par l'employeur.</p>
+        <p><em><br>d. Droit de ne pas faire l'objet d'une décision fondée exclusivement sur un procédé automatisé</em></p>
+        <p>Conformément aux disposition du règlement 2016/679, le salarié a le droit de ne pas faire l'objet d'une décision fondée exclusivement sur un procédé automatisé si la décision produit des effets juridiques le concernant, ou l'affecte de manière significative de façon similaire.</p>
+        <p><br><em>e. Droit de saisir l'autorité de contrôle compétente</em></p>
+        <p>Dans le cas où le responsable du traitement des données des salariés décide de ne pas répondre à la demande du salarié, et que le salarié souhaite contester cette décision, ou, s'il pense qu'il est porté atteinte à l'un des droits énumérés ci-dessus, il est en droit de saisir la CNIL (Commission Nationale de l'Informatique et des Libertés, https://www.cnil.fr) ou tout juge compétent. <br><br></p>
+        <p style="text-align: center;"><em>§3. LE DÉLÉGUÉ À LA PROTECTION DES DONNÉES</em></p>
+        <p>Le salarié est informé que la personne suivante est en charge de la Protection des Données&nbsp;: <span id="span_id_nom_delegue_protection_donnees"><span class="variable_vide"><strong> {{profilEntreprise.prenom }} {{profilEntreprise.nom }} </strong></span></span>.</p>
+        <p>Le rôle du Délégué à la Protection des Données et de s'assurer la bonne mise en oeuvre des dispositions nationales et supranationales relatives à la collecte et au traitement des données à caractère personnel. Il est parfois appelé DPO (pour Data Protection Officer).</p>
+        <p>Le délégué à la protection des données peut être joint de la manière suivante&nbsp;:</p>
+        <p style="padding-left: 30px;"><span id="span_id_coordonnees_dpo"><span class="variable_vide">Par téléphone, au :<strong>  {{profilEntreprise.telephone}}</strong> ou par voix électronique : <strong>{{profilEntreprise.email}}</strong></span></span></p>
+        
+        <p style="text-align: center;"><strong><br>ARTICLE XII&nbsp;: ENTRETIEN PROFESSIONNEL</strong><br><br></p>
+        
+        <p>Conformément aux dispositions de l'article L.6315-1 du Code du travail, le salarié est informé qu'il bénéficie tous les deux ans d'un entretien professionnel avec son employeur, consacré à ses perspectives d'évolution professionnelle, notamment en termes de qualifications et d'emploi. Cet entretien comporte également des informations relatives à la validation des acquis.</p>
+        <p style="text-align: left;">Cependant, cet entretien ne porte pas sur l'évaluation du travail du salarié.</p>
+        <p style="text-align: left;">Cet entretien sera également proposé  systématiquement au salarié qui reprend son activité suite à&nbsp;:</p>
+        <ul>
+        <li>Un congé de maternité&nbsp;;</li>
+        </ul>
+        <ul>
+        <li>Un congé parental d'éducation&nbsp;;</li>
+        </ul>
+        <ul>
+        <li>Un congé de proche aidant&nbsp;;</li>
+        </ul>
+        <ul>
+        <li>Un congé d'adoption&nbsp;;</li>
+        </ul>
+        <ul>
+        <li>Un congé sabbatique&nbsp;;</li>
+        </ul>
+        <ul>
+        <li>Une période de mobilité volontaire sécurisée&nbsp;;</li>
+        </ul>
+        <ul>
+        <li>Une période d'activité à temps partiel&nbsp;;</li>
+        </ul>
+        <ul>
+        <li>Un arrêt de longue maladie&nbsp;;</li>
+        </ul>
+        <ul>
+        <li>Un mandat syndical.</li>
+        </ul>
+        
+        <p>Tous les six ans, cet entretien professionnel fait un état des lieux récapitulatif du parcours professionnel du salarié. Cet entretien permet de vérifier que le salarié a effectivement bénéficié des entretiens évoqués et a&nbsp;:</p>
+        <ul>
+        <li>Suivi au moins une action de formation&nbsp;;</li>
+        </ul>
+        <ul>
+        <li>Acquis des éléments de certification par la formation ou par une validation des acquis de son expérience&nbsp;;</li>
+        </ul>
+        <ul>
+        <li>Bénéficié d'une progression salariale ou professionnelle.</li>
+        </ul>
+        <p>
+        
+        </p><p style="text-align: center;"><strong><br>ARTICLE XIII&nbsp;: FIN DE CONTRAT<br><br></strong></p>
+        
+        <p>Les parties au présent contrat pourront d'un commun accord résilier par anticipation le présent contrat à tout moment, selon les dispositions légales et conventionnelles en vigueur conformément aux Articles L. 1237-11 à L. 1237-16 du Code du Travail, en respectant le délai de préavis suivant&nbsp;: <span id="span_id_preavis"><span class="variable_vide"><strong><strong>{{data.type_contrat=='CDI'? '2 mois' : '2 jours par mois travaillé'}}</strong></strong></span></span>.</p>
+        <p>Le présent contrat sera également suspendu ou annulé de plein droit et sans indemnité d'aucune sorte dans tous les cas de force majeure, tels que reconnus par la jurisprudence.</p>
+        <p>L'employeur pourra également décider de procéder à la rupture du présent contrat en cas de faute grave du salarié. Les motifs du licenciement devront reposer sur une cause réelle et sérieuse.<br><br><br><br><br></p>
+        <p style="text-align: center;"><span style="font-weight: bold; font-size: 14px;"><br>Le présent contrat est établi en deux exemplaires, dont un remis à chaque partie.</span></p>
+        <p><br><br><br><br><br></p>
+        <p>Fait à {{profilEntreprise.ville}}, le <strong>{{data.date_debut | date: 'dd MMMM YYYY'}}</strong>.</p>
+        <p style="text-align: center;"><br><br><br><strong>SIGNATURES&nbsp;:</strong></p>
+        <p style="text-align: center;"><br><br>L'employeur&nbsp;:</p>
+        <p style="text-align: center;"><br> <img src={{profilEntreprise.sign}} alt="signature"> </p>
+        <p style="text-align: center;"><span class="texte_apparu_avec_ajax" style="display: inline; background-color: rgb(255, 255, 255);"><span id="span_id_identite_employeur"><span class="variable_vide">________</span></span></span></p>
+        <p style="text-align: center;"><br><br><br>Le salarié&nbsp;:</p>
+        <p style="text-align: center;"><br> <img src="{{salarie.signature}}" alt="signature"> </p>
+        <p style="text-align: center;"><span id="span_id_identite_employe"><span class="variable_vide">________</span></span></p>
+      </div>
+  
+     </div>
+
+  </mat-dialog-content>
+
   </div>
 
+
+<!-- MODAL PROVENANT DE LA SECTION SALARIE -->
 
   <div container-fluid contrat *ngIf="profilEntreprise == null && data.entreprise_id">
     
+   <mat-dialog-content>
+
     <div *ngFor="let contrat of contratBySal">
-     <div *ngIf="contrat.fki_entreprise == data.entreprise_id && profilSalarie.salarie_id == contrat.fki_salarie"   style="height: 416px;"><span class="stabilisation"></span><p style="text-align: center;"><span style="font-weight: bold; font-size: 14px;"><br></span><strong>CONTRAT DE TRAVAIL À DURÉE INDÉTERMINÉE </strong></p>
-       <p><br><br></p>
+      <div *ngIf="contrat.fki_entreprise == data.entreprise_id && profilSalarie.salarie_id == contrat.fki_salarie"   style="height: 416px;"><span class="stabilisation"></span>
+        <p style="text-align: center;"><span style="font-weight: bold; font-size: 14px;"><br></span><strong>  {{contrat.type_contrat==='CDD'? 'CONTRAT DE TRAVAIL À DURÉE DÉTERMINÉE' : 'CONTRAT DE TRAVAIL À DURÉE INDÉTERMINÉE'}} </strong></p>
+        <p><br><br></p>
+        <p><br><br><strong>ENTRE LES SOUSSIGNÉS</strong><br><br><br></p>
+        <p style="padding-left: 30px;"><span class="texte_apparu_avec_ajax" style="display: inline; background-color: rgb(255, 255, 255);"><strong><span id="span_id_identite_employeur"><span class="variable_vide"><strong>{{data.raison_sociale}}</strong> <br> représenté par : <br>
+          <strong>{{data.civilite }} {{data.nom }} {{data.prenom }}</strong></span></span></strong>,</span></p><p style="padding-left: 30px;"><span class="texte_apparu_avec_ajax" style="display: inline; background-color: rgb(255, 255, 255);">Immatriculé(e) à l'URSSAF sous le numéro <span id="span_id_no_urssaf"><span class="variable_vide"> <strong>{{data.siret}}</strong> </span></span>,</span></p><p style="padding-left: 30px;"><span class="texte_apparu_avec_ajax" style="display: inline; background-color: rgb(255, 255, 255);">À l'adresse suivante&nbsp;:</span></p><p style="padding-left: 30px;"><span class="texte_apparu_avec_ajax" style="display: inline; background-color: rgb(255, 255, 255);"><span id="span_id_adresse_employeur_particulier"><span class="variable_vide"> <strong>{{data.rue}}</strong> <br> <strong>{{data.cp}}  {{data.ville}}</strong> </span></span>, </span></p>
+        <p style="padding-left: 30px;"><br>Ci-après " <strong>l'employeur</strong> ",</p>
+        <p><br><br><strong>ET</strong></p>
+        <p style="padding-left: 30px;"><br><br><strong><span id="span_id_identite_employe"><span class="variable_vide"> <strong>{{profilSalarie.nom}} {{profilSalarie.prenom}}</strong> </span></span></strong>,</p>
+        <p style="padding-left: 30px;">Résidant à l'adresse suivante&nbsp;:</p>
+        <p style="padding-left: 30px;"><span id="span_id_adresse_employe"><span class="variable_vide"> <strong>{{profilSalarie.rue}}</strong> <br> <strong>{{profilSalarie.cp}} {{profilSalarie.ville}}</strong> </span></span></p>
+        <p style="padding-left: 30px;">N° de Sécurité sociale&nbsp;: <span id="span_id_no_secu_sociale_salarie"><span class="variable_vide"> <strong>{{profilSalarie.num_ss}}</strong> </span></span>,</p>
+        <p style="padding-left: 30px;"><br>Ci-après " <strong>le salarié</strong> ",</p>
+        
+        <p><strong><br><br><br>IL A ÉTÉ CONVENU ET ARRÊTÉ CE QUI SUIT</strong></p>
+        
+        <p style="text-align: center;"><strong>PRÉAMBULE<br><br></strong></p>
+        
+        <p>Est conclu le présent contrat, sous réserve de l'issue de la visite médicale d'embauche décidant de l'aptitude du salarié à exercer les fonctions proposées.</p>
+        <p>L'employeur a effectué une déclaration préalable à l'embauche auprès de l'URSSAF le&nbsp;: <span id="span_id_date_declaration_urssaf"><span class="variable_vide"> <strong>{{contrat.date_debut | date: 'dd MMMM YYYY'}}</strong> </span></span>.</p>
+        <p>Il est porté à la connaissance du salarié que l'employeur transmet par le biais de la Déclaration Sociale Nominative (DSN) les données utilisées pour le calcul du salaire, et tout autre événement qu'il est dans l'obligation de déclarer par ce biais, comme les arrêts de travail ou l'éventuelle fin du contrat.</p>
+        <p>Le salarié déclare être libre de tout engagement, n'être tenu par aucune clause de non-concurrence, n'être frappé d'aucune incapacité ni d'aucune inaptitude physique à l'exercice de son activité. <br><br></p>
+        
+        <p style="text-align: center;"><strong>ARTICLE I&nbsp;: NATURE ET DURÉE DU CONTRAT<br><br></strong></p>
+        
+        <p> <strong>{{contrat.type_contrat=='CDD'? 'Le présent contrat est conclu pour une durée déterminée.' : 'Le présent contrat est conclu pour une durée indéterminée.'}}</strong> </p>
+        <p>Il prend effet le <span id="span_id_date_debut_contrat"><span class="variable_vide"><strong>{{contrat.date_debut | date: 'dd, MMMM YYYY'}}</strong></span></span>. </p>
+        <p *ngIf="contrat.type_contrat==='CDD'">Il prendra fin en date du <strong>{{contrat.date_fin | date: 'dd, MMMM YYYY'}}</strong> .</p>
+        
+        <p style="text-align: center;"><strong><br>ARTICLE II&nbsp;: FONCTION<br><br></strong></p>
+        
+        <p>Le salarié est employé au poste suivant&nbsp;: <span id="span_id_poste_salarie"><span class="variable_vide"><strong>{{contrat.fonction}}</strong></span></span>.</p>
+        <p>Le salarié pourra, pendant toute la durée du présent contrat, être affecté à d'autres postes correspondant aux missions qu'il exerce, selon les besoins de l'employeur.</p>
+        <p>La prise de fonction sera effective à compter du <span id="span_id_date_entree_fonction"><span class="variable_vide"><strong>{{contrat.date_debut | date: 'dd MMMM YYYY'}}</strong></span></span>. </p>
+        <p>Dans le cadre de l'exécution des présentes, le salarié s'engage à se conformer  aux instructions et directives de l'ensemble des instances dirigeantes et supérieurs hiérarchiques auxquels il est rattaché et maintenir la confidentialité des informations, dont il aurait pris connaissance dans l'exercice des ses fonctions, qui seraient susceptibles de nuire aux intérêts de l'employeur.</p>
+        <p>Le salarié sera par ailleurs tenu de conserver en toutes circonstances une attitude loyale à l'égard de son employeur.</p>
+        
+        <p style="text-align: center;"><strong><br>ARTICLE III&nbsp;: LIEU DE TRAVAIL </strong></p>
+        
+        <p>Le lieu habituel de travail est fixé à l'adresse suivante&nbsp;:</p>
+        <p style="padding-left: 30px;"><span id="span_id_lieu_travail"><span class="variable_vide"><strong>{{data.raison_sociale}}</strong><br> <strong>{{data.rue}} <br><strong>{{data.cp}}{{data.ville}}</strong></strong> </span></span> </p>
+        <p>L'employeur ne pourra, sans l'accord exprès du salarié, modifier le lieu habituel de travail. si les parties s'accordent sur la modification du lieu de travail, cet accord fera, le cas échéant, l'objet d'un avenant aux présentes. </p>
        
-       <p><br><br><strong>ENTRE LES SOUSSIGNÉS</strong><br><br><br></p>
-       <p style="padding-left: 30px;"><span class="texte_apparu_avec_ajax" style="display: inline; background-color: rgb(255, 255, 255);"><strong><span id="span_id_identite_employeur"><span class="variable_vide"><strong>{{data.raison_sociale}}</strong> <br> représenté par : <br>
-         <strong>{{data.civilite }} {{data.nom }} {{data.prenom }}</strong></span></span></strong>,</span></p><p style="padding-left: 30px;"><span class="texte_apparu_avec_ajax" style="display: inline; background-color: rgb(255, 255, 255);">Immatriculé(e) à l'URSSAF sous le numéro <span id="span_id_no_urssaf"><span class="variable_vide"> <strong>{{data.siret}}</strong> </span></span>,</span></p><p style="padding-left: 30px;"><span class="texte_apparu_avec_ajax" style="display: inline; background-color: rgb(255, 255, 255);">À l'adresse suivante&nbsp;:</span></p><p style="padding-left: 30px;"><span class="texte_apparu_avec_ajax" style="display: inline; background-color: rgb(255, 255, 255);"><span id="span_id_adresse_employeur_particulier"><span class="variable_vide"> <strong>{{data.rue}}</strong> <br> <strong>{{data.cp}}  {{data.ville}}</strong> </span></span>, </span></p>
-       
-       <p style="padding-left: 30px;"><br>Ci-après " <strong>l'employeur</strong> ",</p>
-       <p><br><br><strong>ET</strong></p>
-       <p style="padding-left: 30px;"><br><br><strong><span id="span_id_identite_employe"><span class="variable_vide"> <strong>{{profilSalarie.nom}} {{profilSalarie.prenom}}</strong> </span></span></strong>,</p>
-       <p style="padding-left: 30px;">Résidant à l'adresse suivante&nbsp;:</p>
-       <p style="padding-left: 30px;"><span id="span_id_adresse_employe"><span class="variable_vide"> <strong>{{profilSalarie.rue}}</strong> <br> <strong>{{profilSalarie.cp}} {{profilSalarie.ville}}</strong> </span></span></p>
-       <p style="padding-left: 30px;">N° de Sécurité sociale&nbsp;: <span id="span_id_no_secu_sociale_salarie"><span class="variable_vide"> <strong>{{profilSalarie.num_ss}}</strong> </span></span>,</p>
-       
-       <p style="padding-left: 30px;"><br>Ci-après " <strong>le salarié</strong> ",</p>
-       <p><strong><br><br><br>IL A ÉTÉ CONVENU ET ARRÊTÉ CE QUI SUIT</strong></p>
-       
-       <p style="text-align: center;"><strong>PRÉAMBULE<br><br></strong></p>
-       <p>Est conclu le présent contrat, sous réserve de l'issue de la visite médicale d'embauche décidant de l'aptitude du salarié à exercer les fonctions proposées.</p>
-       <p>L'employeur a effectué une déclaration préalable à l'embauche auprès de l'URSSAF le&nbsp;: <span id="span_id_date_declaration_urssaf"><span class="variable_vide"> <strong>{{contrat.date_debut | date: 'dd MMMM YYYY'}}</strong> </span></span>.</p>
-       <p>Il est porté à la connaissance du salarié que l'employeur transmet par le biais de la Déclaration Sociale Nominative (DSN) les données utilisées pour le calcul du salaire, et tout autre événement qu'il est dans l'obligation de déclarer par ce biais, comme les arrêts de travail ou l'éventuelle fin du contrat.</p>
-       <p>Le salarié déclare être libre de tout engagement, n'être tenu par aucune clause de non-concurrence, n'être frappé d'aucune incapacité ni d'aucune inaptitude physique à l'exercice de son activité. <br><br></p>
-       <p style="text-align: center;"><strong>ARTICLE I&nbsp;: NATURE ET DURÉE DU CONTRAT<br><br></strong></p>
-       <p>Le présent contrat est conclu pour une durée indéterminée.</p>
-       <p>Il prend effet le <span id="span_id_date_debut_contrat"><span class="variable_vide">{{contrat.date_debut | date: 'dd, MMMM YYYY'}}</span></span>. </p>
-       <p style="text-align: center;"><strong><br>ARTICLE II&nbsp;: FONCTION<br><br></strong></p>
-       <p>Le salarié est employé au poste suivant&nbsp;: <span id="span_id_poste_salarie"><span class="variable_vide"><strong>{{contrat.fonction}}</strong></span></span>.</p>
-       <!-- <p>Tout au long de l'exécution des présentes, l'exercice des missions ci-après détaillées sera confié au salarié&nbsp;:</p>
-       <p style="padding-left: 30px;"><span id="span_id_missions_salarie"><span class="variable_vide">________</span></span></p> -->
-       <p>Le salarié pourra, pendant toute la durée du présent contrat, être affecté à d'autres postes correspondant aux missions qu'il exerce, selon les besoins de l'employeur.</p>
-       <p>La prise de fonction sera effective à compter du <span id="span_id_date_entree_fonction"><span class="variable_vide">{{contrat.date_debut | date: 'dd MMMM YYYY'}}</span></span>. </p>
-       <p>Dans le cadre de l'exécution des présentes, le salarié s'engage à se conformer  aux instructions et directives de l'ensemble des instances dirigeantes et supérieurs hiérarchiques auxquels il est rattaché et maintenir la confidentialité des informations, dont il aurait pris connaissance dans l'exercice des ses fonctions, qui seraient susceptibles de nuire aux intérêts de l'employeur.</p>
-       <p>Le salarié sera par ailleurs tenu de conserver en toutes circonstances une attitude loyale à l'égard de son employeur.</p>
-       <p style="text-align: center;"><strong><br>ARTICLE III&nbsp;: LIEU DE TRAVAIL </strong></p>
-       <p>Le lieu habituel de travail est fixé à l'adresse suivante&nbsp;:</p>
-       <p style="padding-left: 30px;"><span id="span_id_lieu_travail"><span class="variable_vide"><strong>{{data.raison_sociale}}</strong><br> <strong>{{data.rue}} <br><strong>{{data.cp}}{{data.ville}}</strong></strong> </span></span> </p>
-       <p>L'employeur ne pourra, sans l'accord exprès du salarié, modifier le lieu habituel de travail. si les parties s'accordent sur la modification du lieu de travail, cet accord fera, le cas échéant, l'objet d'un avenant aux présentes. </p>
-       <p style="text-align: center;"><strong><br>ARTICLE IV&nbsp;: TEMPS DE TRAVAIL<br><br></strong></p>
-       <p>Le salarié sera soumis à la durée légale de travail prévue à l'Article L.3121-27 du Code du travail, équivalente à 35 heures par semaine, dans le cadre d'un contrat de travail à temps complet. </p>
-       <p style="text-align: center;"><strong><br>ARTICLE V&nbsp;: CONTREPARTIE LIÉE AU TEMPS D'HABILLAGE ET DE DÉSHABILLAGE DU SALARIÉ<br><br></strong></p>
-       <p>En raison des missions confiées au salarié lui imposant le port d'une tenue et d'équipements particuliers, le temps consacré à l'habillage et au déshabillage <span id="span_id_regime_habillage">donne lieu à une contrepartie</span>. Le salarié devra s'habiller et se déshabiller en dehors de ses heures de travail.</p>
-       <p>La contrepartie accordée au salarié est sous forme financière. Cette contrepartie prendra la forme d'une prime, versée tous les <span id="span_id_periodicite_contrepartie_financiere">ans</span>. </p>
-       <p style="text-align: center;"><strong><br>ARTICLE VI&nbsp;: RÉMUNÉRATION<br><br> </strong></p>
-       <p>Le salarié percevra, en contrepartie de son travail, une rémunération mensuelle brute de <span id="span_id_montant_remuneration_mensuelle"><span class="variable_vide"><strong>{{contrat.remuneration}}</strong></span></span> euros, qui sera payée le <span id="span_id_jour_paiement_mensuel">premier</span> jour de chaque mois, par chèque ou virement bancaire. </p>
-       
-       <p>Les bulletins de paie seront remis par voie électronique, à moins que le salarié ne s'y oppose expressément. </p>
-       
-       <p style="text-align: center;"><strong><br>ARTICLE VII&nbsp;: CONGÉS </strong><strong>PAYÉS<br><br></strong></p>
-       <p style="text-align: center;"><em>§1. ATTRIBUTION DES CONGÉS</em></p>
-       <p>Le salarié se verra attribuer des jours de congés, indépendamment des modalités tenant à la durée hebdomadaire, mensuelle ou annuelle de travail, en respect des dispositions légales.<br>La période de référence du décompte des jours de congé est fixée du 1er juin de l'année précédente au 31 mai de l'année actuelle.</p>
-       <p>Les congés accumulés par le salarié dans le cadre de l'exécution des présentes, pendant l'année au cours de laquelle le contrat prendra éventuellement fin  et dont il n'aura pas bénéficié, feront l'objet d'une indemnisation dans les conditions ci-dessous développées.</p>
-       <p style="text-align: center;"><em><br>§2. PRISE DES CONGÉS <br></em></p>
-       <p>Les périodes et modalités de prise de congés seront fixées par l'employeur&nbsp;: les dates et l'ordre de départ seront communiqués à chaque salarié et affichés au moins un mois à l'avance, dans les locaux normalement accessibles aux salariés.</p>
-       <p><br>Pour son congé principal, le salarié ne pourra prendre plus de 24 jours ouvrables en une seule fois. Les congés ne dépassant pas 12 jours seront pris en continu et lorsque le congé principal sera compris entre 12 et 24 jours ouvrables, l'employeur pourra fractionner le congé avec l'accord du salarié. Dans ce cas, l'une des deux périodes de congés devra durer au minimum 12 jours ouvrables continus. Ces 12 jours seront pris au cours de la période allant du 1er mai au 31 octobre, sauf dérogation prévue par accord collectif ou accord individuel du salarié. <br>Les jours restant dus pourront être accordés en une ou plusieurs fois en dehors de cette période.</p>
-       <p style="text-align: center;"><span class="flou"><em><br></em></span><em>§3. REPORT DES CONGÉS</em></p>
-       
-       <p>Les congés payés dont le salarié n'aura pas disposé une année donnée ne pourront être reportés sur l'année suivante. </p>
-       <p style="text-align: center;"><strong><br>ARTICLE VIII&nbsp;: REMBOURSEMENT DE FRAIS</strong></p>
-       <p style="text-align: left;"><br>L'employeur s'engage à rembourser au salarié les frais engagés par celui-ci dans l'exercice de ses fonctions, sur présentation de justificatifs et sous réserve du contrôle de leur réalité, de leur exactitude et de leur engagement dans l'intérêt de l'exercice de la profession, conformément à la procédure de remboursement de frais telle qu'appliquée par l'employeur.</p>
-       <p style="text-align: center;"><strong><br>ARTICLE IX&nbsp;: RETRAITE ET </strong><strong>PRÉVOYANCE<br><br></strong></p>
-       <p>Le salarié cotisera aux différents régimes de retraite complémentaire et de prévoyance en vigueur. <br><br></p>
-       <p style="text-align: center;"><strong>ARTICLE X&nbsp;: PROTECTION DES DONNÉES À CARACTÈRE PERSONNEL DES SALARIÉS<br><br></strong></p>
-       <p>Conformément aux dispositions relatives à la protection des données, le salarié est informé que certaines données nominatives sont enregistrées sur support informatique et éventuellement communiquées à l'URSSAF, et à d'autres organismes via la DSN.</p>
-       <p>Afin d'être licites, et ce conformément aux exigences de l'article 6 du règlement européen 2016/679, la collecte et le traitement des données à caractère personnel ne pourront intervenir que s'ils respectent au moins l'une des conditions ci-après énumérées&nbsp;:</p>
-       <ul>
-       <li>Le salarié a expressément consenti au traitement&nbsp;;</li>
-       </ul>
-       <ul>
-       <li>Le traitement est nécessaire à la bonne exécution d'un contrat&nbsp;;</li>
-       </ul>
-       <ul>
-       <li>Le traitement répond à une obligation légale&nbsp;;</li>
-       </ul>
-       <ul>
-       <li>Le traitement s'explique par une nécessité liée à la sauvegarde des intérêts vitaux du salarié ou d'une autre personne physique&nbsp;;</li>
-       </ul>
-       <ul>
-       <li>Le traitement peut s'expliquer par une nécessité liée à l'exécution d'une mission d'intérêt public ou qui relève de l'exercice de l'autorité publique&nbsp;;</li>
-       </ul>
-       <ul>
-       <li>Le traitement et la collecte des données à caractère personnel sont nécessaires aux fins des intérêts légitimes et privés poursuivis par le responsable du traitement ou par un tiers.<br><br></li>
-       </ul>
-       <p style="text-align: center;"><em>§1. DONNÉES DU SALARIÉ COLLECTÉES ET TRAITÉES</em></p>
-       <p style="text-align: left;">Les données suivantes du salarié sont collectées et traitées&nbsp;:</p>
-       <p style="text-align: left; padding-left: 30px;"><span id="span_id_donnees_salarie_collectees"><span class="variable_vide"><strong>Nom, <br> Prénom, <br> Adresse , <br> Coordonnées téléphonique ainsi que l'email</strong></span></span></p>
-       <p style="text-align: left;">Cette collecte et ce traitement répondent aux finalités suivantes&nbsp;:</p>
-       <p style="text-align: left; padding-left: 30px;"><span id="span_id_finalite_traitement"><span class="variable_vide">________</span></span></p>
-       <p style="text-align: left;">Ces données sont conservées pour une durée maximum de&nbsp;: <span id="span_id_duree_maximum_conservation_donnees"><span class="variable_vide"></span></span>.</p>
-       
-       <p style="text-align: left;">La personne suivante est nommée responsable du traitement des données à caractère personnel des salariés&nbsp;: <span id="span_id_rtd_salarie"><span class="variable_vide">________</span></span>. Elle peut être jointe comme indiqué ci-après&nbsp;:</p>
-       <p style="text-align: left; padding-left: 30px;"><span id="span_id_coordonnees_rtd_salarie"><span class="variable_vide">________</span></span></p>
-       <p style="text-align: left;">Dans le cas où le salarié effectue une demande concernant ses données à caractère personnel, le responsable du traitement dispose de 30 (trente) jours maximum pour y répondre.</p>
-       <p style="text-align: center;"><br><em>§2. DROITS DU SALARIÉ EN MATIÈRE DE PROTECTION DES DONNÉES</em></p>
-       <p><em>a. Droit d'accès, de rectification et droit à l'effacement</em></p>
-       <p>Le salarié peut prendre connaissance, mettre à jour, modifier ou demander la suppression des données le concernant.</p>
-       <p><br><em>b. Droit à la limitation et à l'opposition du traitement des données</em></p>
-       <p>Le salarié a le droit de demander la limitation ou de s'opposer au traitement de ses données par l'employeur, sans que l'employeur puisse refuser, sauf à démontrer l'existence de motifs légitimes et impérieux, pouvant prévaloir sur les intérêts et les droits et libertés du salarié.</p>
-       <p><em>c. Droit à la portabilité des données </em></p>
-       <p>Le salarié a le droit de demander la portabilité de ses données personnelles, détenues par l'employeur.</p>
-       <p><em><br>d. Droit de ne pas faire l'objet d'une décision fondée exclusivement sur un procédé automatisé</em></p>
-       <p>Conformément aux disposition du règlement 2016/679, le salarié a le droit de ne pas faire l'objet d'une décision fondée exclusivement sur un procédé automatisé si la décision produit des effets juridiques le concernant, ou l'affecte de manière significative de façon similaire.</p>
-       <p><br><em>e. Droit de saisir l'autorité de contrôle compétente</em></p>
-       <p>Dans le cas où le responsable du traitement des données des salariés décide de ne pas répondre à la demande du salarié, et que le salarié souhaite contester cette décision, ou, s'il pense qu'il est porté atteinte à l'un des droits énumérés ci-dessus, il est en droit de saisir la CNIL (Commission Nationale de l'Informatique et des Libertés, https://www.cnil.fr) ou tout juge compétent. <br><br></p>
-       <p style="text-align: center;"><em>§3. LE DÉLÉGUÉ À LA PROTECTION DES DONNÉES</em></p>
-       <p>Le salarié est informé que la personne suivante a été nommée Délégué à la Protection des Données&nbsp;: <span id="span_id_nom_delegue_protection_donnees"><span class="variable_vide">________</span></span>.</p>
-       <p>Le rôle du Délégué à la Protection des Données et de s'assurer la bonne mise en oeuvre des dispositions nationales et supranationales relatives à la collecte et au traitement des données à caractère personnel. Il est parfois appelé DPO (pour Data Protection Officer).</p>
-       <p>Le délégué à la protection des données peut être joint de la manière suivante&nbsp;:</p>
-       <p style="padding-left: 30px;"><span id="span_id_coordonnees_dpo"><span class="variable_vide">________</span></span></p>
-       
-       <!-- <p style="text-align: center;"><strong><br>ARTICLE XI&nbsp;: <span class="flou">555555 </span></strong><span class="flou"><strong>MÉDICALE<br><br></strong></span></p>
-       <p><span class="flou">22 8585582 8'222522 5 82 825222252 5 8'22822882 528 2552228 288825228528 552528 55 8258882 2258858 52 8'222822255.</span></p>
-       <p><span class="flou">22 2528222 8222552 528822555 22522 8258 5282582 528 528582528 52 85 888822 22588582 52885522 52 8'52282552 55 8585582 2255 8'25258882 52 822 2558588.</span></p> -->
-       <p style="text-align: center;"><strong><br>ARTICLE XII&nbsp;: ENTRETIEN PROFESSIONNEL</strong><br><br></p>
-       <p>Conformément aux dispositions de l'article L.6315-1 du Code du travail, le salarié est informé qu'il bénéficie tous les deux ans d'un entretien professionnel avec son employeur, consacré à ses perspectives d'évolution professionnelle, notamment en termes de qualifications et d'emploi. Cet entretien comporte également des informations relatives à la validation des acquis.</p>
-       <p style="text-align: left;">Cependant, cet entretien ne porte pas sur l'évaluation du travail du salarié.</p>
-       <p style="text-align: left;">Cet entretien sera également proposé  systématiquement au salarié qui reprend son activité suite à&nbsp;:</p>
-       <ul>
-       <li>Un congé de maternité&nbsp;;</li>
-       </ul>
-       <ul>
-       <li>Un congé parental d'éducation&nbsp;;</li>
-       </ul>
-       <ul>
-       <li>Un congé de proche aidant&nbsp;;</li>
-       </ul>
-       <ul>
-       <li>Un congé d'adoption&nbsp;;</li>
-       </ul>
-       <ul>
-       <li>Un congé sabbatique&nbsp;;</li>
-       </ul>
-       <ul>
-       <li>Une période de mobilité volontaire sécurisée&nbsp;;</li>
-       </ul>
-       <ul>
-       <li>Une période d'activité à temps partiel&nbsp;;</li>
-       </ul>
-       <ul>
-       <li>Un arrêt de longue maladie&nbsp;;</li>
-       </ul>
-       <ul>
-       <li>Un mandat syndical.</li>
-       </ul>
-       
-       <p>Tous les six ans, cet entretien professionnel fait un état des lieux récapitulatif du parcours professionnel du salarié. Cet entretien permet de vérifier que le salarié a effectivement bénéficié des entretiens évoqués et a&nbsp;:</p>
-       <ul>
-       <li>Suivi au moins une action de formation&nbsp;;</li>
-       </ul>
-       <ul>
-       <li>Acquis des éléments de certification par la formation ou par une validation des acquis de son expérience&nbsp;;</li>
-       </ul>
-       <ul>
-       <li>Bénéficié d'une progression salariale ou professionnelle.</li>
-       </ul>
-       <p>
-       
-       </p><p style="text-align: center;"><strong><br>ARTICLE XIII&nbsp;: FIN DE CONTRAT<br><br></strong></p>
-       
-       <p>Les parties au présent contrat pourront d'un commun accord résilier par anticipation le présent contrat à tout moment, selon les dispositions légales et conventionnelles en vigueur conformément aux Articles L. 1237-11 à L. 1237-16 du Code du Travail, en respectant le délai de préavis suivant&nbsp;: <span id="span_id_preavis"><span class="variable_vide"><strong>{{data.is_fulltime? '2mois' : '2 jours'}}</strong></span></span>.</p>
-       <p>Le présent contrat sera également suspendu ou annulé de plein droit et sans indemnité d'aucune sorte dans tous les cas de force majeure, tels que reconnus par la jurisprudence.</p>
-       <p>L'employeur pourra également décider de procéder à la rupture du présent contrat en cas de faute grave du salarié. Les motifs du licenciement devront reposer sur une cause réelle et sérieuse.<br><br><br><br><br></p>
-       <p style="text-align: center;"><span style="font-weight: bold; font-size: 14px;"><br>Le présent contrat est établi en deux exemplaires, dont un remis à chaque partie.</span></p>
-       <p><br><br><br><br><br></p>
-       <p>Fait à ______________________, le ____________________.</p>
-       <p style="text-align: center;"><br><br><br><strong>SIGNATURES&nbsp;:</strong></p>
-       <p style="text-align: center;"><br><br>L'employeur&nbsp;:</p>
-       <p style="text-align: center;"><br><br><br><br><br>............................................................</p>
-       <p style="text-align: center;"><span class="texte_apparu_avec_ajax" style="display: inline; background-color: rgb(255, 255, 255);"><span id="span_id_identite_employeur"><span class="variable_vide">________</span></span></span></p>
-       <p style="text-align: center;"><br><br><br>Le salarié&nbsp;:</p>
-       <p style="text-align: center;"><br><br><br><br><br>............................................................</p>
-       <p style="text-align: center;"><span id="span_id_identite_employe"><span class="variable_vide">________</span></span></p>
+        <p style="text-align: center;"><strong><br>ARTICLE IV&nbsp;: TEMPS DE TRAVAIL<br><br></strong></p>
+        <p>Le salarié sera soumis à la durée légale de travail prévue à l'Article L.3121-27 du Code du travail, équivalente à 35 heures par semaine, dans le cadre d'un contrat de travail à temps complet. </p>
+        
+        <p style="text-align: center;"><strong><br>ARTICLE V&nbsp;: CONTREPARTIE LIÉE AU TEMPS D'HABILLAGE ET DE DÉSHABILLAGE DU SALARIÉ<br><br></strong></p>
+        <p>En raison des missions confiées au salarié lui imposant le port d'une tenue et d'équipements particuliers, le temps consacré à l'habillage et au déshabillage <span id="span_id_regime_habillage">donne lieu à une contrepartie</span>. Le salarié devra s'habiller et se déshabiller en dehors de ses heures de travail.</p>
+        <p>La contrepartie accordée au salarié est sous forme financière. Cette contrepartie prendra la forme d'une prime, versée tous les <span id="span_id_periodicite_contrepartie_financiere">ans</span>. </p>
+        
+        <p style="text-align: center;"><strong><br>ARTICLE VI&nbsp;: RÉMUNÉRATION<br><br> </strong></p>
+        <p>Le salarié percevra, en contrepartie de son travail, une rémunération mensuelle brute de <span id="span_id_montant_remuneration_mensuelle"><span class="variable_vide"><strong>{{contrat.remuneration}}</strong></span></span> euros, qui sera payée le <span id="span_id_jour_paiement_mensuel">premier</span> jour de chaque mois, par chèque ou virement bancaire. </p>
+        <p>Les bulletins de paie seront remis par voie électronique, à moins que le salarié ne s'y oppose expressément. </p>
+        
+        <p style="text-align: center;"><strong><br>ARTICLE VII&nbsp;: CONGÉS </strong><strong>PAYÉS<br><br></strong></p>
+        <p style="text-align: center;"><em>§1. ATTRIBUTION DES CONGÉS</em></p>
+        <p>Le salarié se verra attribuer des jours de congés, indépendamment des modalités tenant à la durée hebdomadaire, mensuelle ou annuelle de travail, en respect des dispositions légales.<br>La période de référence du décompte des jours de congé est fixée du 1er juin de l'année précédente au 31 mai de l'année actuelle.</p>
+        <p>Les congés accumulés par le salarié dans le cadre de l'exécution des présentes, pendant l'année au cours de laquelle le contrat prendra éventuellement fin  et dont il n'aura pas bénéficié, feront l'objet d'une indemnisation dans les conditions ci-dessous développées.</p>
+        <p style="text-align: center;"><em><br>§2. PRISE DES CONGÉS <br></em></p>
+        <p>Les périodes et modalités de prise de congés seront fixées par l'employeur&nbsp;: les dates et l'ordre de départ seront communiqués à chaque salarié et affichés au moins un mois à l'avance, dans les locaux normalement accessibles aux salariés.</p>
+        <p><br>Pour son congé principal, le salarié ne pourra prendre plus de 24 jours ouvrables en une seule fois. Les congés ne dépassant pas 12 jours seront pris en continu et lorsque le congé principal sera compris entre 12 et 24 jours ouvrables, l'employeur pourra fractionner le congé avec l'accord du salarié. Dans ce cas, l'une des deux périodes de congés devra durer au minimum 12 jours ouvrables continus. Ces 12 jours seront pris au cours de la période allant du 1er mai au 31 octobre, sauf dérogation prévue par accord collectif ou accord individuel du salarié. <br>Les jours restant dus pourront être accordés en une ou plusieurs fois en dehors de cette période.</p>
+        <p style="text-align: center;"><span class="flou"><em><br></em></span><em>§3. REPORT DES CONGÉS</em></p>
+        <p>Les congés payés dont le salarié n'aura pas disposé une année donnée ne pourront être reportés sur l'année suivante. </p>
+        
+        <p style="text-align: center;"><strong><br>ARTICLE VIII&nbsp;: REMBOURSEMENT DE FRAIS</strong></p>
+        <p style="text-align: left;"><br>L'employeur s'engage à rembourser au salarié les frais engagés par celui-ci dans l'exercice de ses fonctions, sur présentation de justificatifs et sous réserve du contrôle de leur réalité, de leur exactitude et de leur engagement dans l'intérêt de l'exercice de la profession, conformément à la procédure de remboursement de frais telle qu'appliquée par l'employeur.</p>
+        
+        <p style="text-align: center;"><strong><br>ARTICLE IX&nbsp;: RETRAITE ET </strong><strong>PRÉVOYANCE<br><br></strong></p>
+        <p>Le salarié cotisera aux différents régimes de retraite complémentaire et de prévoyance en vigueur. <br><br></p>
+        
+        <p style="text-align: center;"><strong>ARTICLE X&nbsp;: PROTECTION DES DONNÉES À CARACTÈRE PERSONNEL DES SALARIÉS<br><br></strong></p>
+        <p>Conformément aux dispositions relatives à la protection des données, le salarié est informé que certaines données nominatives sont enregistrées sur support informatique et éventuellement communiquées à l'URSSAF, et à d'autres organismes via la DSN.</p>
+        <p>Afin d'être licites, et ce conformément aux exigences de l'article 6 du règlement européen 2016/679, la collecte et le traitement des données à caractère personnel ne pourront intervenir que s'ils respectent au moins l'une des conditions ci-après énumérées&nbsp;:</p>
+        <ul>
+        <li>Le salarié a expressément consenti au traitement&nbsp;;</li>
+        </ul>
+        <ul>
+        <li>Le traitement est nécessaire à la bonne exécution d'un contrat&nbsp;;</li>
+        </ul>
+        <ul>
+        <li>Le traitement répond à une obligation légale&nbsp;;</li>
+        </ul>
+        <ul>
+        <li>Le traitement s'explique par une nécessité liée à la sauvegarde des intérêts vitaux du salarié ou d'une autre personne physique&nbsp;;</li>
+        </ul>
+        <ul>
+        <li>Le traitement peut s'expliquer par une nécessité liée à l'exécution d'une mission d'intérêt public ou qui relève de l'exercice de l'autorité publique&nbsp;;</li>
+        </ul>
+        <ul>
+        <li>Le traitement et la collecte des données à caractère personnel sont nécessaires aux fins des intérêts légitimes et privés poursuivis par le responsable du traitement ou par un tiers.<br><br></li>
+        </ul>
+        <p style="text-align: center;"><em>§1. DONNÉES DU SALARIÉ COLLECTÉES ET TRAITÉES</em></p>
+        <p style="text-align: left;">Les données suivantes du salarié sont collectées et traitées&nbsp;:</p>
+        <p style="text-align: left; padding-left: 30px;"><span id="span_id_donnees_salarie_collectees"><span class="variable_vide"><strong>Nom, <br> Prénom, <br> Adresse , <br> Coordonnées téléphonique ainsi que l'email</strong></span></span></p>
+        <p style="text-align: left;">Ces données sont conservées pour une durée maximum de 5 ans.&nbsp;: <span id="span_id_duree_maximum_conservation_donnees"><span class="variable_vide"></span></span>.</p>
+        <p style="text-align: left;">La personne suivante est en charge du traitement des données à caractère personnel des salariés&nbsp;: <span id="span_id_rtd_salarie"><span class="variable_vide"> <strong>{{data.nom }} {{data.prenom }}</strong></span></span>. Elle peut être jointe comme indiqué ci-après&nbsp;:</p>
+        <p style="text-align: left; padding-left: 30px;"><span id="span_id_coordonnees_rtd_salarie"><span class="variable_vide">Téléphone : <strong>{{data.telephone}}</strong></span></span></p>
+        <p style="text-align: left;">Dans le cas où le salarié effectue une demande concernant ses données à caractère personnel, le responsable du traitement dispose de 30 (trente) jours maximum pour y répondre.</p>
+        <p style="text-align: center;"><br><em>§2. DROITS DU SALARIÉ EN MATIÈRE DE PROTECTION DES DONNÉES</em></p>
+        <p><em>a. Droit d'accès, de rectification et droit à l'effacement</em></p>
+        <p>Le salarié peut prendre connaissance, mettre à jour, modifier ou demander la suppression des données le concernant.</p>
+        <p><br><em>b. Droit à la limitation et à l'opposition du traitement des données</em></p>
+        <p>Le salarié a le droit de demander la limitation ou de s'opposer au traitement de ses données par l'employeur, sans que l'employeur puisse refuser, sauf à démontrer l'existence de motifs légitimes et impérieux, pouvant prévaloir sur les intérêts et les droits et libertés du salarié.</p>
+        <p><em>c. Droit à la portabilité des données </em></p>
+        <p>Le salarié a le droit de demander la portabilité de ses données personnelles, détenues par l'employeur.</p>
+        <p><em><br>d. Droit de ne pas faire l'objet d'une décision fondée exclusivement sur un procédé automatisé</em></p>
+        <p>Conformément aux disposition du règlement 2016/679, le salarié a le droit de ne pas faire l'objet d'une décision fondée exclusivement sur un procédé automatisé si la décision produit des effets juridiques le concernant, ou l'affecte de manière significative de façon similaire.</p>
+        <p><br><em>e. Droit de saisir l'autorité de contrôle compétente</em></p>
+        <p>Dans le cas où le responsable du traitement des données des salariés décide de ne pas répondre à la demande du salarié, et que le salarié souhaite contester cette décision, ou, s'il pense qu'il est porté atteinte à l'un des droits énumérés ci-dessus, il est en droit de saisir la CNIL (Commission Nationale de l'Informatique et des Libertés, https://www.cnil.fr) ou tout juge compétent. <br><br></p>
+        <p style="text-align: center;"><em>§3. LE DÉLÉGUÉ À LA PROTECTION DES DONNÉES</em></p>
+        <p>Le salarié est informé que la personne suivante est encharge de la Protection des Données&nbsp;: <span id="span_id_nom_delegue_protection_donnees"><span class="variable_vide"><strong>{{data.prenom }} {{data.nom }} </strong></span></span>.</p>
+        <p>Le rôle du Délégué à la Protection des Données et de s'assurer la bonne mise en oeuvre des dispositions nationales et supranationales relatives à la collecte et au traitement des données à caractère personnel. Il est parfois appelé DPO (pour Data Protection Officer).</p>
+        <p>Le délégué à la protection des données peut être joint de la manière suivante&nbsp;:</p>
+        <p style="padding-left: 30px;"><span id="span_id_coordonnees_dpo"><span class="variable_vide">Par téléphone, au :<strong>  {{data.telephone}}</strong> ou par voix électronique : <strong>{{data.email}}</strong> </span></span></p>
+        
+        <p style="text-align: center;"><strong><br>ARTICLE XII&nbsp;: ENTRETIEN PROFESSIONNEL</strong><br><br></p>
+        <p>Conformément aux dispositions de l'article L.6315-1 du Code du travail, le salarié est informé qu'il bénéficie tous les deux ans d'un entretien professionnel avec son employeur, consacré à ses perspectives d'évolution professionnelle, notamment en termes de qualifications et d'emploi. Cet entretien comporte également des informations relatives à la validation des acquis.</p>
+        <p style="text-align: left;">Cependant, cet entretien ne porte pas sur l'évaluation du travail du salarié.</p>
+        <p style="text-align: left;">Cet entretien sera également proposé  systématiquement au salarié qui reprend son activité suite à&nbsp;:</p>
+        <ul>
+        <li>Un congé de maternité&nbsp;;</li>
+        </ul>
+        <ul>
+        <li>Un congé parental d'éducation&nbsp;;</li>
+        </ul>
+        <ul>
+        <li>Un congé de proche aidant&nbsp;;</li>
+        </ul>
+        <ul>
+        <li>Un congé d'adoption&nbsp;;</li>
+        </ul>
+        <ul>
+        <li>Un congé sabbatique&nbsp;;</li>
+        </ul>
+        <ul>
+        <li>Une période de mobilité volontaire sécurisée&nbsp;;</li>
+        </ul>
+        <ul>
+        <li>Une période d'activité à temps partiel&nbsp;;</li>
+        </ul>
+        <ul>
+        <li>Un arrêt de longue maladie&nbsp;;</li>
+        </ul>
+        <ul>
+        <li>Un mandat syndical.</li>
+        </ul>
+        
+        <p>Tous les six ans, cet entretien professionnel fait un état des lieux récapitulatif du parcours professionnel du salarié. Cet entretien permet de vérifier que le salarié a effectivement bénéficié des entretiens évoqués et a&nbsp;:</p>
+        <ul>
+        <li>Suivi au moins une action de formation&nbsp;;</li>
+        </ul>
+        <ul>
+        <li>Acquis des éléments de certification par la formation ou par une validation des acquis de son expérience&nbsp;;</li>
+        </ul>
+        <ul>
+        <li>Bénéficié d'une progression salariale ou professionnelle.</li>
+        </ul>
+        <p>
+        
+        </p><p style="text-align: center;"><strong><br>ARTICLE XIII&nbsp;: FIN DE CONTRAT<br><br></strong></p>
+        
+        <p>Les parties au présent contrat pourront d'un commun accord résilier par anticipation le présent contrat à tout moment, selon les dispositions légales et conventionnelles en vigueur conformément aux Articles L. 1237-11 à L. 1237-16 du Code du Travail, en respectant le délai de préavis suivant&nbsp;: <span id="span_id_preavis"><span class="variable_vide"><strong>{{contrat.type_contrat=='CDI'? '2 mois' : '2 jours par mois travaillé'}}</strong></span></span>.</p>
+        <p>Le présent contrat sera également suspendu ou annulé de plein droit et sans indemnité d'aucune sorte dans tous les cas de force majeure, tels que reconnus par la jurisprudence.</p>
+        <p>L'employeur pourra également décider de procéder à la rupture du présent contrat en cas de faute grave du salarié. Les motifs du licenciement devront reposer sur une cause réelle et sérieuse.<br><br><br><br><br></p>
+        <p style="text-align: center;"><span style="font-weight: bold; font-size: 14px;"><br>Le présent contrat est établi en deux exemplaires, dont un remis à chaque partie.</span></p>
+        <p><br><br><br><br><br></p>
+        <p>Fait à <strong>{{data.ville}}</strong>, le <strong>{{contrat.date_debut | date: 'dd MMMM YYYY'}}</strong>.</p>
+        <p style="text-align: center;"><br><br><br><strong>SIGNATURES&nbsp;:</strong></p>
+        <p style="text-align: center;"><br><br>L'employeur&nbsp;:</p>
+        <p style="text-align: center;"><br> <img src={{data.sign}} alt="signature"></p>
+        <p style="text-align: center;"><span class="texte_apparu_avec_ajax" style="display: inline; background-color: rgb(255, 255, 255);"><span id="span_id_identite_employeur"><span class="variable_vide">________</span></span></span></p>
+        <p style="text-align: center;"><br><br><br>Le salarié&nbsp;:</p>
+        <p style="text-align: center;"><br><img src="{{profilSalarie.signature}}" alt="signature"> </p>
+        <p style="text-align: center;"><span id="span_id_identite_employe"><span class="variable_vide">________</span></span></p>
+      </div>
+  
      </div>
- 
-    </div>
+
+   </mat-dialog-content>
   </div>
   <mat-dialog-actions align="end">
 

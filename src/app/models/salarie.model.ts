@@ -17,5 +17,6 @@ token!: string
     lieu_naissance!: string
     pays_naissance!: string
     confirmMdp!:string
+    signature!:any
 
 }

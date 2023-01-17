@@ -15,5 +15,6 @@ export class Entreprise {
     code_ape!: string
     role!:boolean
     confirmMdp!:string
+    sign!:string
     
 }

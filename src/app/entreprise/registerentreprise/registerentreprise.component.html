@@ -22,35 +22,35 @@
         <p >
             <mat-form-field appearance="fill">
               <mat-label>Nom</mat-label>
-              <input formControlName="nom" matInput placeholder="Nom" type="text">
+              <input formControlName="nom" matInput placeholder="Nom" type="text" autocomplete="family-name">
               <mat-icon matSuffix>account_circle</mat-icon>
             </mat-form-field>
           </p>
           <p>
             <mat-form-field appearance="fill">
               <mat-label>Prénom</mat-label>
-              <input formControlName="prenom" matInput placeholder="Prénom">
+              <input formControlName="prenom" matInput placeholder="Prénom" autocomplete="given-name">
               <mat-icon matSuffix>account_circle</mat-icon>
             </mat-form-field>
           </p>
           <p>
             <mat-form-field appearance="fill">
               <mat-label>Téléphone</mat-label>
-              <input formControlName="telephone" matInput placeholder="Numero de téléphone">
+              <input formControlName="telephone" matInput placeholder="Numero de téléphone" autocomplete="tel">
               <mat-icon matSuffix>phone</mat-icon>
             </mat-form-field>
           </p>
           <p>
             <mat-form-field appearance="fill">
               <mat-label>Adresse</mat-label>
-              <input formControlName="rue" matInput placeholder="Numéro/ Rue">
+              <input formControlName="rue" matInput placeholder="Numéro/ Rue" autocomplete="address-line1">
               <mat-icon matSuffix>home</mat-icon>
             </mat-form-field>
           </p>
           <p>
             <mat-form-field appearance="fill">
               <mat-label>Code postale</mat-label>
-              <input formControlName="cp" matInput placeholder="74000">
+              <input formControlName="cp" matInput placeholder="74000" autocomplete="postal-code">
               <mat-icon matSuffix>home</mat-icon>
             </mat-form-field>
           </p>
@@ -71,7 +71,7 @@
           <p>
             <mat-form-field appearance="fill">
               <mat-label>Mot de passe</mat-label>
-              <input matInput [type]="hide ? 'password' : 'text'" formControlName="mdp" matInput placeholder="8 caractères min" type="text">
+              <input matInput [type]="hide ? 'password' : 'text'" formControlName="mdp" matInput placeholder="8 caractères min" type="text" autocomplete="current-password">
               <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
                 [attr.aria-pressed]="hide">
                 <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
@@ -82,7 +82,7 @@
           <p>
             <mat-form-field appearance="fill">
               <mat-label>Confirmer le mot de passe</mat-label>
-              <input matInput [type]="hide ? 'password' : 'text'" formControlName="confirmMdp" matInput placeholder="8 caractères min" type="text">
+              <input matInput [type]="hide ? 'password' : 'text'" formControlName="confirmMdp" matInput placeholder="8 caractères min" type="text" autocomplete="current-password">
               <mat-error *ngIf="mdpErreur">
                 Vos mots de passe ne correspondent pas
                 </mat-error>
@@ -102,7 +102,7 @@
           <p>
             <mat-form-field appearance="fill">
               <mat-label>Raison Sociale</mat-label>
-              <input formControlName="raison_sociale" matInput placeholder="Raison Sociale">
+              <input formControlName="raison_sociale" matInput placeholder="Raison Sociale" autocomplete="organization">
               <mat-icon matSuffix>account_circle</mat-icon>
             </mat-form-field>
           </p>
@@ -114,10 +114,24 @@
               <mat-icon matSuffix>home</mat-icon>
             </mat-form-field>
           </p>
+          <p >
+            <mat-form-field class="d-none" appearance="fill">
+              <input formControlName="sign" matInput placeholder="Code signature" type="text" value={{entreprise.sign}}>
+            </mat-form-field>
+          </p>
+          <div><p>Signature*</p>
+            <canvas #canvas (touchstart)="startDrawing($event)" (touchmove)="moved($event)">
+            </canvas>
+            <div class="d-flex justify-content-around">
+              <mat-icon class="text-danger" (click)="clearPad()">close</mat-icon>
+            <mat-icon class="text-success" (click)="savePad()">check</mat-icon>
+            </div>
+          </div>
+        
         
         
           <!-- <button mat-raised-button type="submit" [disabled]="!registerForm.valid">Envoyer</button> -->
-          <button mat-raised-button  type="submit" [disabled]="!registerForm.valid">
+          <button mat-raised-button  (click)="onSubmit" [disabled]="!registerForm.valid">
             Envoyer
                 <mat-icon ><mat-spinner color="primary" diameter="20" *ngIf="isLoading">
             </mat-spinner></mat-icon>
