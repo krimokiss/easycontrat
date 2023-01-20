@@ -116,6 +116,9 @@ export class GererContratEntComponent implements OnInit {
 
       const dialogRef = this.dialog.open(DetailsModalComponent, {
         // data: { contratValue: this.singlecontrat}
+        width: '80%',
+        height: '90vh',
+
         data: this.singlecontrat
       })
       console.log('ID contrat', this.singlecontrat);

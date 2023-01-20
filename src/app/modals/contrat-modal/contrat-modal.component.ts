@@ -50,8 +50,8 @@ export class ContratModalComponent implements OnInit {
 
   }
   closeDialog() {
+    this.router.navigate(['./entreprise/overview/gerer-contrat-ent'])
     this.dialogRef.close({ event: 'close', data: this.ID })
-    this.router.navigate(['/entreprise/overview/gerer-contrat-ent'])
   }
 printPage(){
   window.print();

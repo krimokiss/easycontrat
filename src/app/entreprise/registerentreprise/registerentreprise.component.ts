@@ -58,7 +58,7 @@ export class RegisterentrepriseComponent implements OnInit {
       code_ape: [this.entreprise.code_ape, [Validators.required, Validators.minLength(3)]],
       role: [this.entreprise.role],
       confirmMdp: [this.entreprise.confirmMdp, [Validators.required]],
-      sign: [this.entreprise.sign,], 
+      sign: [this.entreprise.sign], 
       // ConfirmPassword: ['', [Validators.required, Validators.pattern(this.passwordRegex)]],
 
     });

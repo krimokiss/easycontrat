@@ -75,6 +75,8 @@ export class GererContratComponent implements OnInit {
       // console.log("Response single entreprise", this.singleEntreprise);
       const dialogRef = this.dialog.open(DetailsModalComponent, {
         // data: { contratValue: this.singlecontrat}
+        width: '80%',
+        height: '90vh',
         data: this.singleEntreprise
       })
       // console.log('ID FROM GERER CONTRAT',this.singleEntreprise);

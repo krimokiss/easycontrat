@@ -123,8 +123,8 @@
             <canvas #canvas (touchstart)="startDrawing($event)" (touchmove)="moved($event)">
             </canvas>
             <div class="d-flex justify-content-around">
-              <mat-icon class="text-danger" (click)="clearPad()">close</mat-icon>
-            <mat-icon class="text-success" (click)="savePad()">check</mat-icon>
+              <mat-icon class="text-danger" style="cursor: pointer;" (click)="clearPad()">close</mat-icon>
+            <mat-icon class="text-success" style="cursor: pointer;" (click)="savePad()">check</mat-icon>
             </div>
           </div>
         
