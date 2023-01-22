@@ -96,7 +96,7 @@ export class GererContratEntComponent implements OnInit {
       this.allSalarie.map((value: any) => {
         if (value.salarie_id == this.singlecontrat.fki_salarie) {
 
-          this.snackBar.open(`Etes vous sûr de vouloir supprimer ${value.prenom}  ${value.nom} ?`, 'OUI', {
+          this.snackBar.open(`Etes vous sûr de vouloir supprimer le contrat de :  ${value.prenom}  ${value.nom} ?`, 'OUI', {
             duration: 5000,
             panelClass: ['style-class'],
             data: id

@@ -11,9 +11,13 @@
    
     mat-card-actions {
        
-        :hover{
+        :hover:nth-child(1){
             color: white;
             background-color: #1976d2be;
+        }
+        :hover:nth-child(2){
+            color: white;
+            background-color: #af0505be;
         }
         button {
             background-color: beige;

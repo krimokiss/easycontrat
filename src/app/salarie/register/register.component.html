@@ -129,20 +129,7 @@
               <mat-icon matSuffix>home</mat-icon>
             </mat-form-field>
           </p>
-          <p >
-            <mat-form-field class="d-none" appearance="fill">
-              <input formControlName="signature" matInput placeholder="Code signature" type="text" value={{salarie.signature}}>
-            </mat-form-field>
-          </p>
-          <div><p>Signature*</p>
-            <canvas #canvas (touchstart)="startDrawing($event)" (touchmove)="moved($event)">
-            </canvas>
-            <div class="d-flex justify-content-around">
-              <mat-icon class="text-danger" style="cursor: pointer;" (click)="clearPad()">close</mat-icon>
-            <mat-icon class="text-success" style="cursor: pointer;" (click)="savePad()">check</mat-icon>
-            </div>
-          </div>
-        
+                 
           <!-- <button mat-raised-button type="submit" [disabled]="!registerForm.valid">Envoyer</button> -->
           <button mat-raised-button  type="submit" [disabled]="!registerForm.valid">
             Envoyer

@@ -106,4 +106,7 @@ getallContratByEnt(): Observable<any> {
 getallContratBySalarie(): Observable<any> {
   return this._http.get(this.backend + '/contrat/contratbysalarie')
 }
+updateContrat(value:any, id: number): Observable<any> {
+  return this._http.put<any>(this.backend + "/contrat/update/" + id, {formulaire: value})
+}
 }

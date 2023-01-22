@@ -46,6 +46,7 @@ import { DetailsModalComponent } from './modals/details-modal/details-modal.comp
 import { SalarieModalComponent } from './modals/salarie-modal/salarie-modal.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { SignatureModalComponent } from './modals/signature-modal/signature-modal.component';
 
 
 @NgModule({
@@ -66,7 +67,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     GenererContratComponent,
     ContratModalComponent,
     DetailsModalComponent,
-    SalarieModalComponent
+    SalarieModalComponent,
+    SignatureModalComponent
 
   ],
   imports: [

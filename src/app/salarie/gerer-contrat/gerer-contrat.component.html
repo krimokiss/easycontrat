@@ -7,22 +7,39 @@
     <mat-card-header>
       <div>
         <mat-card-title><strong>Societe : {{contrat.raison_sociale}} </strong>
-            <br> Contact : {{contrat.prenom}}  {{contrat.nom}} </mat-card-title>
+            <br> <em>Contact : {{contrat.prenom}}  {{contrat.nom}}</em> </mat-card-title>
       </div>
        <mat-card-subtitle>Fonction : {{contrat.fonction}} <br> Statut : {{contrat.statut}}</mat-card-subtitle>
-      <mat-card-subtitle>Contrat ID : {{contrat.contrat_id}}</mat-card-subtitle>
+      <!-- <mat-card-subtitle>Contrat ID : {{contrat.contrat_id}}</mat-card-subtitle> -->
     
         <mat-card-subtitle>Type Contrat : {{contrat.type_contrat}} <br> Prise d'effet du contrat :
           {{contrat.date_debut | date: 'dd MMM yyyy'}} <br></mat-card-subtitle>
-          <mat-card-subtitle *ngIf="contrat.date_fin != null" > Fin du contrat : {{contrat.date_fin | date: 'dd MMM yyyy'}}</mat-card-subtitle>
+          <mat-card-subtitle *ngIf="contrat.date_fin != null" > <strong>Fin du contrat : {{contrat.date_fin | date: 'dd MMM yyyy'}}</strong></mat-card-subtitle>
          
     </mat-card-header>
 
     <mat-card-actions>
       <button color="primary" (click)="onDetails(contrat.fki_entreprise)" mat-button>Détails</button>
-      <!-- <button color="primary" (click)="openSnackBar(contrat.contrat_id)" mat-button >Supprimer</button> -->
+      <button color="primary"   *ngIf="contrat.validation==null" (click)="modalSign(contrat.contrat_id)" mat-button ><mat-icon>report</mat-icon>Signer contrat</button>
     </mat-card-actions>
   </mat-card>
 
 </div>
 </div>
+
+<!-- <div class="container" *ngFor="let contrat of contratByEnt">
+
+<div class="cartes" *ngIf="profilSalarie.salarie_id != contrat.fki_salarie">
+
+  <mat-card>
+    <mat-card-header>
+     
+        <mat-card-title><strong>Vous n'avez pas encore de contrat.</strong></mat-card-title>
+     
+       <mat-card-subtitle>Une fois votre premier contrat crée par une entreprise, il apparaitra ici.</mat-card-subtitle>
+       <mat-card-subtitle>Pour que ce dernier soit valide, n'oubliez pas de le signer.</mat-card-subtitle>
+    </mat-card-header>
+  </mat-card>
+
+</div>
+</div> -->

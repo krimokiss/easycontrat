@@ -1,3 +1,4 @@
+import { SignatureModalComponent } from './../../modals/signature-modal/signature-modal.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DetailsModalComponent } from './../../modals/details-modal/details-modal.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -17,6 +18,7 @@ export class GererContratComponent implements OnInit {
   profilSalarie!: any
   singleEntreprise!: any
   allEntreprise!: any
+  oneContrat!:any
 
   constructor(private dataService: DataService,
     private router: Router,
@@ -35,6 +37,8 @@ export class GererContratComponent implements OnInit {
     })
     this.dataService.getallContratByEnt().subscribe((result: any) => {
       this.contratByEnt = result
+      console.log('contratbyent', result);
+      
     })
     this.dataService.getAllEntreprise().subscribe((result: any) => {
       this.allEntreprise = result
@@ -72,14 +76,26 @@ export class GererContratComponent implements OnInit {
   onDetails(id: any) {
     this.dataService.getOneEntreprise(id).subscribe((response: any) => {
       this.singleEntreprise = response
-      // console.log("Response single entreprise", this.singleEntreprise);
+   
       const dialogRef = this.dialog.open(DetailsModalComponent, {
-        // data: { contratValue: this.singlecontrat}
         width: '80%',
         height: '90vh',
         data: this.singleEntreprise
       })
-      // console.log('ID FROM GERER CONTRAT',this.singleEntreprise);
+    
+      dialogRef.afterClosed()
+    })
+  }
+  modalSign(id: any) {
+    this.dataService.getOneContrat(id).subscribe((response: any) => {
+      this.oneContrat = response
+      
+      const dialogRef = this.dialog.open(SignatureModalComponent, {
+        width: '800px',
+        height: '80vh',
+        data: this.oneContrat
+      })
+      
       dialogRef.afterClosed()
     })
   }

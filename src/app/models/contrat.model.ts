@@ -12,5 +12,6 @@ export class Contrat {
     fonction!: string
     statut!: string
     remuneration!: string
+    validation!:string
 
 }

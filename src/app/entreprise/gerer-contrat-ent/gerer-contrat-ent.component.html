@@ -24,6 +24,8 @@
           <mat-card-subtitle>Type Contrat : {{contrat.type_contrat}} <br> Prise d'effet du contrat :
             {{contrat.date_debut | date: 'dd MMM yyyy'}}</mat-card-subtitle>
           <mat-card-subtitle *ngIf="contrat.date_fin"><strong>Fin du contrat : {{contrat.date_fin | date: 'dd MMM yyyy'}}</strong></mat-card-subtitle>
+          <mat-card-subtitle style="color: rgb(206, 4, 4);" *ngIf="!contrat.validation"><strong><mat-icon>report</mat-icon> En attente de signature par le salarié</strong></mat-card-subtitle>
+          <mat-card-subtitle style="color: rgb(4, 34, 206);" *ngIf="contrat.validation"><strong><mat-icon>check_circle</mat-icon> Contrat signé</strong></mat-card-subtitle>
         </mat-card-header>
 
         <mat-card-actions>
@@ -50,6 +52,8 @@
           <mat-card-subtitle>Type Contrat : {{contrat.type_contrat}} <br> Prise d'effet du contrat :
             {{contrat.date_debut | date: 'dd MMM yyyy'}}</mat-card-subtitle>
           <mat-card-subtitle *ngIf="contrat.date_fin"><strong>Fin du contrat : {{contrat.date_fin | date: 'dd MMM yyyy'}}</strong></mat-card-subtitle>
+          <mat-card-subtitle style="color: rgb(206, 4, 4);" *ngIf="!contrat.validation"><strong><mat-icon>report</mat-icon> En attente de signature par le salarié</strong></mat-card-subtitle>
+          <mat-card-subtitle style="color: rgb(4, 34, 206);" *ngIf="contrat.validation"><strong><mat-icon>check_circle</mat-icon> Contrat signé</strong></mat-card-subtitle>
         </mat-card-header>
 
         <mat-card-actions>
