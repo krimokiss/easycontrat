@@ -20,35 +20,35 @@
   <div *ngFor="let salarie of contratBySal">
     <div *ngIf="data.fki_salarie == salarie.salarie_id && profilEntreprise.entreprise_id == salarie.fki_entreprise"
       id="text" #text>
-      <h1 style="text-align: center;"><span style="font-weight: bold; font-size: 14px;"></span><br>
+      <h1 style="text-align: center;"><span></span><br>
         <strong>{{data.type_contrat==='CDD'? 'CONTRAT DE TRAVAIL À DURÉE DÉTERMINÉE' : 'CONTRAT DE TRAVAIL À DURÉE INDÉTERMINÉE'}} </strong></h1>
       <br>
       <p><br><strong>ENTRE LES SOUSSIGNÉS</strong><br></p>
-      <p style="padding-left: 30px;"><span
-          style="display: inline; background-color: rgb(255, 255, 255);"><span><strong>{{profilEntreprise.raison_sociale}}</strong>
+      <p><span
+        ><span><strong>{{profilEntreprise.raison_sociale}}</strong>
             <br> représenté par : <br>
             <strong>{{profilEntreprise.civilite }} {{profilEntreprise.nom }} {{profilEntreprise.prenom }}</strong>
           </span></span>,</p>
-      <p style="padding-left: 30px;">
-        <span style="display: inline; background-color: rgb(255, 255, 255);">Immatriculé(e) à l'URSSAF sous le numéro<span>
+      <p>
+        <span>Immatriculé(e) à l'URSSAF sous le numéro<span>
             <strong>{{profilEntreprise.siret}}</strong> </span>,</span>
       </p>
-      <p style="padding-left: 30px;">
-        <span style="display: inline; background-color: rgb(255, 255, 255);">À l'adresse suivante&nbsp;:</span>
+      <p>
+        <span>À l'adresse suivante&nbsp;:</span>
       </p>
-      <p style="padding-left: 30px;"><span style="display: inline; background-color: rgb(255, 255, 255);">
+      <p><span>
           <span> <strong>{{profilEntreprise.rue}}</strong> <br>
             <strong>{{profilEntreprise.cp}} {{profilEntreprise.ville}}</strong> </span>,</span></p>
-      <p style="padding-left: 30px;">Ci-après " <strong>l'employeur</strong> ",</p>
+      <p>Ci-après " <strong>l'employeur</strong> ",</p>
       <p><br><strong>ET</strong></p>
-      <p style="padding-left: 30px;"><br><strong><span> <strong>{{salarie.nom}} {{salarie.prenom}}</strong>
+      <p><br><strong><span> <strong>{{salarie.nom}} {{salarie.prenom}}</strong>
           </span></strong>,</p>
-      <p style="padding-left: 30px;">Résidant à l'adresse suivante&nbsp;:</p>
-      <p style="padding-left: 30px;"><span> <strong>{{salarie.rue}}</strong> <br> <strong>{{salarie.cp}}
+      <p>Résidant à l'adresse suivante&nbsp;:</p>
+      <p><span> <strong>{{salarie.rue}}</strong> <br> <strong>{{salarie.cp}}
             {{salarie.ville}}</strong> </span></p>
-      <p style="padding-left: 30px;">N° de Sécurité sociale&nbsp;: <span> <strong>{{salarie.num_ss}}</strong> </span>,
+      <p>N° de Sécurité sociale&nbsp;: <span> <strong>{{salarie.num_ss}}</strong> </span>,
       </p>
-      <p style="padding-left: 30px;"><br>Ci-après " <strong>le salarié</strong> ",</p>
+      <p><br>Ci-après " <strong>le salarié</strong> ",</p>
 
       <p><strong><br>IL A ÉTÉ CONVENU ET ARRÊTÉ CE QUI SUIT</strong></p><br>
 
@@ -86,7 +86,7 @@
       <p style="text-align: center;"><strong><br>ARTICLE III&nbsp;: LIEU DE TRAVAIL </strong></p>
 
       <p>Le lieu habituel de travail est fixé à l'adresse suivante&nbsp;:</p>
-      <p style="padding-left: 30px;"><span><strong>{{profilEntreprise.raison_sociale}}</strong><br>
+      <p><span><strong>{{profilEntreprise.raison_sociale}}</strong><br>
           <strong>{{profilEntreprise.rue}}
             <br><strong>{{profilEntreprise.cp}}{{profilEntreprise.ville}}</strong></strong> </span> </p>
       <p>L'employeur ne pourra, sans l'accord exprès du salarié, modifier le lieu habituel de travail. si les parties
@@ -141,7 +141,7 @@
 
       <p style="text-align: center;"><strong><br>ARTICLE VIII&nbsp;: REMBOURSEMENT DE FRAIS</strong></p>
 
-      <p style="text-align: left;"><br>L'employeur s'engage à rembourser au salarié les frais engagés par celui-ci dans
+      <p><br>L'employeur s'engage à rembourser au salarié les frais engagés par celui-ci dans
         l'exercice de ses fonctions, sur présentation de justificatifs et sous réserve du contrôle de leur réalité, de
         leur exactitude et de leur engagement dans l'intérêt de l'exercice de la profession, conformément à la procédure
         de remboursement de frais telle qu'appliquée par l'employeur.</p>
@@ -182,17 +182,16 @@
           légitimes et privés poursuivis par le responsable du traitement ou par un tiers.<br><br></li>
       </ul>
       <p style="text-align: center;"><em>§1. DONNÉES DU SALARIÉ COLLECTÉES ET TRAITÉES</em></p>
-      <p style="text-align: left;">Les données suivantes du salarié sont collectées et traitées&nbsp;:</p>
-      <p style="text-align: left; padding-left: 30px;"><span><span><strong>Nom, <br> Prénom, <br> Adresse , <br>
+      <p>Les données suivantes du salarié sont collectées et traitées&nbsp;:</p>
+      <p><span><span><strong>Nom, <br> Prénom, <br> Adresse , <br>
               Coordonnées téléphonique ainsi que l'email</strong></span></span></p>
-      <p style="text-align: left;">Ces données sont conservées pour une durée maximum de 5 ans.&nbsp;: <span></span>.
+      <p>Ces données sont conservées pour une durée maximum de 5 ans.&nbsp;: <span></span>.
       </p>
-      <p style="text-align: left;">La personne suivante est en charge du traitement des données à caractère personnel
+      <p>La personne suivante est en charge du traitement des données à caractère personnel
         des salariés&nbsp;: <span><strong>{{profilEntreprise.nom }} {{profilEntreprise.prenom }}</strong></span>. Elle
         peut être jointe comme indiqué ci-après&nbsp;:</p>
-      <p style="text-align: left; padding-left: 30px;"><span>Téléphone : <strong>{{profilEntreprise.telephone
-            }}</strong></span></p>
-      <p style="text-align: left;">Dans le cas où le salarié effectue une demande concernant ses données à caractère
+      <p><span>Téléphone : <strong>{{profilEntreprise.telephone}}</strong></span></p>
+      <p>Dans le cas où le salarié effectue une demande concernant ses données à caractère
         personnel, le responsable du traitement dispose de 30 (trente) jours maximum pour y répondre.</p>
       <p style="text-align: center;"><br><em>§2. DROITS DU SALARIÉ EN MATIÈRE DE PROTECTION DES DONNÉES</em></p>
       <p><em>a. Droit d'accès, de rectification et droit à l'effacement</em></p>
@@ -220,7 +219,7 @@
         nationales et supranationales relatives à la collecte et au traitement des données à caractère personnel. Il est
         parfois appelé DPO (pour Data Protection Officer).</p>
       <p>Le délégué à la protection des données peut être joint de la manière suivante&nbsp;:</p>
-      <p style="padding-left: 30px;"><span><span>Par téléphone, au :<strong> {{profilEntreprise.telephone}}</strong> ou
+      <p><span><span>Par téléphone, au :<strong> {{profilEntreprise.telephone}}</strong> ou
             par voix électronique : <strong>{{profilEntreprise.email}}</strong></span></span></p>
 
       <p style="text-align: center;"><strong><br>ARTICLE XII&nbsp;: ENTRETIEN PROFESSIONNEL</strong><br><br></p>
@@ -229,8 +228,8 @@
         tous les deux ans d'un entretien professionnel avec son employeur, consacré à ses perspectives d'évolution
         professionnelle, notamment en termes de qualifications et d'emploi. Cet entretien comporte également des
         informations relatives à la validation des acquis.</p>
-      <p style="text-align: left;">Cependant, cet entretien ne porte pas sur l'évaluation du travail du salarié.</p>
-      <p style="text-align: left;">Cet entretien sera également proposé systématiquement au salarié qui reprend son
+      <p>Cependant, cet entretien ne porte pas sur l'évaluation du travail du salarié.</p>
+      <p>Cet entretien sera également proposé systématiquement au salarié qui reprend son
         activité suite à&nbsp;:</p>
       <ul>
         <li>Un congé de maternité&nbsp;;</li>
@@ -287,14 +286,14 @@
         les cas de force majeure, tels que reconnus par la jurisprudence.</p>
       <p>L'employeur pourra également décider de procéder à la rupture du présent contrat en cas de faute grave du salarié.
         Les motifs du licenciement devront reposer sur une cause réelle et sérieuse.<br><br><br><br><br></p>
-      <p style="text-align: center;"><span style="font-weight: bold; font-size: 14px;"><br><br><br><br><br>Le présent
+      <p style="text-align: center;"><span><br><br><br><br><br>Le présent
           contrat est établi en deux exemplaires, dont un remis à chaque partie.</span></p><p><br></p>
       <p>Fait à {{profilEntreprise.ville}}, le <strong>{{data.date_debut | date: 'dd MMMM YYYY'}}</strong>.</p>
       <p style="text-align: center;"><br><br><br><strong>SIGNATURES&nbsp;:</strong></p>
       <p style="text-align: center;"><br><br>L'employeur&nbsp;:</p>
       <p style="text-align: center;"><br> <img src={{profilEntreprise.sign}} alt="signature"> </p>
       <p style="text-align: center;"><span
-          style="display: inline; background-color: rgb(255, 255, 255);"><span><span>________</span></span></span></p>
+        ><span><span>________</span></span></span></p>
       <p style="text-align: center;"><br><br><br>Le salarié&nbsp;:</p>
       <p *ngIf="data.validation" style="text-align: center;"><br> <img src="{{data.validation}}" alt="signature"> </p>
       <p *ngIf="!data.validation" style="text-align: center;"> <em>Contrat en attente de signature par le salarié.</em> </p>
