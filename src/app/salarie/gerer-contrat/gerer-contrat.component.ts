@@ -91,8 +91,8 @@ export class GererContratComponent implements OnInit {
       this.oneContrat = response
       
       const dialogRef = this.dialog.open(SignatureModalComponent, {
-        width: '800px',
-        height: '80vh',
+        width: '350px',
+        height: '360px',
         data: this.oneContrat
       })
       

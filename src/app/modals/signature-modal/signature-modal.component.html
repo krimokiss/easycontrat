@@ -20,7 +20,7 @@
             </div>
         </div> -->
 
-        <!-- <div style=" height: 60px;">
+<!-- <div style=" height: 60px;">
             <div class="m-3">
                 <div class="p-2 shadow border" id="tasks">
                     <div class="input-group column ps-3 test" ><mat-icon>location_city</mat-icon>
@@ -31,7 +31,7 @@
                 </div>
             </div>
         </div> -->
-        <!-- <form [formGroup]="registerForm" (ngSubmit)="updateContrat()">
+<!-- <form [formGroup]="registerForm" (ngSubmit)="updateContrat()">
 
         
     <div class="m-3">
@@ -63,33 +63,64 @@
         
         </form> -->
 
-        <div class="row mt-4 super" style="height: 300px;">
-            <div class="col"></div>
-            <div class="col-md-6 bg-white shadow super">
-        
-                <div style=" height: 300px;" >
-                    <div class="m-3">
-                        <div class="p-2 shadow border" id="tasks">
-                            <p >
-                                <mat-form-field  class="d-none" appearance="fill">
-                                  <input formControlName="validation" matInput placeholder="Code signature" type="text" [value]="data.validation" [(ngModel)]="data.validation">
-                                </mat-form-field>
-                              </p>
-                              <div><p>Signature*</p>
-                                <canvas #canvas (touchstart)="startDrawing($event)" (touchmove)="moved($event)">
+<!-- <div class="row mt-4 super" style="height: 300px;">
+  <div class="col"></div>
+  <div class="col-md-6 bg-white shadow super">
 
-                                </canvas>
-                                <div class="d-flex justify-content-around">
-                                  <!-- <mat-icon class="text-danger" style="cursor: pointer;" (click)="clearPad()">close</mat-icon> Editer
-                                <mat-icon class="text-success" style="cursor: pointer;" (click)="savePad()">check</mat-icon> Confirmer 1/2 -->
-                                <button class="btn btn-outline-danger btn-sm col me-2"  type="button"(click)="clearPad()" >Effacer</button>
-                                <button class="btn btn-outline-primary btn-sm col me-2"  type="button"(click)="savePad()" (click)="buttonClick1()" >Confirmer 1/2</button>
-                                </div>
-                              </div>
-                                    <input  class="d-none" type="text" [value]="data.validation" [(ngModel)]="data.validation"></div>
-                                <button class="btn btn-outline-success col me-2" [disabled]= "btnDisabled"  type="button"(click)="updateContrat()" >Valider la signature 2/2</button>
-                              
-                            </div>
-                        </div>
+    <div style=" height: 300px;">
+      <div class="m-3">
+        <div class="p-2 shadow border" id="tasks">
+          <p>
+            <mat-form-field class="d-none" appearance="fill">
+              <input formControlName="validation" matInput placeholder="Code signature" type="text"
+                [value]="data.validation" [(ngModel)]="data.validation">
+            </mat-form-field>
+          </p>
+          <div>
+            <p>Signature*</p>
+            <canvas #canvas (touchstart)="startDrawing($event)" (touchmove)="moved($event)">
+
+            </canvas>
+            <div class="d-flex justify-content-around">
+              <button class="btn btn-outline-danger btn-sm col me-2" type="button" (click)="clearPad()">Effacer</button>
+              <button class="btn btn-outline-primary btn-sm col me-2" type="button" (click)="savePad()"
+                (click)="buttonClick1()">Confirmer 1/2</button>
             </div>
-            <div class="col"></div>
+          </div>
+          <input class="d-none" type="text" [value]="data.validation" [(ngModel)]="data.validation">
+        </div>
+        <button class="btn btn-outline-success col me-2" [disabled]="btnDisabled" type="button"
+          (click)="updateContrat()">Valider la signature 2/2</button>
+
+      </div>
+    </div>
+  </div>
+  <div class="col"></div> -->
+
+
+
+  <div style="width: 300px;">
+    <div>
+      <p>
+        <mat-form-field class="d-none" appearance="fill">
+          <input formControlName="validation" matInput placeholder="Code signature" type="text"
+            [value]="data.validation" [(ngModel)]="data.validation">
+        </mat-form-field>
+      </p>
+      <div>
+        <p>Signature*</p>
+        <canvas #canvas (touchstart)="startDrawing($event)" (touchmove)="moved($event)">
+
+        </canvas>
+        <div class="d-flex justify-content-around">
+          <button class="btn btn-outline-danger btn-sm col me-2" type="button" (click)="clearPad()">Effacer</button>
+          <button class="btn btn-outline-primary btn-sm col me-2" type="button" (click)="savePad()"
+            (click)="buttonClick1()">Confirmer 1/2</button>
+        </div>
+      </div>
+      <input class="d-none" type="text" [value]="data.validation" [(ngModel)]="data.validation">
+    </div>
+    <button class="btn btn-outline-success col me-2" [disabled]="btnDisabled" type="button"
+      (click)="updateContrat()">Valider la signature 2/2</button>
+
+  </div>
