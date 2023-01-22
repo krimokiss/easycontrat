@@ -319,18 +319,18 @@
       <br>
       <p><br><strong>ENTRE LES SOUSSIGNÉS</strong><br></p>
       <p style="padding-left: 30px;"><span
-          style="display: inline; background-color: rgb(255, 255, 255);"><span><strong>{{data.raison_sociale}}</strong>
+          style="display: inline; "><span><strong>{{data.raison_sociale}}</strong>
             <br> représenté par : <br>
             <strong>{{data.civilite }} {{data.nom }} {{data.prenom }}</strong>
           </span></span>,</p>
       <p style="padding-left: 30px;">
-        <span style="display: inline; background-color: rgb(255, 255, 255);">Immatriculé(e) à l'URSSAF sous le numéro<span>
+        <span style="display: inline; ">Immatriculé(e) à l'URSSAF sous le numéro<span>
             <strong>{{data.siret}}</strong> </span>,</span>
       </p>
       <p style="padding-left: 30px;">
-        <span style="display: inline; background-color: rgb(255, 255, 255);">À l'adresse suivante&nbsp;:</span>
+        <span style="display: inline; ">À l'adresse suivante&nbsp;:</span>
       </p>
-      <p style="padding-left: 30px;"><span style="display: inline; background-color: rgb(255, 255, 255);">
+      <p style="padding-left: 30px;"><span style="display: inline; ">
           <span> <strong>{{data.rue}}</strong> <br>
             <strong>{{data.cp}} {{data.ville}}</strong> </span>,</span></p>
       <p style="padding-left: 30px;">Ci-après " <strong>l'employeur</strong> ",</p>
@@ -594,7 +594,7 @@
       <p style="text-align: center;"><br><br>L'employeur&nbsp;:</p>
       <p style="text-align: center;"><br> <img src={{data.sign}} alt="signature"> </p>
       <p style="text-align: center;"><span
-          style="display: inline; background-color: rgb(255, 255, 255);"><span><span>________</span></span></span></p>
+          style="display: inline; "><span><span>________</span></span></span></p>
       <p style="text-align: center;"><br><br><br>Le salarié&nbsp;:</p>
       <p *ngIf="contrat.validation" style="text-align: center;"><br> <img src="{{contrat.validation}}" alt="signature"> </p>
       <p *ngIf="!contrat.validation" style="text-align: center;"> <em>Contrat en attente de signature par le salarié.</em> </p>
