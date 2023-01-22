@@ -70,9 +70,9 @@ registerForm!: FormGroup;
     
     )
     this.dialogRef.close(
-      window.location.reload()
+      this.snackBar.open("Signature prise en compte, Merci"  , '', { duration: 2000 }),
+      // window.location.reload()
       )
-      this.snackBar.open("Signature prise en compte, Merci"  , '', { duration: 2000 })
    
   }
   btnText = 'Click me';
