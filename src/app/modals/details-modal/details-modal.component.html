@@ -309,7 +309,7 @@
 
 
 
-<div container-fluid contrat *ngIf="profilEntreprise == null && data.entreprise_id" id="text" #text>
+<div contrat *ngIf="profilEntreprise == null && data.entreprise_id" id="text" #text>
 
   <div *ngFor="let contrat of contratBySal">
     <div *ngIf="contrat.fki_entreprise == data.entreprise_id && profilSalarie.salarie_id == contrat.fki_salarie">
