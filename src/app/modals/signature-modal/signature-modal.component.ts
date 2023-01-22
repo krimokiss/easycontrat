@@ -64,16 +64,26 @@ registerForm!: FormGroup;
     this.registerForm.value.validation = this.signaturePad.toDataURL();
     
   
-    this.dataService.updateContrat(this.data, this.data.contrat_id  ).subscribe(res => {
+    this.dataService.updateContrat(this.data, this.data.contrat_id).subscribe(res => {
       this.ngOnInit()
     }
     
     )
     this.dialogRef.close(
-      this.snackBar.open("Signature prise en compte, Merci"  , '', { duration: 2000 }),
-      // window.location.reload()
+      // this.snackBar.open("Signature prise en compte, Merci"  , 'OK', { duration: 2000 }),
+      this.showSnackbarAction('','')
       )
    
+  }
+  showSnackbarAction(content, action) {
+    let snack = this.snackBar.open(content, action);
+    snack.afterDismissed().subscribe(() => {
+      console.log("Texte apparait apres fermeture de la modale");
+    });
+    snack.onAction().subscribe(() => {
+      console.log("Texte apparait apres le click sur OK de la snackbar");
+      window.location.reload()
+    });
   }
   btnText = 'Click me';
   btnDisabled = true;

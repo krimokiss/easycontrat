@@ -121,6 +121,6 @@
       <!-- <input  type="text" [value]="data.validation" [(ngModel)]="data.validation"> -->
     </div>
     <button class="btn btn-outline-success col me-2" [disabled]="btnDisabled" type="button"
-      (click)="updateContrat()">Valider la signature 2/2</button>
+      (click)="updateContrat()" (click)="showSnackbarAction('La signature à bien été prise en compte. Merci','OK')">Valider la signature 2/2</button>
 
   </div>
