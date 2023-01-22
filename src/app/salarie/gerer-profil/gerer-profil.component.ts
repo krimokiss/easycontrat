@@ -39,7 +39,7 @@ profil!: any
     
     this.dataService.updateSalarie(this.profil, this.profil.salarie_id).subscribe(res => {
       this.ngOnInit()
-      this.snackBar.open("Mofication prise en compte  " + ' ' , '', { duration: 2000 })
+      this.snackBar.open("Mofication prise en compte  " , 'OK', { duration: 4000 })
     }, err => {
       alert('Mise a jour impossible')
     })

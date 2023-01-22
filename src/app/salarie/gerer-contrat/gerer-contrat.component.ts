@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { DataService } from 'src/app/services/data.service';
 import { Component, OnInit } from '@angular/core';
+import { map } from 'rxjs/operators'
 
 @Component({
   selector: 'app-gerer-contrat',
@@ -19,6 +20,7 @@ export class GererContratComponent implements OnInit {
   singleEntreprise!: any
   allEntreprise!: any
   oneContrat!:any
+  test!:any
 
   constructor(private dataService: DataService,
     private router: Router,
@@ -29,6 +31,8 @@ export class GererContratComponent implements OnInit {
     this.dataService.getProfil().subscribe((response: any) => {
       if (response && response) {
         this.profilSalarie = response
+        // console.log(response.salarie_id);
+        
       }
     })
 
@@ -37,14 +41,23 @@ export class GererContratComponent implements OnInit {
     })
     this.dataService.getallContratByEnt().subscribe((result: any) => {
       this.contratByEnt = result
-      console.log('contratbyent', result);
-      
-    })
+      this.contratByEnt.map((result)=>{
+          // console.log(result);
+          
+        })
+       let noContrat = result.find(e=> e.fki_salarie==this.profilSalarie.salarie_id)
+       this.test = noContrat
+      //  console.log(noContrat);
+        
+      })
+   
+
     this.dataService.getAllEntreprise().subscribe((result: any) => {
       this.allEntreprise = result
     })
-
+   
   }
+ 
   // onSubmit(id:any){
 
   //   this.dataService.deleteContrat(id).subscribe((response:any)=>{
