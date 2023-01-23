@@ -29,12 +29,9 @@ export class GererSalariesEntComponent implements OnInit {
 
   ngOnInit(): void {
 
-
-
     this.dataService.getallContratBySalarie().subscribe((response: any) => {
       this.allSalarie = response
       console.log('allSalarie', response);
-     
     })
     this.dataService.getProfilEntreprise().subscribe((response: any) => {
       if (response && response) {
@@ -43,7 +40,6 @@ export class GererSalariesEntComponent implements OnInit {
       this.dataService.getallContrat().subscribe((response: any) => {
         this.allcontrat = response
         // console.log('allContrat', response);
-
       })
 
     })
@@ -53,8 +49,6 @@ export class GererSalariesEntComponent implements OnInit {
       this.allSalarieFiltered = [...this.contratBySal]
     })
 
-
-
     this.searchBar.valueChanges.subscribe((resultats: any) => {
       this.allSalarieFiltered = this.contratBySal.filter((user: any) => {
         return user.nom.toLowerCase().includes(resultats.toLowerCase()) ||
@@ -62,9 +56,6 @@ export class GererSalariesEntComponent implements OnInit {
       })
     })
 
-
-
-  
   }
 
   onDetails(id: any) {

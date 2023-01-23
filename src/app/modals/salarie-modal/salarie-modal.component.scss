@@ -1,6 +1,19 @@
-mat-dialog-actions{
+mat-card-actions{
     :hover{
         color: white;
         background-color: #1976d2be;
     }
 }
+.example-card {
+    max-width: 400px;
+  }
+  
+  .example-header-image {
+    background-image: url('https://cdn4.vectorstock.com/i/thumb-large/29/08/avatar-10-vector-37332908.jpg');
+    background-size: cover;
+  }
+  .example-header-image-men {
+    background-image: url('https://images.assetsdelivery.com/compings_v2/mialima/mialima1603/mialima160300025.jpg');
+    background-size: cover;
+  }
+

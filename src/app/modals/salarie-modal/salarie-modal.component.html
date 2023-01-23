@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
     <h2 mat-dialog-title>Informations conçernant le salarié :</h2>
     <mat-dialog-content class="mat-typography">
 
@@ -32,6 +32,34 @@
     <mat-dialog-actions align="end">
 
         <button mat-raised-button (click)="closeDialog()">Fermer</button>
-        <!-- <button mat-button (click)="printPage()">Imprimer</button> -->
     </mat-dialog-actions>
-</div>
+</div> -->
+
+<mat-card class="example-card">
+    <mat-card-header>
+      <div *ngIf="data.civilite == 'Mme'" mat-card-avatar class="example-header-image" ></div>
+      <div *ngIf="data.civilite == 'Mr'" mat-card-avatar class="example-header-image-men" ></div>
+      <mat-card-title><strong>{{data.prenom }} {{data.nom }}</strong></mat-card-title>
+      <mat-card-subtitle>{{data.civilite}}</mat-card-subtitle>
+    </mat-card-header>
+    <!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"> -->
+    <mat-card-content>
+        <p> Né(e) le <strong>{{data.date_naissance | date:'dd MMMM YYYY'}}</strong> à
+            <strong>{{data.lieu_naissance}}</strong>, <span *ngIf="data.pays_naissance != 'France'" > ({{data.pays_naissance}}) </span> <br></p>
+
+
+        <p> Demeurant au : <br> <strong>{{data.rue}}</strong> <br> <strong>{{data.cp}}
+                {{data.ville}}</strong>, <br></p>
+
+        <p type="phone" > Numéro de téléphone : <a href="tel:{{data.telephone}}">{{data.telephone}}</a> <br></p>
+
+        <p> Email : <a href="mailto:{{data.email}}">{{data.email}}</a> <br></p>
+
+        <p *ngIf="data.nom_jeune_fille"> <strong>{{data.nom_jeune_fille}}</strong> </p> <br>
+
+        <p> Numérode sécurité sociale : <strong>{{data.num_ss}}</strong> <br></p>
+    </mat-card-content>
+    <mat-card-actions align="end">
+        <button mat-raised-button (click)="closeDialog()">Fermer</button>
+    </mat-card-actions>
+  </mat-card>
