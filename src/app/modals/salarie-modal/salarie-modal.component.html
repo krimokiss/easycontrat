@@ -14,9 +14,9 @@
             <p> Demeurant au : <strong>{{data.rue}}</strong> <br> <strong>{{data.cp}}
                     {{data.ville}}</strong>, <br></p>
 
-            <p type="phone" > Numéro de téléphone : <a href="tel:data.telephone">{{data.telephone}}</a> <br></p>
+            <p type="phone" > Numéro de téléphone : <a href="tel:{{data.telephone}}">{{data.telephone}}</a> <br></p>
 
-            <p> Email : <strong>{{data.email}}</strong> <br></p>
+            <p> Email : <a href="mailto:{{data.email}}">{{data.email}}</a> <br></p>
 
             <p *ngIf="data.nom_jeune_fille"> <strong>{{data.nom_jeune_fille}}</strong> </p> <br>
 
