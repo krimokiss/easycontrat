@@ -4,14 +4,14 @@
 
         <div>
             <p>
-                Civilité : <strong>{{data.civilite }} {{data.nom }} {{data.prenom }}</strong>, <br> </p>
+                Civilité : {{data.civilite }} <strong> {{data.prenom }} {{data.nom }}</strong>, <br> </p>
 
 
             <p> Né(e) le <strong>{{data.date_naissance | date:'dd MMMM YYYY'}}</strong> à
                 <strong>{{data.lieu_naissance}}</strong>, <span *ngIf="data.pays_naissance != 'France'" > ({{data.pays_naissance}}) </span> <br></p>
 
 
-            <p> Demeurant au : <strong>{{data.rue}}</strong> <br> <strong>{{data.cp}}
+            <p> Demeurant au : <br> <strong>{{data.rue}}</strong> <br> <strong>{{data.cp}}
                     {{data.ville}}</strong>, <br></p>
 
             <p type="phone" > Numéro de téléphone : <a href="tel:{{data.telephone}}">{{data.telephone}}</a> <br></p>
@@ -31,7 +31,7 @@
     </mat-dialog-content>
     <mat-dialog-actions align="end">
 
-        <button mat-button (click)="closeDialog()">Fermer</button>
-        <button mat-button (click)="printPage()">Imprimer</button>
+        <button mat-raised-button (click)="closeDialog()">Fermer</button>
+        <!-- <button mat-button (click)="printPage()">Imprimer</button> -->
     </mat-dialog-actions>
 </div>
