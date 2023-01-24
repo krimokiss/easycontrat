@@ -19,6 +19,8 @@ export class LoginentrepriseComponent implements OnInit {
   salarie = new Salarie
   entreprise = new Entreprise
   isLoading=false
+  mdpErreur=true
+  hide=true
 
   constructor(private formBuilder: FormBuilder,
               private router: Router,

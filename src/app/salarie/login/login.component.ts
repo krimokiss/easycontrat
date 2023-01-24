@@ -19,6 +19,8 @@ export class LoginComponent implements OnInit {
   salarie = new Salarie
   entreprise = new Entreprise
   isLoading =false
+  mdpErreur=true
+  hide=true
 
   spinnerButtonOptions: any = {
     active: false,
@@ -62,7 +64,7 @@ export class LoginComponent implements OnInit {
       }
     })
     this.isLoading = true;
-    setTimeout(() => this.isLoading = false, 25000);
+    setTimeout(() => this.isLoading = false, 75000);
   }
 
 }

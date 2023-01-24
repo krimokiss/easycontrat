@@ -13,6 +13,7 @@ import { Observable, Subject } from 'rxjs';
 export class DataService {
 
   backend  = `${environment.API_URL}`
+  apiEntreprise = 'https://recherche-entreprises.api.gouv.fr/'
  
 
 
@@ -33,6 +34,10 @@ static getRole(): boolean{
 clearToken(): void {
   localStorage.removeItem('token')
   this.router.navigate((['/']))
+}
+
+getApiEntreprise(user:any): Observable<any> {
+  return this._http.get<any>(this.apiEntreprise + "search?q=" + user + "&page=1&per_page=25")
 }
 
               // SALARIE SERVICE SIDE //

@@ -16,8 +16,11 @@
     <p>
       <mat-form-field appearance="fill">
         <mat-label>Mot de passe</mat-label>
-        <input formControlName="mdp" matInput placeholder="8 caractères min" type="password">
-        <mat-icon matSuffix>lock</mat-icon>
+        <input matInput [type]="hide ? 'password' : 'text'" formControlName="mdp" matInput placeholder="8 caractères min" type="text">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
         <mat-hint>1MAJ,1min,1chiffre et 1 symbol min</mat-hint>
       </mat-form-field>
     </p> <br>
