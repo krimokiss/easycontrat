@@ -147,7 +147,7 @@
     <p>
       <mat-form-field appearance="fill">
         <mat-label>SIREN</mat-label>
-        <input type="tel" onkeypress="return event.charCode >= 48 && event.charCode <= 57" formControlName="siret" matInput placeholder="Numéro Siret" (keypress)="Send($event)">
+        <input type="text" onkeypress="return event.charCode >= 48 && event.charCode <= 57" formControlName="siret" matInput placeholder="Numéro Siret" (keypress)="Send($event)">
         <mat-hint><mat-icon matSuffix>warning</mat-icon>  Appuyez sur ENTRER après avoir renseigner un SIREN valide (9 chiffres).</mat-hint>
         <mat-icon matSuffix>account_circle</mat-icon>
       </mat-form-field>
