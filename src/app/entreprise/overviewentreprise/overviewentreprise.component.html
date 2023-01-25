@@ -12,7 +12,7 @@ class="example-container">
     <mat-icon class="close"
    (click)="drawer.close()">close</mat-icon>
   </mat-toolbar>
-  <div class="contents">
+  <div class="contents leftside">
     Drawer
   </div>
   <div></div>
@@ -32,7 +32,8 @@ class="example-container">
     (click)="drawer.toggle()">
     menu
   </mat-icon>
-  <div>Entreprise : {{profil.raison_sociale}} </div><div class="exit"><mat-icon matTooltip="Se déconnecter"
+  <div>{{profil.raison_sociale}}</div>
+  <div class="exit"><mat-icon matTooltip="Se déconnecter"
     matTooltipClass="example-tooltip-uppercase"
    (click)=" logOutClick()"
     class="example-button">exit_to_app</mat-icon></div>

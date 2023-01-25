@@ -108,5 +108,12 @@ mat-icon {
   .drawer {
     max-width: 100%;
   }
+  .main.header{
+    height: 100px;
+  }
+  .main.contents{
+    position: relative;
+    top: 50px;
+  }
 
 }

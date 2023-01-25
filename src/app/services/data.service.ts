@@ -37,7 +37,7 @@ clearToken(): void {
 }
 
 getApiEntreprise(user:any): Observable<any> {
-  return this._http.get<any>(this.apiEntreprise + "search?q=" + user + "&page=1&per_page=25")
+  return this._http.get<any>(this.apiEntreprise + "search?q=" + user + "&page=1&per_page=1")
 }
 
               // SALARIE SERVICE SIDE //

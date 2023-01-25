@@ -147,8 +147,8 @@
     <p>
       <mat-form-field appearance="fill">
         <mat-label>SIREN</mat-label>
-        <input type="number" formControlName="siret" matInput placeholder="Numéro Siret" (keypress)="Send($event)">
-        <mat-hint><mat-icon matSuffix>warning</mat-icon>  Appuyez sur ENTRER après avoir renseigner un SIREN valide.</mat-hint>
+        <input type="tel" onkeypress="return event.charCode >= 48 && event.charCode <= 57" formControlName="siret" matInput placeholder="Numéro Siret" (keypress)="Send($event)">
+        <mat-hint><mat-icon matSuffix>warning</mat-icon>  Appuyez sur ENTRER après avoir renseigner un SIREN valide (9 chiffres).</mat-hint>
         <mat-icon matSuffix>account_circle</mat-icon>
       </mat-form-field>
     </p>
@@ -179,7 +179,7 @@
             <mat-label>Adresse</mat-label>
             <mat-select formControlName="rue" (valueChange)="data.siege.numero_voie + data.siege.type_voie + data.siege.libelle_voie">
               <mat-option  [value]="data.siege.numero_voie + data.siege.type_voie + data.siege.libelle_voie">
-                {{data.siege.numero_voie}} {{data.siege.type_voie}} {{data.siege.libelle_voie}}
+                {{data.siege.numero_voie }} {{data.siege.type_voie }} {{data.siege.libelle_voie}}
               </mat-option>
             </mat-select>
             <mat-icon matSuffix>home</mat-icon>
@@ -225,7 +225,7 @@
             <mat-form-field appearance="fill" *ngFor="let data of apiEntreprise" >
               <mat-label>Nom</mat-label>
               <mat-select formControlName="nom" (valueChange)="data.dirigeants[0].nom">
-                <mat-option  value={{data.dirigeants[0].nom}}>
+                <mat-option style="text-transform: uppercase;" value={{data.dirigeants[0].nom}}>
                   {{data.dirigeants[0].nom}}
                 </mat-option>
               </mat-select>
@@ -236,7 +236,7 @@
             <mat-form-field appearance="fill" *ngFor="let data of apiEntreprise" >
               <mat-label>Prénom</mat-label>
               <mat-select formControlName="prenom" (valueChange)="data.dirigeants[0].prenoms">
-                <mat-option  [value]="data.dirigeants[0].prenoms">
+                <mat-option style="text-transform: capitalize;"  [value]="data.dirigeants[0].prenoms">
                   {{data.dirigeants[0].prenoms}}
                 </mat-option>
               </mat-select>
