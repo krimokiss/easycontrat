@@ -149,12 +149,12 @@
         <mat-label>SIREN</mat-label>
         <input (click)="inputClicked = false" 
         [ngClass]="{'input-clicked': inputClicked}" 
-        type="text" pattern="[0-9]*" maxlength="9" 
+        type="text" pattern="[0-9]*" maxlength="14" minlength="9"
         onkeypress="return event.charCode >= 48 && event.charCode <= 57" 
         formControlName="siret" 
         matInput placeholder="Numéro Siret" 
         (keypress)="Send($event)">
-        <mat-hint><mat-icon matSuffix>warning</mat-icon> Appuyez sur ENTRER ou cliquez sur <mat-icon matSuffix>check_circle</mat-icon>  pour valider le SIREN (9 chiffres).</mat-hint>
+        <mat-hint><mat-icon matSuffix>warning</mat-icon> Appuyez sur ENTRER ou cliquez sur <mat-icon matSuffix>check_circle</mat-icon>  pour valider le SIREN ou SIRET.</mat-hint>
         <mat-icon (click)="onGetNom()" style="cursor: pointer;" [ngClass]="{'input-clicked': inputClicked}" matSuffix>check_circle</mat-icon>
       </mat-form-field>
     </p>

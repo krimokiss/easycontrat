@@ -58,7 +58,7 @@ export class RegisterentrepriseComponent implements OnInit {
       ville: [this.entreprise.ville, [Validators.required]],
       email: [this.entreprise.email, [Validators.required, Validators.pattern(this.emailRegex)]],
       mdp: [this.entreprise.mdp, [Validators.required, Validators.pattern(this.passwordRegex)]],
-      siret: [this.entreprise.siret, [Validators.required, Validators.pattern('[0-9]{9}')]],
+      siret: [this.entreprise.siret, [Validators.required, Validators.pattern('[0-9]{9,14}')]],
       raison_sociale: [this.entreprise.raison_sociale, [Validators.required]],
       code_ape: [this.entreprise.code_ape, [Validators.required]],
       role: [this.entreprise.role],
