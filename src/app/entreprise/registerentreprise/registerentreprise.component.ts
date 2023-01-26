@@ -75,6 +75,7 @@ export class RegisterentrepriseComponent implements OnInit {
   onGetNom(){
     this.dataService.getApiEntreprise(this.registerForm.value.siret).subscribe((data:any)=>{
       this.apiEntreprise = data.results
+      this.inputClicked = true;
       console.log(data.results);
       // this.apiEntreprise.map((result:any)=>{
       //   console.log(result);
