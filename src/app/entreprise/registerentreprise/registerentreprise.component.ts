@@ -28,6 +28,7 @@ export class RegisterentrepriseComponent implements OnInit {
   apiEntreprise!:any
   list!:any
   test!:any
+  inputClicked = false;
 
   title = 'signatureJS';
   signaturePad!: SignaturePad;
@@ -84,6 +85,7 @@ export class RegisterentrepriseComponent implements OnInit {
   Send(event: KeyboardEvent) {
     if (event.code === "Enter") {
       this.onGetNom()
+      this.inputClicked = true;
     }
   }
 

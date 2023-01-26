@@ -147,9 +147,9 @@
     <p>
       <mat-form-field appearance="fill">
         <mat-label>SIREN</mat-label>
-        <input type="text" onkeypress="return event.charCode >= 48 && event.charCode <= 57" formControlName="siret" matInput placeholder="Numéro Siret" (keypress)="Send($event)">
-        <mat-hint><mat-icon matSuffix>warning</mat-icon>  Appuyez sur ENTRER après avoir renseigner un SIREN valide (9 chiffres).</mat-hint>
-        <mat-icon matSuffix>account_circle</mat-icon>
+        <input (click)="inputClicked = false" [ngClass]="{'input-clicked': inputClicked}" type="text" pattern="[0-9]*" maxlength="9" onkeypress="return event.charCode >= 48 && event.charCode <= 57" formControlName="siret" matInput placeholder="Numéro Siret" (keypress)="Send($event)">
+        <mat-hint><mat-icon matSuffix>warning</mat-icon> Appuyez sur ENTRER après avoir renseigner un SIREN valide (9 chiffres).</mat-hint>
+        <mat-icon [ngClass]="{'input-clicked': inputClicked}" matSuffix>account_circle</mat-icon>
       </mat-form-field>
     </p>
     <p>
@@ -177,8 +177,8 @@
         <p>
           <mat-form-field appearance="fill" *ngFor="let data of apiEntreprise">
             <mat-label>Adresse</mat-label>
-            <mat-select formControlName="rue" (valueChange)="data.siege.numero_voie + data.siege.type_voie + data.siege.libelle_voie">
-              <mat-option  [value]="data.siege.numero_voie + data.siege.type_voie + data.siege.libelle_voie">
+            <mat-select formControlName="rue" (valueChange)="data.siege.numero_voie +' '+ data.siege.type_voie + ' ' + data.siege.libelle_voie">
+              <mat-option  [value]="data.siege.numero_voie + ' ' + data.siege.type_voie + ' ' + data.siege.libelle_voie">
                 {{data.siege.numero_voie }} {{data.siege.type_voie }} {{data.siege.libelle_voie}}
               </mat-option>
             </mat-select>
@@ -224,7 +224,7 @@
         <p >
             <mat-form-field appearance="fill" *ngFor="let data of apiEntreprise" >
               <mat-label>Nom</mat-label>
-              <mat-select formControlName="nom" (valueChange)="data.dirigeants[0].nom">
+              <mat-select style="text-transform: uppercase;" formControlName="nom" (valueChange)="data.dirigeants[0].nom">
                 <mat-option style="text-transform: uppercase;" value={{data.dirigeants[0].nom}}>
                   {{data.dirigeants[0].nom}}
                 </mat-option>
@@ -235,7 +235,7 @@
           <p>
             <mat-form-field appearance="fill" *ngFor="let data of apiEntreprise" >
               <mat-label>Prénom</mat-label>
-              <mat-select formControlName="prenom" (valueChange)="data.dirigeants[0].prenoms">
+              <mat-select style="text-transform: capitalize;" formControlName="prenom" (valueChange)="data.dirigeants[0].prenoms">
                 <mat-option style="text-transform: capitalize;"  [value]="data.dirigeants[0].prenoms">
                   {{data.dirigeants[0].prenoms}}
                 </mat-option>
