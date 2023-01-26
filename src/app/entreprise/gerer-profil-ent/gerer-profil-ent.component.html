@@ -43,6 +43,18 @@
         <div style=" height: 60px;">
             <div class="m-3">
                 <div class="p-2 shadow border" id="tasks">
+                    <div class="input-group  ps-3 test" > <mat-icon>calendar_today</mat-icon>
+                        <div class="card col-md-10 border-0"><strong>Raison sociale : </strong>
+                            <input type="text" [value]="profil.raison_sociale" [(ngModel)]=" profil.raison_sociale"></div>
+                        <button class="btn btn-outline-primary col me-2"  type="button" (click)="updateProfil()"><mat-icon>edit</mat-icon></button>
+                      
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style=" height: 60px;">
+            <div class="m-3">
+                <div class="p-2 shadow border" id="tasks">
                     <div class="input-group column ps-3 test" ><mat-icon>location_city</mat-icon>
                         <div class="card col-md-10 border-0"><strong> Adresse : </strong>
                             <input type="text" [value]="profil.rue" [(ngModel)]="profil.rue"> </div>
@@ -90,7 +102,7 @@
                 <div class="p-2 shadow border" id="tasks">
                     <div class="input-group ps-3 test" ><mat-icon>no_encryption</mat-icon>
                         <div class="card col-md-10 border-0"><strong>Mot de passe : </strong> <input type="password" value="{{profil.mdp}}" disabled="disabled" > </div>
-                        <button class="btn btn-outline-primary col me-2"  type="button" ><mat-icon>edit</mat-icon></button>
+                        <!-- <button class="btn btn-outline-primary col me-2"  type="button" ><mat-icon>edit</mat-icon></button> -->
                       
                     </div>
                 </div>
@@ -103,23 +115,12 @@
                     <div class="input-group  ps-3 test" ><mat-icon>how_to_reg</mat-icon>
                         <div class="card col-md-10 border-0"><strong>Siret : </strong>
                             <input type="text" [value]="profil.siret" [(ngModel)]="profil.siret"></div>
-                        <button class="btn btn-outline-primary col me-2"  type="button"(click)="updateProfil()" ><mat-icon>edit</mat-icon></button>
+                        <!-- <button class="btn btn-outline-primary col me-2"  type="button"(click)="updateProfil()" ><mat-icon>edit</mat-icon></button> -->
                     </div>
                 </div>
             </div>
         </div>
-        <div style=" height: 60px;">
-            <div class="m-3">
-                <div class="p-2 shadow border" id="tasks">
-                    <div class="input-group  ps-3 test" > <mat-icon>calendar_today</mat-icon>
-                        <div class="card col-md-10 border-0"><strong>Raison sociale : </strong>
-                            <input type="text" [value]="profil.raison_sociale" [(ngModel)]=" profil.raison_sociale"></div>
-                        <button class="btn btn-outline-primary col me-2"  type="button" (click)="updateProfil()"><mat-icon>edit</mat-icon></button>
-                      
-                    </div>
-                </div>
-            </div>
-        </div>
+       
         <div style=" height: 60px;">
             <div class="m-3">
                 <div class="p-2 shadow border" id="tasks">
