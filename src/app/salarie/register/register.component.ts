@@ -23,6 +23,7 @@ export class RegisterComponent implements OnInit {
   isLoading=false
   mdpErreur=true
   hide=true
+  maxDate = new Date(new Date().getFullYear() - 16, new Date().getMonth(), new Date().getDate())
 
 
   constructor(private formbuilder: FormBuilder,

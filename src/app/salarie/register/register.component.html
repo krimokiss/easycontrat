@@ -111,7 +111,7 @@
           <p>
             <mat-form-field appearance="fill">
               <mat-label>Date de naissance</mat-label>
-              <input formControlName="date_naissance" matInput placeholder="JJ/MM/AAAA" type="date">
+              <input formControlName="date_naissance" matInput [max]="maxDate | date : 'yyyy-MM-dd'" placeholder="JJ/MM/AAAA" type="date">
               <mat-icon matSuffix>calendar_today</mat-icon>
             </mat-form-field>
           </p>
