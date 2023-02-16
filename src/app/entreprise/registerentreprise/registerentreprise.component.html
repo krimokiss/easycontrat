@@ -140,8 +140,10 @@
  <!-- *********************************REGISTER MODE AVEC API.GOUV POUR LA BASE DE DONNEE****************************************************** -->
 
 <div class="container d-flex align-items-center flex-column">
-  
-  <p>Inscrivez-vous :</p> <br>
+  <div>
+<br>
+    <p  style="transform: translateX(-50%);" >Inscrivez-vous :</p> <br>
+  </div>
   <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
 
     <p>
@@ -266,7 +268,10 @@
         <p>
           <mat-form-field appearance="fill">
             <mat-label>Mot de passe</mat-label>
-            <input matInput [type]="hide ? 'password' : 'text'" formControlName="mdp" matInput placeholder="8 caractères min" type="text" autocomplete="current-password">
+            <input matInput [type]="hide ? 'password' : 'text'" formControlName="mdp" matInput placeholder="8 caractères min" type="password">
+            <mat-error>
+              8 Caractères requis minimun dont : Une Majuscule, une Minuscule, un Chiffre et un Symbole.
+              </mat-error>
             <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
               [attr.aria-pressed]="hide">
               <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
@@ -276,9 +281,9 @@
         <p>
           <mat-form-field appearance="fill">
             <mat-label>Confirmer le mot de passe</mat-label>
-            <input matInput [type]="hide ? 'password' : 'text'" formControlName="confirmMdp" matInput placeholder="8 caractères min" type="text" autocomplete="current-password">
-            <mat-error *ngIf="mdpErreur">
-              Vos mots de passe ne correspondent pas
+            <input matInput [type]="hide ? 'password' : 'text'" formControlName="confirmMdp" matInput placeholder="8 caractères min" type="password">
+            <mat-error>
+              8 Caractères requis minimun dont : Une Majuscule, une Minuscule, un Chiffre et un Symbole.
               </mat-error>
               <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
               [attr.aria-pressed]="hide">
@@ -302,9 +307,12 @@
           </div>
       
         <button class="btn btn-outline-success col me-2" [disabled]="btnDisabled || registerForm.invalid" type="button"
-           (click)="showSnackbarAction('Le formulaire à bien été prise en compte. Nous procédons à votre enregistrement','OK')">Valider votre inscription 2/2</button>
+           (click)="showSnackbarAction('Le formulaire à bien été prise en compte. Nous procédons à votre enregistrement','OK')">
+           Valider votre inscription 2/2 
+           <mat-spinner color="primary" diameter="20" *ngIf="isLoading"></mat-spinner>
+          </button>
         
-            <mat-spinner color="primary" diameter="200" *ngIf="isLoading"></mat-spinner>
+            
     
     </form>
 </div>
