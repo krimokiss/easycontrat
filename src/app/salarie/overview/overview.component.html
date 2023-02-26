@@ -25,7 +25,7 @@
     <mat-icon *ngIf="!drawer.opened" (click)="drawer.toggle()">
       menu
     </mat-icon>
-    <div>Espace salarié : <em>{{profil.prenom}} {{profil.nom}}</em> </div>
+    <div *ngIf="profil && profil.nom">Espace salarié : <em>{{profil.prenom}} {{profil.nom}}</em> </div>
     <div class="exit"><mat-icon matTooltip="Se déconnecter" matTooltipClass="example-tooltip-uppercase"
         (click)=" logOutClick()" class="example-button">exit_to_app</mat-icon></div>
   </mat-toolbar>

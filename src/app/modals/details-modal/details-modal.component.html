@@ -15,7 +15,7 @@
 
 <!-- MODAL PROVENANT DE LA SECTION ENTREPRISE -->
 
-<div container-fluid contrat>
+<div container-fluid contrat *ngIf="contratBySal && profilEntreprise">
 
   <div *ngFor="let salarie of contratBySal">
     <div *ngIf="data.fki_salarie == salarie.salarie_id && profilEntreprise.entreprise_id == salarie.fki_entreprise"
@@ -308,7 +308,7 @@
 
 
 
-<div contrat *ngIf="profilEntreprise == null && data.entreprise_id" id="text" #text>
+<div contrat *ngIf="profilEntreprise == null && data.entreprise_id && contratBySal && profilSalarie" id="text" #text>
 
   <div *ngFor="let contrat of contratBySal">
     <div *ngIf="contrat.fki_entreprise == data.entreprise_id && profilSalarie.salarie_id == contrat.fki_salarie">
