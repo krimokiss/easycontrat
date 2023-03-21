@@ -13,16 +13,18 @@ class="example-container">
    (click)="drawer.close()">close</mat-icon>
   </mat-toolbar>
   <div class="contents leftside">
-    Drawer
+    <div class="boutons">
+      <a mat-raised-button (click)="drawer.toggle()"  routerLink="/entreprise/overview/gerer-profil-ent"><span>Gérer mon profil</span><mat-icon matSuffix>account_circle  </mat-icon></a>
+      <a mat-raised-button (click)="drawer.toggle()"  routerLink="/entreprise/overview/gerer-contrat-ent">Gérer mes contrats<mat-icon matSuffix>folder_shared</mat-icon></a>
+      <a mat-raised-button (click)="drawer.toggle()"  routerLink="/entreprise/overview/gerer-salaries-ent">Gérer mes salariés<mat-icon matSuffix>group</mat-icon></a>
+      <a mat-raised-button (click)="drawer.toggle()"  routerLink="/entreprise/overview/generer-contrat">Générer un contrat<mat-icon matSuffix>create</mat-icon></a>
+      <a class="facture" mat-raised-button (click)="drawer.toggle()"  routerLink="/entreprise/overview/generer-facture">Générer une facture<mat-icon matSuffix>create</mat-icon></a>
+      <a class="facture" mat-raised-button (click)="drawer.toggle()"  routerLink="/entreprise/overview/gerer-facture-ent">Gérer mes factures<mat-icon matSuffix>folder_shared</mat-icon></a>
+  </div>
   </div>
   <div></div>
   <div>
-    <div class="boutons">
-        <a mat-raised-button (click)="drawer.toggle()"  routerLink="/entreprise/overview/gerer-profil-ent"><span>Gérer mon profil</span><mat-icon matSuffix>account_circle  </mat-icon></a>
-        <a mat-raised-button (click)="drawer.toggle()"  routerLink="/entreprise/overview/gerer-contrat-ent">Gérer mes contrats<mat-icon matSuffix>folder_shared</mat-icon></a>
-        <a mat-raised-button (click)="drawer.toggle()"  routerLink="/entreprise/overview/gerer-salaries-ent">Gérer mes salariés<mat-icon matSuffix>group</mat-icon></a>
-        <a mat-raised-button (click)="drawer.toggle()"  routerLink="/entreprise/overview/generer-contrat">Générer un contrat<mat-icon matSuffix>create</mat-icon></a>
-    </div>
+    
   </div>
 </mat-drawer>
 

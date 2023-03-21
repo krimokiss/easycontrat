@@ -1,9 +1,6 @@
-import { Router } from '@angular/router';
-import { Entreprise } from 'src/app/models/entreprise.model';
-import { Salarie } from 'src/app/models/salarie.model';
-import { DataService } from 'src/app/services/data.service';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientModule } from '@angular/common/http';
 
 import { LoginentrepriseComponent } from './loginentreprise.component';
 
@@ -13,17 +10,9 @@ describe('LoginentrepriseComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [ HttpClientModule ],
       declarations: [ LoginentrepriseComponent ],
-      providers:[
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-  DataService,
-  Salarie,
-  Entreprise,
-  Router
-      ]
+      providers: [FormBuilder]
     })
     .compileComponents();
 
@@ -36,4 +25,8 @@ describe('LoginentrepriseComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+
+
+
+
 

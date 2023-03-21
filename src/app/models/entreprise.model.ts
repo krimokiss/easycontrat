@@ -16,5 +16,6 @@ export class Entreprise {
     role!:boolean
     confirmMdp!:string
     sign!:string
+    image!:File
     
 }

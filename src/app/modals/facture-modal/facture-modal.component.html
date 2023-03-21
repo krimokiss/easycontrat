@@ -1,0 +1,206 @@
+<!-- <html>
+    <mat-dialog-content>
+<body>
+    <header>
+        <h1>FACTURE</h1>
+        <address contenteditable>
+            <p>{{entreprise.raison_sociale}}</p>
+            <p>{{entreprise.rue}}<br>{{entreprise.cp}} {{entreprise.ville}}</p>
+            <p>Tél: {{entreprise.telephone}}</p>
+        </address>
+        <span><img alt="" src=""><input type="file" accept="image/*"></span>
+    </header>
+    <article>
+        <h1>Recipient</h1>
+        <address contenteditable>
+            <p>{{data.pageValue.nom_client}}<br>{{data.pageValue.adresse_client}}
+                <br>{{data.pageValue.cp_client}} <br>{{data.pageValue.ville_client}}</p>
+        </address>
+        <table class="meta">
+            <tr>
+                <th><span contenteditable>Facture #</span></th>
+                <td><span contenteditable>{{data.pageValue.facture_id}}</span></td>
+            </tr>
+            <tr>
+                <th><span contenteditable>Date</span></th>
+                <td><span contenteditable>{{data.pageValue.date_facture}}</span></td>
+            </tr>
+            <tr>
+                <th><span contenteditable>Montant</span></th>
+                <td><span id="prefix" contenteditable>$</span><span>{{data.pageValue.tarif}}</span></td>
+            </tr>
+        </table>
+        <table class="inventory">
+            <thead>
+                <tr>
+                    <th><span contenteditable>Item</span></th>
+                    <th><span contenteditable>Description</span></th>
+                    <th><span contenteditable>Rate</span></th>
+                    <th><span contenteditable>Quantity</span></th>
+                    <th><span contenteditable>Price</span></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><a class="cut">-</a><span contenteditable>Front End Consultation</span></td>
+                    <td><span contenteditable>{{data.pageValue.description}}</span></td>
+                    <td><span data-prefix>€</span><span contenteditable>{{data.pageValue.tarif}}</span></td>
+                    <td><span contenteditable>{{data.pageValue.quantite}}</span></td>
+                    <td><span data-prefix>€</span><span>600.00</span></td>
+                </tr>
+            </tbody>
+        </table>
+     
+        <table class="balance">
+            <tr>
+                <th><span contenteditable>Total</span></th>
+                <td><span data-prefix>€</span><span>600.00</span></td>
+            </tr>
+            <tr>
+                <th><span contenteditable>Déja payé</span></th>
+                <td><span data-prefix>€</span><span contenteditable>0.00</span></td>
+            </tr>
+            <tr>
+                <th><span contenteditable>Reste à Payer</span></th>
+                <td><span data-prefix>€</span><span>600.00</span></td>
+            </tr>
+        </table>
+    </article>
+    <aside>
+        <h1><span contenteditable>Notes Complémentaires</span></h1>
+        <div contenteditable>
+            <p>A finance charge of 1.5% will be made on unpaid balances after 30 days.</p>
+        </div>
+    </aside>
+</body>
+</mat-dialog-content>
+</html> -->
+
+
+
+
+
+
+ <mat-dialog-content class="mat-typography">
+<div class="container">
+   
+    <div class="invoice" id="text" #text *ngIf="entreprise">
+        <div class="row">
+            <div class="col-7">
+                <img src="{{entreprise.image}}" class="logo"/>
+            </div>
+            <div class="col-5">
+                <h1 class="document-type display-4">FACTURE</h1>
+                <p class="text-right"><strong>Référence facture # {{data.pageValue.facture_id}}</strong></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-7">
+                <p class="address">
+                    <strong>{{entreprise.raison_sociale}}</strong><br/>
+                    {{entreprise.rue}}<br/>
+                    {{entreprise.cp}} {{entreprise.ville}}
+                </p>
+            </div>
+            <div class="col-5">
+                <br/><br/><br/>
+                <p class="address">
+                    <strong>{{data.pageValue.nom_client}}</strong><br/>
+                    <span>{{data.pageValue.adresse_client}}</span><br/>
+                    <span>{{data.pageValue.cp_client}}</span> 
+                    <span>{{data.pageValue.ville_client}}</span>
+                </p>
+            </div>
+        </div>
+        <br/>
+        <br/>
+        <h6>Fait à {{entreprise.ville}}, le {{data.pageValue.date_facture | date: 'dd MMMM YYYY'}}.
+        </h6>
+        <br/>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Description</th>
+             
+                <th>Montant</th>
+                <th class="text-right">Quantite</th>
+                <th class="text-right">Total HT</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>{{data.pageValue.description}}</td>
+            
+                <td>{{data.pageValue.tarif}} €</td>
+                <td class="text-right">{{data.pageValue.quantite}}</td>
+                <td class="text-right">{{ calculerHT() }} €</td>
+               
+            </tr>
+           
+
+            </tbody>
+        </table>
+        <div class="row">
+            <div class="col-8">
+            </div>
+            <div class="col-4">
+                <table class="table table-sm text-right">
+                    <tr>
+                        <td><strong>TVA</strong></td>
+                        <td class="text-right">{{data.pageValue.tva}} %</td>
+                    </tr>
+                    <tr>
+                        <td>Taxes</td>
+                        <td class="text-right">{{ calculerTva() }} €</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Total TTC</strong></td>
+                        <td class="text-right">{{ calculerTotal() }} €</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="payer" *ngIf="data.pageValue.payer == true">
+            <img src="https://t3.ftcdn.net/jpg/04/91/58/56/360_F_491585688_GCLtTbBJKH1F79Za9etgwk49LudYWQgc.jpg" alt="" srcset="" height="80%" width="80%">
+        </div>
+        <div class="payer" *ngIf="data.pageValue.payer == false">
+            <img src="https://t3.ftcdn.net/jpg/04/91/59/10/360_F_491591053_9bB1sKejyx043N0VEUKJpISwakqliAN9.jpg" alt="" srcset="" height="80%" width="80%">
+        </div>
+     
+        <p class="conditions">
+            En votre aimable règlement
+            <br/>
+            Et avec nos remerciements.
+            <br/><br/>
+            Conditions de paiement : paiement à réception de facture.
+            <br/>
+            Aucun escompte consenti pour règlement anticipé.
+            <br/>
+            Règlement : {{data.pageValue.paiement}}
+            <br/><br/>
+            En cas de retard de paiement, indemnité forfaitaire pour frais de recouvrement : 40 euros (art. L.4413
+            et
+            L.4416 code du commerce).
+        </p>
+
+        <br/>
+        <br/>
+        <br/>
+
+        <p class="bottom-page text-center">
+            <strong>{{entreprise.raison_sociale}}</strong> - N° SIRET: {{entreprise.siret}} ---
+            {{entreprise.rue}} - {{entreprise.cp}} {{entreprise.ville}}  - Tél: {{entreprise.telephone}} ---
+            Code APE: {{entreprise.code_ape}} 
+        </p>
+    </div>
+
+</div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+
+    <button mat-stroked-button color="warn" (click)="closeDialog()">Fermer</button>
+    <button mat-stroked-button color="primary" (click)="openPDF()">Télécharger</button>
+  </mat-dialog-actions>
+  <script src="node_modules/html2canvas/dist/html2canvas.min.js"></script>
+  <script src="node_modules/jspdf/dist/jspdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.js"></script>

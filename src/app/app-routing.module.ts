@@ -1,3 +1,6 @@
+import { GererFactureEntComponent } from './entreprise/gerer-facture-ent/gerer-facture-ent.component';
+import { FactureModalComponent } from './modals/facture-modal/facture-modal.component';
+import { GenererFactureComponent } from './entreprise/generer-facture/generer-facture.component';
 import { ProfilResolverResolver } from './resolver/profil-resolver.resolver';
 import { GuardEntrepriseGuard } from './helpers/guard-entreprise.guard';
 import { ContratResolverResolver } from './resolver/contrat-resolver.resolver';
@@ -39,10 +42,13 @@ const routes: Routes = [
     children: [
       { path: 'gerer-profil-ent', canActivate :[GuardEntrepriseGuard], component: GererProfilEntComponent },
       { path: 'gerer-contrat-ent', canActivate :[GuardEntrepriseGuard], component: GererContratEntComponent},
+      { path: 'gerer-facture-ent', canActivate : [GuardEntrepriseGuard], component: GererFactureEntComponent},
       {path : 'details-modal', component : DetailsModalComponent, },
       { path: 'gerer-salaries-ent', canActivate :[GuardEntrepriseGuard], component: GererSalariesEntComponent },
       { path: 'generer-contrat', canActivate :[GuardEntrepriseGuard], component: GenererContratComponent,
-    children: [{path : 'contrat-modal', component: ContratModalComponent}] }
+    children: [{path : 'contrat-modal', component: ContratModalComponent}] },
+      { path: 'generer-facture', canActivate : [GuardEntrepriseGuard], component: GenererFactureComponent,
+    children: [{path : 'facture-modal', component: FactureModalComponent}]}
     ]
   }
 ];

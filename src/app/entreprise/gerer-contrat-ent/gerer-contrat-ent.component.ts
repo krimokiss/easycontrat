@@ -15,10 +15,8 @@ import { Component, OnInit } from '@angular/core';
 export class GererContratEntComponent implements OnInit {
 
   profilEntreprise!: any
-  // allContrat!: any
   allSalarie!: any
   singlecontrat = new Contrat()
-  // contratByEnt!: any
   contratBySalarie!: any
   allContratFiltered!: any
   mesContratsFiltered!: any
@@ -74,10 +72,6 @@ export class GererContratEntComponent implements OnInit {
         })
       }
     })
-
-
-
-
   }
 
   onSubmit(id: any) {
@@ -86,9 +80,7 @@ export class GererContratEntComponent implements OnInit {
       // this.snackBar.open("Contrat correctement supprimé " + { duration: 2000 })
       // console.log('DELETE CONTRAT :', response);
       return window.location.reload()
-
     })
-
   }
   openSnackBar(id: any) {
     this.dataService.getOneContrat(id).subscribe((response: any) => {
@@ -118,7 +110,6 @@ export class GererContratEntComponent implements OnInit {
         // data: { contratValue: this.singlecontrat}
         width: '80%',
         height: '90vh',
-
         data: this.singlecontrat
       })
       console.log('ID contrat', this.singlecontrat);

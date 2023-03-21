@@ -1,0 +1,61 @@
+.container {
+    width: 100%;
+    h1{
+        text-decoration: underline;
+        font-weight: 500;
+      
+    }
+   mat-card{
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  margin-bottom: 20px;
+   
+    mat-card-actions {
+       
+        :hover:nth-child(1){
+            color: white;
+            background-color: #1976d2be;
+        }
+        :hover:nth-child(2){
+            color: white;
+            background-color: #af0505be;
+        }
+        button {
+            background-color: beige;
+            color: black;         
+        }
+    }
+    mat-icon{
+        transform: translateY(30%);
+
+    }
+    .valid mat-icon{
+        color: green;
+    }
+    .cancel mat-icon{
+        color: red;
+    }
+   }
+}
+
+@media screen {
+    #exampleModalLong{
+        display: none;
+    }
+}
+@media print {
+    body * {
+        visibility: hidden;
+    }
+    #exampleModalLong, #exampleModalLong * {
+        visibility: visible;
+    }
+    #exampleModalLong {
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+}
+
+.cartes{
+    width: min-content;
+}

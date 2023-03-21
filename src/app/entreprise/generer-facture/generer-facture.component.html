@@ -1,0 +1,187 @@
+<div class="container">
+    <h1>Générer une Facture</h1>
+    <mat-vertical-stepper [linear]="false" #stepper (animationDuration)="2000">
+      <form [formGroup]="registerForm">
+
+        <mat-step [stepControl]="registerForm">
+            <ng-template matStepLabel>Nom du client</ng-template>
+            <mat-form-field>
+              <input matInput placeholder="" formControlName="nom_client">
+            </mat-form-field>
+            <div>
+              <button mat-button matStepperPrevious>Retour</button>
+              <button mat-button matStepperNext>Suivant</button>
+            </div>
+          </mat-step>
+       
+          <mat-step [stepControl]="registerForm">
+            <ng-template matStepLabel>Adresse</ng-template>
+            <mat-form-field>
+              <input matInput placeholder="" formControlName="adresse_client">
+            </mat-form-field>
+            <div>
+              <button mat-button matStepperPrevious>Retour</button>
+              <button mat-button matStepperNext>Suivant</button>
+            </div>
+          </mat-step>
+  
+          <mat-step [stepControl]="registerForm">
+            <ng-template matStepLabel>Code Postal</ng-template>
+            <mat-form-field>
+              <input matInput placeholder="" formControlName="cp_client">
+            </mat-form-field>
+            <div>
+              <button mat-button matStepperPrevious>Retour</button>
+              <button mat-button matStepperNext>Suivant</button>
+            </div>
+          </mat-step>
+      
+          <mat-step [stepControl]="registerForm">
+            <ng-template matStepLabel>Ville</ng-template>
+            <mat-form-field>
+              <input matInput placeholder="" formControlName="ville_client">
+            </mat-form-field>
+            <div>
+              <button mat-button matStepperPrevious>Retour</button>
+              <button mat-button matStepperNext>Suivant</button>
+            </div>
+          </mat-step>
+  
+        <mat-step [stepControl]="registerForm">
+          <ng-template matStepLabel>Date de Facturation</ng-template>
+          <mat-form-field>
+            <input matInput placeholder="" type="date" formControlName="date_facture">
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperPrevious>Retour</button>
+            <button mat-button matStepperNext>Suivant</button>
+          </div>
+        </mat-step>
+  
+        <mat-step [stepControl]="registerForm">
+          <ng-template matStepLabel>Description</ng-template>
+          <!-- <mat-form-field>
+            <input matInput placeholder="" formControlName="description">
+          </mat-form-field> -->
+          <div class="d-flex flex-column ">
+            <mat-form-field>
+                <input matInput placeholder="Service ou produit #1" formControlName="description">
+              </mat-form-field>
+              <!-- <mat-form-field>
+                <input matInput placeholder="Service ou produit #2" >
+              </mat-form-field>
+              <mat-form-field>
+                <input matInput placeholder="Service ou produit #3" >
+              </mat-form-field> -->
+          </div>
+          <div>
+            <button mat-button matStepperPrevious>Retour</button>
+            <button mat-button matStepperNext>Suivant</button>
+          </div>
+        </mat-step>
+  
+        <mat-step [stepControl]="registerForm">
+          <ng-template matStepLabel>Tarif</ng-template>
+          <!-- <mat-form-field>
+            <input matInput placeholder="" formControlName="tarif">
+          </mat-form-field> -->
+          <div class="d-flex flex-column ">
+            <mat-form-field>
+                <input matInput placeholder="Tarif du service/produit #1" formControlName="tarif">
+              </mat-form-field>
+              <!-- <mat-form-field>
+                <input matInput placeholder="Tarif du service/produit #2" >
+              </mat-form-field> -->
+              <!-- <mat-form-field>
+                <input matInput placeholder="Tarif du service/produit #3" >
+              </mat-form-field> -->
+          </div>
+          <div>
+            <button mat-button matStepperPrevious>Retour</button>
+            <button mat-button matStepperNext>Suivant</button>
+          </div>
+        </mat-step>
+  
+        <mat-step [stepControl]="registerForm">
+          <ng-template matStepLabel>Quantité</ng-template>
+          <!-- <mat-form-field>
+            <input matInput placeholder="" formControlName="quantite">
+          </mat-form-field> -->
+          <div class="d-flex flex-column ">
+            <mat-form-field>
+                <input matInput placeholder="Quantité du service ou produit #1" formControlName="quantite">
+              </mat-form-field>
+              <!-- <mat-form-field>
+                <input matInput placeholder="Quantité du service ou produit #2" >
+              </mat-form-field> -->
+              <!-- <mat-form-field>
+                <input matInput placeholder="Quantité du service ou produit #3" >
+              </mat-form-field> -->
+          </div>
+          <div>
+            <button mat-button matStepperPrevious>Retour</button>
+            <button mat-button matStepperNext>Suivant</button>
+          </div>
+        </mat-step>
+  
+        <mat-step [stepControl]="registerForm">
+          <ng-template matStepLabel>TVA</ng-template>
+          <mat-form-field>
+            <input matInput placeholder="" formControlName="tva">
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperPrevious>Retour</button>
+            <button mat-button matStepperNext>Suivant</button>
+          </div>
+        </mat-step>
+  
+        <mat-step [stepControl]="registerForm">
+          <ng-template matStepLabel>Paiement</ng-template>
+          <mat-form-field>
+            <input matInput placeholder="" formControlName="paiement">
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperPrevious>Retour</button>
+            <button mat-button matStepperNext>Suivant</button>
+          </div>
+        </mat-step>
+  
+        <mat-step [stepControl]="registerForm">
+            <ng-template matStepLabel>Payé?</ng-template>
+            <mat-form-field appearance="fill">
+              <mat-label>Facture payé ?</mat-label>
+              <!-- <input matInput placeholder="Civilité" type="text"> -->
+              <mat-select formControlName="payer" required>
+                <mat-option value=true>
+                 Oui
+                </mat-option>
+                <mat-option value=false>
+                  Non
+                </mat-option>
+              </mat-select>
+              <!-- <mat-icon matSuffix>account_circle</mat-icon> -->
+            </mat-form-field>
+            <!-- <mat-form-field>
+              <input matInput placeholder="CDD, CDI, Interim" formControlName="type_contrat" required>
+            </mat-form-field> -->
+            <div>
+              <button mat-button matStepperPrevious>Retour</button>
+              <button mat-button matStepperNext>Suivant</button>
+            </div>
+          </mat-step>
+  
+      </form>
+      <mat-step>
+  
+        <ng-template matStepLabel>Terminé</ng-template>
+        Vous avez terminé le formulaire.
+        <div>
+          <button mat-button matStepperPrevious>Retour</button>
+          <button mat-button (click)="stepper.reset()">Annuler</button>
+          <button mat-button color="primary" (click)="onSubmit()" (click)="openDialog()" [disabled]=registerForm.invalid >Générer Facture</button>
+        </div>
+      </mat-step>
+    </mat-vertical-stepper>
+    <!-- <app-contrat-modal [item]="registerForm.value"></app-contrat-modal> -->
+  
+  </div>

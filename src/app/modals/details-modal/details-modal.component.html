@@ -20,7 +20,8 @@
   <div *ngFor="let salarie of contratBySal">
     <div *ngIf="data.fki_salarie == salarie.salarie_id && profilEntreprise.entreprise_id == salarie.fki_entreprise"
       id="text" #text>
-      <h1 style="text-align: center;"><span></span><br>
+      <h1 style="text-align: center;">
+        <!-- <img class="col-3" src="{{profilEntreprise.image}}" alt="" srcset=""><br> -->
         <strong>{{data.type_contrat==='CDD'? 'CONTRAT DE TRAVAIL À DURÉE DÉTERMINÉE' : 'CONTRAT DE TRAVAIL À DURÉE INDÉTERMINÉE'}} </strong></h1>
       <br>
       <p><br><strong>ENTRE LES SOUSSIGNÉS</strong><br></p>
@@ -312,7 +313,7 @@
 
   <div *ngFor="let contrat of contratBySal">
     <div *ngIf="contrat.fki_entreprise == data.entreprise_id && profilSalarie.salarie_id == contrat.fki_salarie">
-      <h1 style="text-align: center;"><br>
+      <h1 style="text-align: center;"><img class="col-3" src="{{data.image}}" alt="" srcset=""><br>
         <strong>{{contrat.type_contrat==='CDD'? 'CONTRAT DE TRAVAIL À DURÉE DÉTERMINÉE' : 'CONTRAT DE TRAVAIL À DURÉE INDÉTERMINÉE'}} </strong>
       </h1>
       <br>

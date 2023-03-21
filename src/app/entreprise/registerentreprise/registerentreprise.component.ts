@@ -29,7 +29,7 @@ export class RegisterentrepriseComponent implements OnInit {
   list!:any
   test!:any
   inputClicked = false;
-
+file!:File
   title = 'signatureJS';
   signaturePad!: SignaturePad;
   @ViewChild('canvas') canvasEl!: ElementRef;
@@ -64,8 +64,8 @@ export class RegisterentrepriseComponent implements OnInit {
       role: [this.entreprise.role],
       confirmMdp: [this.entreprise.confirmMdp, [Validators.required]],
       sign: [this.entreprise.sign], 
-      // ConfirmPassword: ['', [Validators.required, Validators.pattern(this.passwordRegex)]],
-
+      image: ['', Validators.required]
+     
     });
 
  
@@ -76,17 +76,30 @@ export class RegisterentrepriseComponent implements OnInit {
     this.dataService.getApiEntreprise(this.registerForm.value.siret).subscribe((data:any)=>{
       this.apiEntreprise = data.results
       this.inputClicked = true;
-      console.log(data.results);
-      // this.apiEntreprise.map((result:any)=>{
-      //   console.log(result);
-      //   this.test =result
-      // })
+      // console.log(data.results);
     })
   }
+  
   Send(event: KeyboardEvent) {
     if (event.code === "Enter") {
       this.onGetNom()
       this.inputClicked = true;
+    }
+  }
+
+  onFileChange(event) {
+    const reader = new FileReader();
+
+    if(event.target.files && event.target.files.length) {
+      const [file] = event.target.files;
+      this.file = file;
+      reader.readAsDataURL(file);
+
+      reader.onload = () => {
+        this.registerForm.patchValue({
+          image: reader.result
+        });
+      };
     }
   }
 

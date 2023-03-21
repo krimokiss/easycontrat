@@ -13,3 +13,9 @@ mat-spinner{
 .input-clicked{
     color: #1a03eb;
   }
+
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

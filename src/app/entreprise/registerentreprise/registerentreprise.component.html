@@ -291,12 +291,23 @@
           </button>
           </mat-form-field>
         </p>
+        
+         <div> <p>*Votre logo (qui apparaitra sur chaque document)</p>
+          <form appearance="fill">
+            <input type="file" (change)="onFileChange($event)" formControlName="image">
+            <!-- <button type="submit" [disabled]="registerForm.invalid">Valider le fichier</button> -->
+            <!-- <button class="btn btn-outline-primary btn-sm col me-2" type="button" [disabled]="registerForm.invalid" >valider le fichier</button> -->
+          </form>
+          
+          <img [src]="registerForm.controls['image'].value" *ngIf="registerForm.controls['image'].value">
+         </div>
+        
         <p >
           <mat-form-field class="d-none" appearance="fill">
             <input formControlName="sign" matInput placeholder="Code signature" type="text" value={{entreprise.sign}}>
           </mat-form-field>
         </p>
-       <div><p>Signature*</p>
+       <div><p>*Votre signature (qui apparaitra sur chaque contrat)</p>
             <canvas #canvas (touchstart)="startDrawing($event)" (touchmove)="moved($event)">
             </canvas>
             <div class="d-flex justify-content-around">

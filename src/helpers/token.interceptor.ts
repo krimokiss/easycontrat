@@ -31,8 +31,6 @@ export class TokenInterceptor implements HttpInterceptor {
       })
     }
 
-
-
     return next.handle(modifiedReq).pipe(
       catchError(error => {
         let message = ''
@@ -45,11 +43,11 @@ export class TokenInterceptor implements HttpInterceptor {
         break
         case 409: message = 'Email déja utilisé'
         break
-
+        case 429: message = 'Vous avez dépassé la limite de tentatives de connexion. Veuillez réessayer dans 15 minutes.'
+        break
         }
         this.snackBar.open(message, 'ok', {verticalPosition:'top'})
         return next.handle(modifiedReq)
-        
       })
     );
   }

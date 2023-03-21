@@ -47,6 +47,9 @@ import { SalarieModalComponent } from './modals/salarie-modal/salarie-modal.comp
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { SignatureModalComponent } from './modals/signature-modal/signature-modal.component';
+import { GenererFactureComponent } from './entreprise/generer-facture/generer-facture.component';
+import { FactureModalComponent } from './modals/facture-modal/facture-modal.component';
+import { GererFactureEntComponent } from './entreprise/gerer-facture-ent/gerer-facture-ent.component';
 
 
 @NgModule({
@@ -68,7 +71,10 @@ import { SignatureModalComponent } from './modals/signature-modal/signature-moda
     ContratModalComponent,
     DetailsModalComponent,
     SalarieModalComponent,
-    SignatureModalComponent
+    SignatureModalComponent,
+    GenererFactureComponent,
+    FactureModalComponent,
+    GererFactureEntComponent
 
   ],
   imports: [

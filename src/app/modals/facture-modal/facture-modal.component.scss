@@ -1,0 +1,50 @@
+
+
+
+body {
+    background: #ccc;
+    padding: 30px;
+    font-size: 0.6em;
+  }
+  
+  h6{font-size:1em;}
+  
+  .container {
+    width: 21cm;
+    min-height: 29.7cm;
+  }
+  
+  .invoice {
+    background: #fff;
+    width: 100%;
+    padding: 50px;
+  }
+  
+  .logo {
+    width: 4cm;
+  }
+  
+  .document-type {
+    text-align: right;
+    color: #444;
+  }
+  
+  .conditions {
+    font-size: 0.7em;
+    color: #666;
+  }
+  
+  .bottom-page {
+    font-size: 0.7em;
+  }
+  .address{
+    font-size: 1.2em;
+  }
+  .payer{
+  height: 50%;
+  width: 50%;
+  position: relative;
+transform: translateY(-70%);
+  left: 20%;
+  opacity: 0.5;
+  }

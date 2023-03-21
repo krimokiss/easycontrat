@@ -1,0 +1,30 @@
+<div class="container" *ngIf="profilEntreprise">
+    <h1>Gestion de mes Factures</h1>
+    
+   
+  
+    <div class="allFactures">
+      <span class="cartes" *ngFor="let facture of allFacture">
+        <mat-card *ngIf="facture.fki_entreprise == profilEntreprise.entreprise_id">
+          <mat-card-header>
+            
+            <mat-card-title>Client : {{facture.nom_client}}</mat-card-title>
+            <mat-card-subtitle><strong>Facture ID :</strong> {{facture.facture_id}}</mat-card-subtitle>
+            <mat-card-subtitle><strong>Description :</strong> {{facture.description}} <br>
+                 <strong>Date de facturation : {{facture.date_facture | date: 'dd MMM yyyy'}}</strong></mat-card-subtitle>
+                 <mat-card-subtitle><strong>Montant Facture :</strong>  {{ (facture.tarif * facture.quantite) + (facture.tarif*facture.quantite * facture.tva / 100)}} €</mat-card-subtitle>
+                 <mat-card-subtitle class="valid" *ngIf="facture.payer ==true"><strong>Facture payé : <mat-icon>check_box</mat-icon></strong> </mat-card-subtitle>
+                 <mat-card-subtitle class="cancel" *ngIf="facture.payer ==false"><strong>Facture payé : <mat-icon>cancel</mat-icon></strong> </mat-card-subtitle>
+          </mat-card-header>
+  
+          <mat-card-actions>
+            <button color="primary" (click)="onDetails(facture.facture_id)" mat-button>Détails</button>
+            <button color="primary" (click)="openSnackBar(facture.facture_id)" mat-button>Supprimer</button>
+          </mat-card-actions>
+        </mat-card>
+      </span>
+  
+    </div>
+  
+  </div>
+ 

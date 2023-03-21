@@ -27,6 +27,7 @@
     "@ng-bootstrap/ng-bootstrap": "^13.0.0",
     "@popperjs/core": "^2.10.2",
     "bootstrap": "^5.2.0",
+    "express-rate-limit": "^6.7.0",
     "html2canvas": "^1.4.1",
     "html2pdf.js": "^0.10.1",
     "jspdf": "^2.5.1",
