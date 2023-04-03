@@ -3,8 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  API_URL : 'https://easycontratserver.onrender.com/api',
-    // API_URL : 'http://localhost:5000/api',
+  // API_URL : 'https://easycontratserver.onrender.com/api',
+    API_URL : 'http://localhost:5000/api',
   production: true
 };
 
